@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites_Depth
+  m_Shader: {fileID: 4800000, guid: 386f8c03ac326ef40be6a3696837121f, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Palette:
+        m_Texture: {fileID: 2800000, guid: d0deed11a4e297b47886d058a05f359a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureTex:
+        m_Texture: {fileID: 2800000, guid: 7dd926f9c711e2e4984ff5255c57b8af, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    - _Power: 2.45
+    m_Colors:
+    - _Ambient: {r: 1, g: 1, b: 1, a: 1}
+    - _CamPos: {r: 3.35, g: -0.03, b: -1.82, a: 1.71}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Data: {r: 3.21, g: 0.59, b: 0.54, a: 3.51}
+    - _Edge: {r: -0.04, g: 2.1, b: 1.75, a: 1.12}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _LineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainLightPosition: {r: 1.15, g: -0.26, b: 0, a: 0}
+    - _Power: {r: 1.65, g: 1.08, b: 0.81, a: 0.49}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
