@@ -105,12 +105,12 @@ Shader "Custom/SlicedSpriteWithTiling"
             fixed4 SampleSpriteTexture (float2 uv)
             {
                 fixed4 color = tex2D (_MainTex, uv);
-
+/*
                 #if ETC1_EXTERNAL_ALPHA
                     fixed4 alpha = tex2D (_AlphaTex, uv);
                     color.a = lerp (color.a, alpha.r, _EnableExternalAlpha);
                 #endif
-
+*/
                     return color;
                 }
 /*

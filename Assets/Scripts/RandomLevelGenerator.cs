@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class RandomLevelGenerator : MonoBehaviour
 {
@@ -21,16 +22,26 @@ public class RandomLevelGenerator : MonoBehaviour
     private GameObject root;
     private List<Material> instantiatedMaterials = new List<Material>();
 
-    public void GenerateLevel()
+    public GameObject titleSprite;
+    public GameObject bgSprite;
+
+    public Vector2 minMaxPlatformAnimateBounds;
+    public Vector2 minMaxPlatformAnimateSpeed;
+
+    public GameObject GenerateLevel()
     {
         // Cleanup
         Cleanup();
 
         // Create the root GameObject
         root = new GameObject("Root");
+        titleSprite.GetComponent<HideChildOnClick>().ShowChild();
+        GetComponent<ImageLoader>().SetRandomStyle();
+        GetComponent<ImageLoader>().AssignRandomImage(titleSprite.transform.GetChild(0).GetComponent<SpriteRenderer>(),"Title");
+        GetComponent<ImageLoader>().AssignRandomImage(bgSprite.GetComponent<SpriteRenderer>(),"Background");
 
         int platformCount = Random.Range(minPlatforms, maxPlatforms + 1);
-        float ySpacing = (platformPositionBounds.y - platformPositionBounds.x) / (platformCount - 1);
+        float ySpacing = Mathf.Max(0,(platformPositionBounds.y - platformPositionBounds.x) / (platformCount - 1));
 
         for (int i = 0; i < platformCount; i++)
         {
@@ -38,11 +49,11 @@ public class RandomLevelGenerator : MonoBehaviour
             GameObject newPlatform = Instantiate(platformPrefab, new Vector3(0, platformPositionY, 0), Quaternion.identity, root.transform);
 
             TransformUniversal transformUniversal = newPlatform.AddComponent<TransformUniversal>();
-            transformUniversal.doTranslateNoise = true;
-            transformUniversal.translateNoiseLowerBounds = new Vector3(-3.3f,0,0);
-            transformUniversal.translateNoiseUpperBounds = new Vector3(3.3f,0,0);
-            transformUniversal.translateNoiseSpeed = new Vector3(Random.Range(.02f,.1f),0,0);
-            transformUniversal.translateNoiseOffset = new Vector3(Random.Range(-100,100),0,0);
+            transformUniversal.doTranslateOscillate = true;
+            transformUniversal.translateOscillateLowerBounds = new Vector3(minMaxPlatformAnimateBounds.x,0,0);
+            transformUniversal.translateOscillateUpperBounds = new Vector3(minMaxPlatformAnimateBounds.y,0,0);
+            transformUniversal.translateOscillateSpeed = new Vector3(Random.Range(minMaxPlatformAnimateSpeed.x,minMaxPlatformAnimateSpeed.y),0,0);
+            transformUniversal.translateOscillateOffset = new Vector3(Random.Range(-100,100),0,0);
 
             // Scale the platform based on a random width
             float platformWidth = Random.Range(platformWidthBounds.x, platformWidthBounds.y);
@@ -50,6 +61,7 @@ public class RandomLevelGenerator : MonoBehaviour
             Material mat = Instantiate(platformMaterial);
             instantiatedMaterials.Add(mat);  // Track the instantiated material
             spriteRenderer.material = mat;
+            GetComponent<ImageLoader>().AssignRandomImage(spriteRenderer,"Platforms",true);
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Random.Range(0, 1f));
             spriteRenderer.size = new Vector2(platformWidth, spriteRenderer.size.y);
 
@@ -70,21 +82,24 @@ public class RandomLevelGenerator : MonoBehaviour
             {
                 Vector3 ringPosition = newPlatform.transform.position + new Vector3((spacing * j - platformWidth*.5f)*spriteRenderer.transform.localScale.x, 0.5f, 0);
                 GameObject newRing = Instantiate(ringPrefab, ringPosition, Quaternion.identity, newPlatform.transform);
+                GetComponent<ImageLoader>().AssignRandomImage(newRing.transform.GetChild(0).GetComponent<SpriteRenderer>(),"Items");
             }
         }
+        
+        return root;
     }
 
     private void Cleanup()
     {
         if (root != null)
         {
-            DestroyImmediate(root);
+            Destroy(root);
         }
 
         // Cleanup materials
         foreach (Material mat in instantiatedMaterials)
         {
-            DestroyImmediate(mat);
+            Destroy(mat);
         }
         instantiatedMaterials.Clear();
     }

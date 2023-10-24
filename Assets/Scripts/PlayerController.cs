@@ -13,7 +13,13 @@ public class PlayerController : MonoBehaviour
     Vector3 dragDirection;
     float dragDistance;
 
+    ImageLoader imageLoader;
+
     bool canToss = false;
+
+    void Start(){
+        imageLoader = FindObjectOfType<ImageLoader>();
+    }
 
     private void Update()
     {
@@ -80,6 +86,9 @@ public class PlayerController : MonoBehaviour
 
             // Instantiate the currentRing for the actual toss
             currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity);
+            if(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>()!=null){
+                imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(),"Projectile");
+            }
             Rigidbody2D rb = currentRing.GetComponent<Rigidbody2D>();
 
             // Apply the force to the currentRing when releasing the mouse button
