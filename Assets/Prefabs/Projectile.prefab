@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5145269607727270038}
   - component: {fileID: -8280560375139447642}
   - component: {fileID: -1242835881240133750}
+  - component: {fileID: 802954786286293429}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ea83e430b775f499c7d1c1b1c2bbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burster: {fileID: 6675763753893421309, guid: 7b6af216c13957e4eb81b9d36b49319c, type: 3}
 --- !u!50 &-8280560375139447642
 Rigidbody2D:
   serializedVersion: 4
@@ -220,3 +222,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &802954786286293429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779040916832652633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d2163f8ced7954d8c0214058ab8a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customTag: 2
+  scoreValue: 10
