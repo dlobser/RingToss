@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         if (canToss)
         {
 
-            tossForceMultiply = GlobalPhysics.ballSpeed;
+            tossForceMultiply = GlobalSettings.Physics.ballSpeed;
 
             if (displayRing != null)
             {
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
             // Instantiate the currentRing for the actual toss
             currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity);
-            currentRing.transform.localScale = Vector3.one * GlobalPhysics.ballSize;
+            currentRing.transform.localScale = Vector3.one * GlobalSettings.Physics.ballSize;
 
             if(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>()!=null){
                 imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(),"Projectile");
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
             // Apply the force to the currentRing when releasing the mouse button
             rb.AddForce(dragDirection * Mathf.Clamp(dragDistance * tossForceMultiply, 0, maxTossForce), ForceMode2D.Impulse);
-            rb.gravityScale = GlobalPhysics.ballGravity;
+            rb.gravityScale = GlobalSettings.Physics.ballGravity;
 
             canToss = false;
         }

@@ -8,7 +8,7 @@ public class Ring : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Target target = other.gameObject.GetComponent<Target>();
+        Item target = other.gameObject.GetComponent<Item>();
         print("Hit");
 
         if (target != null)
@@ -17,7 +17,7 @@ public class Ring : MonoBehaviour
 
             switch (otherTag)
             {
-                case CustomTag.Target:
+                case CustomTag.Item:
                     // Handle a successful toss (e.g., scoring points)
                     GameManager.instance.IncrementScore();
                     if(burster!=null){

@@ -3,8 +3,9 @@ using UnityEngine;
 public enum CustomTag
 {
     Boundary,
-    Target,
+    Item,
     Projectile,
+    Platform,
     // Add more custom tags as needed
 }
 
@@ -52,10 +53,10 @@ public class GameManager : MonoBehaviour
     {
         totalTargetsInLevel = 0;
         // Find all GameObjects with the 'Target' tag
-        Target[] targets = root.GetComponentsInChildren<Target>();// FindObjectsOfType<Target>();
-        foreach (Target t in targets)
+        Item[] targets = root.GetComponentsInChildren<Item>();// FindObjectsOfType<Target>();
+        foreach (Item t in targets)
         {
-            if (t.customTag == CustomTag.Target)
+            if (t.customTag == CustomTag.Item)
                 totalTargetsInLevel++;
         }
         print(targets.Length);
