@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float tossForceMultiply = 10;
 
     private GameObject currentRing;
-    public GameObject displayRing; 
+    public GameObject displayRing;
     private Vector3 dragEndPos;
     Vector3 dragDirection;
     float dragDistance;
@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
 
     bool canToss = false;
 
-    void Start(){
+    void Start()
+    {
         imageLoader = FindObjectOfType<ImageLoader>();
     }
 
@@ -36,8 +37,6 @@ public class PlayerController : MonoBehaviour
             OnMouseUp();
         }
     }
-
-
 
     private void OnMouseDown()
     {
@@ -58,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
             Vector2 mousePos = Input.mousePosition;
             dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
-            
+
             dragEndPos.z = 0;
             dragDirection = (dragEndPos - ringSpawnPoint.position).normalized;
             dragDistance = Vector3.Distance(ringSpawnPoint.position, dragEndPos);
@@ -69,7 +68,7 @@ public class PlayerController : MonoBehaviour
             // Visualize the force direction by scaling the display ring
             displayRing.transform.LookAt(dragEndPos);
             displayRing.transform.localScale = new Vector3(1, 1, dragDistance);
-            displayRing.transform.position = ringSpawnPoint.position ;
+            displayRing.transform.position = ringSpawnPoint.position;
 
         }
     }
@@ -91,8 +90,9 @@ public class PlayerController : MonoBehaviour
             currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity);
             currentRing.transform.localScale = Vector3.one * GlobalSettings.Physics.ballSize;
 
-            if(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>()!=null){
-                imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(),"Projectile");
+            if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
+            {
+                imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile");
             }
             Rigidbody2D rb = currentRing.GetComponent<Rigidbody2D>();
 

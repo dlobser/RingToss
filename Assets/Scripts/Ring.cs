@@ -8,8 +8,10 @@ public class Ring : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Item target = other.gameObject.GetComponent<Item>();
-        print("Hit");
+        Item target = null;
+
+        if (other.gameObject.GetComponent<Item>() != null)
+            target = other.gameObject.GetComponent<Item>();
 
         if (target != null)
         {
@@ -20,10 +22,11 @@ public class Ring : MonoBehaviour
                 case CustomTag.Item:
                     // Handle a successful toss (e.g., scoring points)
                     GameManager.instance.gameScoreKeeper.IncrementScore();
-                    if(burster!=null){
+                    if (burster != null)
+                    {
                         GameObject burst = Instantiate(burster);
                         burst.transform.position = this.transform.position;
-                        Destroy(burst.gameObject,5);
+                        Destroy(burst.gameObject, 5);
                     }
                     print("Got it!");
                     target.Hit();
@@ -36,11 +39,11 @@ public class Ring : MonoBehaviour
                     Destroy(gameObject);
                     break;
 
-                    // Add cases for other custom tags as needed
+                // Add cases for other custom tags as needed
                 case CustomTag.Projectile:
                     // Handle a successful toss (e.g., scoring points)
-                    if(!target.GetComponent<Ring>().emitted)
-                        BurstObjects(2,8,GetComponent<Rigidbody2D>().velocity);
+                    if (!target.GetComponent<Ring>().emitted)
+                        BurstObjects(2, 8, GetComponent<Rigidbody2D>().velocity);
                     Destroy(gameObject); // Remove the ring
                     Destroy(target.gameObject);
                     break;
@@ -61,17 +64,17 @@ public class Ring : MonoBehaviour
 
             // Instantiate
             GameObject obj = Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
-            obj.transform.localScale = Vector3.one*.2f;
+            obj.transform.localScale = Vector3.one * .2f;
             obj.GetComponent<Ring>().emitted = true;
             obj.GetComponent<CircleCollider2D>().enabled = true;
-        
+
 
             // Apply outward force
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            if (rb != null) 
+            if (rb != null)
             {
                 Vector2 directionOutward = (obj.transform.position - transform.position).normalized;
-                rb.AddForce(directionOutward * 2 + new Vector2(velocity.x,velocity.y), ForceMode2D.Impulse);
+                rb.AddForce(directionOutward * 2 + new Vector2(velocity.x, velocity.y), ForceMode2D.Impulse);
             }
             else
             {

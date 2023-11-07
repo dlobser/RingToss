@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HideChildOnClick : MonoBehaviour
 {
+    public UnityEvent unityEvent;
+
     private void Update()
     {
         // Check if the left mouse button is clicked
@@ -15,12 +18,14 @@ public class HideChildOnClick : MonoBehaviour
 
             if (hit.collider != null)
             {
+                unityEvent.Invoke();
+                print("Clicked");
                 // Check if the object that was hit is a child of this object
-                if (hit.transform.parent == transform)
-                {
-                    // Hide the child object
-                    hit.transform.gameObject.SetActive(false);
-                }
+                // if (hit.transform.parent == transform)
+                // {
+                //     // Hide the child object
+                //     hit.transform.gameObject.SetActive(false);
+                // }
             }
         }
     }
