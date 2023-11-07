@@ -19,7 +19,7 @@ public class Ring : MonoBehaviour
             {
                 case CustomTag.Item:
                     // Handle a successful toss (e.g., scoring points)
-                    GameManager.instance.IncrementScore();
+                    GameManager.instance.gameScoreKeeper.IncrementScore();
                     if(burster!=null){
                         GameObject burst = Instantiate(burster);
                         burst.transform.position = this.transform.position;
@@ -40,7 +40,7 @@ public class Ring : MonoBehaviour
                 case CustomTag.Projectile:
                     // Handle a successful toss (e.g., scoring points)
                     if(!target.GetComponent<Ring>().emitted)
-                        BurstObjects(2,8);
+                        BurstObjects(2,8,GetComponent<Rigidbody2D>().velocity);
                     Destroy(gameObject); // Remove the ring
                     Destroy(target.gameObject);
                     break;
@@ -49,7 +49,7 @@ public class Ring : MonoBehaviour
         }
     }
 
-    public void BurstObjects(int minObjects, int maxObjects)
+    public void BurstObjects(int minObjects, int maxObjects, Vector2 velocity)
     {
         int numberOfObjects = Random.Range(minObjects, maxObjects + 1);
 
@@ -71,7 +71,7 @@ public class Ring : MonoBehaviour
             if (rb != null) 
             {
                 Vector2 directionOutward = (obj.transform.position - transform.position).normalized;
-                rb.AddForce(directionOutward * 2, ForceMode2D.Impulse);
+                rb.AddForce(directionOutward * 2 + new Vector2(velocity.x,velocity.y), ForceMode2D.Impulse);
             }
             else
             {

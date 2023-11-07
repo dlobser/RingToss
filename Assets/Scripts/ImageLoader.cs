@@ -11,12 +11,12 @@ public class ImageLoader : MonoBehaviour
     public string subDirectory;
     public string textureChannel = "_MainTex";
 
-    public SpriteRenderer title;
-    public SpriteRenderer bg;
-    public SpriteRenderer[] item;
-    public SpriteRenderer[] bonus;
-    public SpriteRenderer[] platform;
-    public SpriteRenderer[] boundary;
+    // public SpriteRenderer title;
+    // public SpriteRenderer bg;
+    // public SpriteRenderer[] item;
+    // public SpriteRenderer[] bonus;
+    // public SpriteRenderer[] platform;
+    // public SpriteRenderer[] boundary;
 
     public float maxStyles;
     public string styleNum;
@@ -37,7 +37,7 @@ public class ImageLoader : MonoBehaviour
         {
             // This is the first instance - make it the Singleton
             Instance = this;
-            DontDestroyOnLoad(gameObject); // This makes the object not be destroyed when reloading the scene
+            // DontDestroyOnLoad(gameObject); // This makes the object not be destroyed when reloading the scene
         }
     }
 
@@ -155,35 +155,6 @@ public class ImageLoader : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, foundStyleNums.Count);
         return foundStyleNums[randomIndex];
     }
-
-    // Call this method with the imageType to get a random styleNum
-    // public int GetRandomStyleNum(string imageType)
-    // {
-       
-    //     string[] allFilenames = GetFilenames(directory);
-    //     string pattern = $"StyleName_{imageType}_([0-9]+)_";
-    //     List<int> foundStyleNums = new List<int>();
-
-    //     foreach (var filename in allFilenames)
-    //     {
-    //         Match match = Regex.Match(filename, pattern);
-    //         if (match.Success)
-    //         {
-    //             if (int.TryParse(match.Groups[1].Value, out int styleNum))
-    //             {
-    //                 foundStyleNums.Add(styleNum);
-    //             }
-    //         }
-    //     }
-
-    //     if (foundStyleNums.Count == 0)
-    //     {
-    //         Debug.LogError("No matching style numbers found.");
-    //         return -1; // Or handle this case as you see fit
-    //     }
-    //     int randomIndex = Random.Range(0, foundStyleNums.Count);
-    //     return foundStyleNums[randomIndex];
-    // }
 
     private string[] GetFilenames(string resourceFolder)
     {

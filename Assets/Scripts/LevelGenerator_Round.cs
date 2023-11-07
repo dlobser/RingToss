@@ -12,6 +12,7 @@ public class LevelGenerator_Round : LevelGenerator
         public Platform platformPrefab;
         public Material platformMaterial;
         public GameObject ringPrefab;
+        public GameScoreKeeper scoreKeeper;
 
         [Header("Platform Settings")]
         public int minPlatforms;
@@ -44,7 +45,7 @@ public class LevelGenerator_Round : LevelGenerator
     [SerializeField]
     public LevelItems levelItems;
     
-    ImageLoader imageLoader;
+    // ImageLoader imageLoader;
     public bool reload = false;
 
     public override void Destroy()
@@ -63,7 +64,8 @@ public class LevelGenerator_Round : LevelGenerator
     }
 
     void Start(){
-        imageLoader = FindObjectOfType<ImageLoader>();
+        // imageLoader = FindObjectOfType<ImageLoader>();
+        // print(imageLoader);
     }
 
     void Update(){
@@ -84,11 +86,14 @@ public class LevelGenerator_Round : LevelGenerator
         }
 
         root = new GameObject("Root");
+
+        if(rootParent!=null)
+            root.transform.SetParent(rootParent.transform);
+
+        GameManager.instance.gameScoreKeeper = levelItems.scoreKeeper;
         
-        levelItems.titleSprite.GetComponent<HideChildOnClick>().ShowChild();
-        // imageLoader.SetRandomStyle();
-        levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = imageLoader.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
-        levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = imageLoader.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
+        levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
+        levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
         // imageLoader.GetImageWithIndex("Background", GlobalSettings.ImageIndeces.Style);
 
         int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
@@ -118,7 +123,7 @@ public class LevelGenerator_Round : LevelGenerator
             Material mat = Instantiate(levelItems.platformMaterial);
             // newPlatform.SetMaterial(mat);
             // GetComponent<ImageLoader>().AssignRandomImage(spriteRenderer,"Platforms",true);
-            Texture2D chosenTexture = imageLoader.GetImageWithIndex("Platform", GlobalSettings.ImageIndeces.Platform);
+            Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex("Platform", GlobalSettings.ImageIndeces.Platform);
             // print(chosenTexture);
             newPlatform.SetMainTexture(Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f)));
             newPlatform.SetAlpha(Random.Range(0, 1f));

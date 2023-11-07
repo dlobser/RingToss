@@ -7,6 +7,7 @@ public class PlatformSprite : Platform
     public Material material;
     public SpriteRenderer spriteRenderer;
     public BoxCollider2D boxCollider;
+    public Transform itemParent;
 
     void Start(){
         // SetMaterial(material);
@@ -46,7 +47,7 @@ public class PlatformSprite : Platform
     public override void PopulatePlatformWithItems(PlatformItemArguments itemArguments){
         if(itemArguments.amount>0){
             GameObject items = new GameObject("Items");
-            items.transform.SetParent(this.transform);
+            items.transform.SetParent(itemParent);
             items.transform.localPosition = Vector3.zero;
             items.transform.localScale = Vector3.one;
             items.transform.localEulerAngles = Vector3.zero;

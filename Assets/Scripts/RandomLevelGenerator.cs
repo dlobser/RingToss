@@ -32,7 +32,7 @@ public class RandomLevelGenerator : MonoBehaviour
     public LevelGenerator[] levelGenerators;
 
     public void RandomizeLevel(){
-        FindObjectOfType<GameManager>().ShowNextLevel();
+        FindObjectOfType<GameManager>().GenerateGame();
     }
 
     public GameObject GenerateLevel()
