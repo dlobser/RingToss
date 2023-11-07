@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
 
     // public Transform levelsParent; // Reference to the "Levels" GameObject
     public RandomLevelGenerator levelGenerator;
+    [HideInInspector]
     public GameObject root;
+    [HideInInspector]
     public GameScoreKeeper gameScoreKeeper;
     // public int currentLevelIndex = 0; // Index of the current level
     public int maxLevels = 100;
