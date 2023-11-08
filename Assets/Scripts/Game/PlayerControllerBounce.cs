@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerBounce : MonoBehaviour
 {
     public GameObject ringPrefab;
     public Transform ringSpawnPoint;
@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     ImageLoader imageLoader;
 
     bool canToss = false;
+    bool bounce = false;
+
+    public GameObject platformBounce;
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             OnMouseDown();
@@ -40,6 +44,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Ring[] rings = FindObjectsOfType<Ring>();
+        if (rings.Length > 0)
+        {
+            bounce = true;
+            platformBounce.SetActive(true);
+        }
+        else
+        {
+            platformBounce.SetActive(false);
+        }
+
         Vector2 mousePos = Input.mousePosition;
         dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
         dragDistance = Vector3.Distance(ringSpawnPoint.position, dragEndPos);
@@ -52,7 +67,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (displayRing != null && canToss)
+        if (bounce)
+        {
+            // Convert the mouse position from screen space to world space
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+
+            // Now set the position of platformBounce
+            // We take the x from the mouse, keep the y position of the platform, and set z to 0 (if you are working in 2D)
+            platformBounce.transform.position = new Vector3(mouseWorldPosition.x, platformBounce.transform.position.y, 0);
+        }
+        else if (displayRing != null && canToss)
         {
 
             Vector2 mousePos = Input.mousePosition;
@@ -75,7 +99,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (canToss)
+        if (bounce)
+        {
+            bounce = false;
+            platformBounce.SetActive(false);
+        }
+        else if (canToss)
         {
 
             tossForceMultiply = GlobalSettings.Physics.ballSpeed;

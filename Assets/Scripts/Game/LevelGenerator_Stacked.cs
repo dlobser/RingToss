@@ -32,6 +32,7 @@ public class LevelGenerator_Stacked : LevelGenerator
 
         public GameObject titleSprite;
         public GameObject bgSprite;
+        public GameObject originSprite;
 
         public Vector2 minMaxPlatformAnimateBounds;
         public Vector2 minMaxPlatformAnimateSpeed;
@@ -71,7 +72,7 @@ public class LevelGenerator_Stacked : LevelGenerator
     {
         // imageLoader = FindObjectOfType<ImageLoader>();
         // print(imageLoader);
-        
+
     }
 
     void Update()
@@ -107,7 +108,8 @@ public class LevelGenerator_Stacked : LevelGenerator
 
         levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
         levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
-        // imageLoader.GetImageWithIndex("Background", GlobalSettings.ImageIndeces.Style);
+        levelItems.originSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Emitter", GlobalSettings.ImageIndeces.Style);
+
 
         int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
 
@@ -189,9 +191,9 @@ public class LevelGenerator_Stacked : LevelGenerator
     {
         base.SetRandomPhysics();
         float energy = Random.Range(.5f, 5f);
-        GlobalSettings.Physics.ballSpeed = Random.Range(levelItems.minMaxProjectileSpeed.x,levelItems.minMaxProjectileSpeed.y);
-        GlobalSettings.Physics.ballGravity = Random.Range(levelItems.minMaxProjectileGravity.x,levelItems.minMaxProjectileGravity.y);
-        GlobalSettings.Physics.ballSize = Random.Range(levelItems.minMaxProjectilSize.x,levelItems.minMaxProjectilSize.y);
+        GlobalSettings.Physics.ballSpeed = Random.Range(levelItems.minMaxProjectileSpeed.x, levelItems.minMaxProjectileSpeed.y);
+        GlobalSettings.Physics.ballGravity = Random.Range(levelItems.minMaxProjectileGravity.x, levelItems.minMaxProjectileGravity.y);
+        GlobalSettings.Physics.ballSize = Random.Range(levelItems.minMaxProjectilSize.x, levelItems.minMaxProjectilSize.y);
 
     }
 

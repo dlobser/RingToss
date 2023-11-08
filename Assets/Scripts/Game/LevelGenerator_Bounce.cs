@@ -4,7 +4,7 @@ using System.ComponentModel.Design.Serialization;
 using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
 
-public class LevelGenerator_Round : LevelGenerator
+public class LevelGenerator_Bounce : LevelGenerator
 {
     [System.Serializable]
     public class LevelItems : LevelSettings
@@ -13,6 +13,7 @@ public class LevelGenerator_Round : LevelGenerator
         public Platform platformPrefab;
         public Material platformMaterial;
         public GameObject ringPrefab;
+        // public GameScoreKeeper scoreKeeper;
 
         [Header("Platform Settings")]
         public int minPlatforms;
@@ -43,6 +44,7 @@ public class LevelGenerator_Round : LevelGenerator
         public GameObject target;
         public GameObject bonusTarget;
 
+        // public GameObject playerController;
     }
 
     [SerializeField]
@@ -70,7 +72,6 @@ public class LevelGenerator_Round : LevelGenerator
     {
         // imageLoader = FindObjectOfType<ImageLoader>();
         // print(imageLoader);
-
 
     }
 
@@ -109,7 +110,6 @@ public class LevelGenerator_Round : LevelGenerator
         levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
         levelItems.originSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Emitter", GlobalSettings.ImageIndeces.Style);
 
-        // imageLoader.GetImageWithIndex("Background", GlobalSettings.ImageIndeces.Style);
 
         int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
 
@@ -118,16 +118,16 @@ public class LevelGenerator_Round : LevelGenerator
 
         for (int i = 0; i < platformCount; i++)
         {
-            GameObject rotator = new GameObject("Rotator");
-            rotator.transform.SetParent(root.transform);
+            // GameObject rotator = new GameObject("Rotator");
+            // rotator.transform.SetParent(root.transform);
 
-            Platform newPlatform = Instantiate(levelItems.platformPrefab, rotator.transform);
+            Platform newPlatform = Instantiate(levelItems.platformPrefab, root.transform);
 
             TransformUniversal transformUniversal = newPlatform.gameObject.AddComponent<TransformUniversal>();
             transformUniversal.doTranslateOscillate = true;
-            transformUniversal.translateOscillateLowerBounds = new Vector3(0, levelItems.minMaxPlatformAnimateBounds.x * .1f, 0);
-            transformUniversal.translateOscillateUpperBounds = new Vector3(0, levelItems.minMaxPlatformAnimateBounds.y * .1f, 0);
-            transformUniversal.translateOscillateSpeed = new Vector3(0, Random.Range(levelItems.minMaxPlatformAnimateSpeed.x * 5, levelItems.minMaxPlatformAnimateSpeed.y * 5), 0);
+            transformUniversal.translateOscillateLowerBounds = new Vector3(levelItems.minMaxPlatformAnimateBounds.x * .1f, 0, 0);
+            transformUniversal.translateOscillateUpperBounds = new Vector3(levelItems.minMaxPlatformAnimateBounds.y * .1f, 0, 0);
+            transformUniversal.translateOscillateSpeed = new Vector3(Random.Range(levelItems.minMaxPlatformAnimateSpeed.x * 5, levelItems.minMaxPlatformAnimateSpeed.y * 5), 0, 0);
             transformUniversal.translateOscillateOffset = new Vector3(Random.Range(-100, 100), 0, 0);
 
             float platformWidth = Random.Range(levelItems.platformWidthBounds.x, levelItems.platformWidthBounds.y);
@@ -143,7 +143,9 @@ public class LevelGenerator_Round : LevelGenerator
             newPlatform.SetMainTexture(Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f)));
             newPlatform.SetAlpha(Random.Range(0, 1f));
             newPlatform.SetSize(new Vector2(platformWidth, levelItems.platformHeight));
-            newPlatform.transform.localPosition = new Vector3(0, Random.Range(levelItems.platformPositionBounds.x, levelItems.platformPositionBounds.y));
+            float l = (float)i / (float)platformCount;
+            float height = Mathf.Lerp(levelItems.platformPositionBounds.x, levelItems.platformPositionBounds.y, l);
+            newPlatform.transform.localPosition = new Vector3(0, height);
 
             int ringsForThisPlatform = Random.Range(levelItems.minItemsPerPlatform, levelItems.maxItemsPerPlatform + 1);
             // int timeout = 0;
@@ -171,15 +173,15 @@ public class LevelGenerator_Round : LevelGenerator
             itemArguments.size = levelItems.itemSize;
             newPlatform.PopulatePlatformWithItems(itemArguments);
 
-            rotator.transform.localEulerAngles = new Vector3(0, 0, ((float)i / (float)platformCount) * 360);
+            // rotator.transform.localEulerAngles = new Vector3(0, 0, ((float)i / (float)platformCount) * 360);
 
         }
 
-        TransformUniversal tUniversal = root.gameObject.AddComponent<TransformUniversal>();
-        tUniversal.doRotateOscillate = true;
-        tUniversal.rotateOscillateLowerBounds = new Vector3(0, 0, Random.Range(-180, -360));
-        tUniversal.rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(180, 360));
-        tUniversal.rotateOscillateSpeed = new Vector3(0, 0, Random.Range(.05f, .2f));
+        // TransformUniversal tUniversal = root.gameObject.AddComponent<TransformUniversal>();
+        // tUniversal.doRotateOscillate = true;
+        // tUniversal.rotateOscillateLowerBounds = new Vector3(0, 0, Random.Range(-180, -360));
+        // tUniversal.rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(180, 360));
+        // tUniversal.rotateOscillateSpeed = new Vector3(0, 0, Random.Range(.05f, .2f));
 
         return root;
 
@@ -188,9 +190,11 @@ public class LevelGenerator_Round : LevelGenerator
     public override void SetRandomPhysics()
     {
         base.SetRandomPhysics();
+        float energy = Random.Range(.5f, 5f);
+        GlobalSettings.Physics.ballSpeed = Random.Range(levelItems.minMaxProjectileSpeed.x, levelItems.minMaxProjectileSpeed.y);
+        GlobalSettings.Physics.ballGravity = Random.Range(levelItems.minMaxProjectileGravity.x, levelItems.minMaxProjectileGravity.y);
         GlobalSettings.Physics.ballSize = Random.Range(levelItems.minMaxProjectilSize.x, levelItems.minMaxProjectilSize.y);
 
     }
-
 
 }
