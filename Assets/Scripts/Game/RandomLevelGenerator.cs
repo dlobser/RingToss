@@ -10,6 +10,7 @@ public static class GlobalSettings{
         public static int BG;
         public static int Platform;
         public static int Title;
+        public static int Projectile;
         public static string GetStyleString(){
             return Style.ToString("D4");
         }
@@ -49,22 +50,6 @@ public class RandomLevelGenerator : MonoBehaviour
 
         return root;
     }
-
-    // public void SetRandomPhysics(){
-    //     float energy = Random.Range(.5f,5f);
-    //     GlobalSettings.Physics.ballSpeed = Random.Range(1,3)*energy;
-    //     GlobalSettings.Physics.ballGravity = energy*.5f;
-    //     GlobalSettings.Physics.platformBounce = Random.Range(.2f,.9f);
-    //     GlobalSettings.Physics.ballSize = Random.Range(.2f,.7f);
-    // }
-
-    // public void SetRandomStyle(){
-    //     GlobalSettings.ImageIndeces.BG = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Background");
-    //     print("BG Index: " + GlobalSettings.ImageIndeces.BG);
-    //     GlobalSettings.ImageIndeces.Platform = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Platform");
-    //     GlobalSettings.ImageIndeces.Title = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Title");
-
-    // }
    
     void Cleanup()
     {

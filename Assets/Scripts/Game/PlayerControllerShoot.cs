@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerShoot : MonoBehaviour
 {
     public GameObject ringPrefab;
     public Transform ringSpawnPoint;
@@ -15,11 +15,19 @@ public class PlayerController : MonoBehaviour
 
     ImageLoader imageLoader;
 
+    public float frequency;
+    float counter = 1;
+
     bool canToss = false;
 
     void Start()
     {
         imageLoader = FindObjectOfType<ImageLoader>();
+        if (displayRing != null)
+        {
+            displayRing.transform.position = new Vector3(0, 0, 1000);
+            //Destroy(displayRing); // Remove the display ring
+        }
     }
 
     private void Update()
@@ -28,7 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             OnMouseDown();
         }
-        else if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             OnMouseDrag();
         }
@@ -36,25 +44,34 @@ public class PlayerController : MonoBehaviour
         {
             OnMouseUp();
         }
+
+        counter+=Time.deltaTime;
+        if(counter>frequency){
+            counter = 0;
+            canToss = true;
+        }
+        else
+            canToss = false;
+        
     }
 
     private void OnMouseDown()
     {
-        Vector2 mousePos = Input.mousePosition;
-        dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
-        dragDistance = Vector3.Distance(ringSpawnPoint.position, dragEndPos);
+        // Vector2 mousePos = Input.mousePosition;
+        // dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+        // dragDistance = Vector3.Distance(ringSpawnPoint.position, dragEndPos);
 
-        if (dragDistance < 1)
-        {
-            canToss = true;
-        }
+        // if (dragDistance < 1)
+        // {
+        //     canToss = true;
+        // }
+        counter = 1;
     }
 
     private void OnMouseDrag()
     {
-        if (displayRing != null && canToss)
+        if (displayRing != null)
         {
-
             Vector2 mousePos = Input.mousePosition;
             dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
 
@@ -67,16 +84,15 @@ public class PlayerController : MonoBehaviour
 
             // Visualize the force direction by scaling the display ring
             displayRing.transform.LookAt(dragEndPos);
-            displayRing.transform.localScale = new Vector3(1, 1, dragDistance);
+            displayRing.transform.localScale = new Vector3(1, 1, Mathf.Min(dragDistance,maxTossForce*.1f));
             displayRing.transform.position = ringSpawnPoint.position;
-
         }
-    }
 
-    private void OnMouseUp()
-    {
-        if (canToss)
+
+        if ( canToss)
         {
+
+          
 
             tossForceMultiply = GlobalSettings.Physics.ballSpeed;
 
@@ -92,17 +108,48 @@ public class PlayerController : MonoBehaviour
 
             if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
             {
-                // imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile");
-                ImageLoader.Instance.SetSprite(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(),"Projectile",GlobalSettings.ImageIndeces.Projectile);
+                ImageLoader.Instance.SetSprite(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile", GlobalSettings.ImageIndeces.Projectile);
             }
-            
             Rigidbody2D rb = currentRing.GetComponent<Rigidbody2D>();
 
             // Apply the force to the currentRing when releasing the mouse button
             rb.AddForce(dragDirection * Mathf.Clamp(dragDistance * tossForceMultiply, 0, maxTossForce), ForceMode2D.Impulse);
             rb.gravityScale = GlobalSettings.Physics.ballGravity;
 
-            canToss = false;
+            // canToss = false;
+
+
         }
+    }
+
+    private void OnMouseUp()
+    {
+        // if (canToss)
+        // {
+
+            // tossForceMultiply = GlobalSettings.Physics.ballSpeed;
+
+            if (displayRing != null)
+            {
+                displayRing.transform.position = new Vector3(0, 0, 1000);
+                //Destroy(displayRing); // Remove the display ring
+            }
+
+            // // Instantiate the currentRing for the actual toss
+            // currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity);
+            // currentRing.transform.localScale = Vector3.one * GlobalSettings.Physics.ballSize;
+
+            // if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
+            // {
+            //     imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile");
+            // }
+            // Rigidbody2D rb = currentRing.GetComponent<Rigidbody2D>();
+
+            // // Apply the force to the currentRing when releasing the mouse button
+            // rb.AddForce(dragDirection * Mathf.Clamp(dragDistance * tossForceMultiply, 0, maxTossForce), ForceMode2D.Impulse);
+            // rb.gravityScale = GlobalSettings.Physics.ballGravity;
+
+            // canToss = false;
+        // }
     }
 }

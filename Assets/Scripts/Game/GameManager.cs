@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject root;
     [HideInInspector]
     public GameScoreKeeper gameScoreKeeper;
+
     // public int currentLevelIndex = 0; // Index of the current level
     public int maxLevels = 100;
 

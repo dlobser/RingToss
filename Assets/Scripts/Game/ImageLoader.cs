@@ -189,7 +189,7 @@ public class ImageLoader : MonoBehaviour
             .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType)).ToArray();
 
         // Log how many textures were found
-        Debug.Log("Number of textures found: " + textures.Length + " index: " + index);
+        // Debug.Log("Number of textures found: " + textures.Length + " index: " + index);
 
         // If there are no textures, return null
         if (textures.Length == 0)
@@ -304,6 +304,12 @@ public class ImageLoader : MonoBehaviour
         {
             Debug.LogWarning("No textures found in the specified Resources directory.");
         }
+    }
+
+    public void SetSprite(SpriteRenderer spriteRenderer, string imageType, int index = -1){
+        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex(imageType,index);
+        spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
+        spriteRenderer.material.SetTexture("_MainTex",chosenTexture);
     }
 
 }
