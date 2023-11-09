@@ -5,6 +5,8 @@ public class Ring : MonoBehaviour
 
     bool emitted = false;
     public GameObject burster;
+    public int destroyOnBounces = 1;
+    int bounces = 0;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -21,7 +23,7 @@ public class Ring : MonoBehaviour
             {
                 case CustomTag.Item:
                     // Handle a successful toss (e.g., scoring points)
-                    GameManager.instance.gameScoreKeeper.IncrementScore();
+                    GameManager.Instance.gameScoreKeeper.IncrementScore();
                     if (burster != null)
                     {
                         GameObject burst = Instantiate(burster);
@@ -30,7 +32,9 @@ public class Ring : MonoBehaviour
                     }
                     print("Got it!");
                     target.Hit();
-                    Destroy(gameObject); // Remove the ring
+                    bounces++;
+                    if (bounces >= destroyOnBounces)
+                        Destroy(gameObject); // Remove the ring
                     break;
 
                 case CustomTag.Boundary:

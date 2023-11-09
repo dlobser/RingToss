@@ -9,21 +9,53 @@ public class LevelGenerator : MonoBehaviour
     {
         public GameScoreKeeper scoreKeeper;
         public GameObject playerController;
+        public GameManager gameManager;
+        public MenuManager menuManager;
+        // public string menuManagerName;
     }
 
     [HideInInspector]
     public GameObject root;
-    public GameObject rootParent;
+    // public GameObject rootParent;
+    public LevelSettings levelSettings;
 
-    public virtual GameObject GenerateLevel()
+    private MenuManager menuManager;
+    private GameObject playerController;
+
+    public virtual void GenerateLevel()
     {
+
+        if (levelSettings.gameManager.root != null)
+            Destroy(levelSettings.gameManager.root);
+
+        if (root != null)
+        {
+            Destroy(root);
+        }
+
         root = new GameObject("Root");
-        root.transform.SetParent(rootParent.transform);
-        return root;
+        root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
+
+        menuManager = Instantiate(levelSettings.menuManager, root.transform);
+        playerController = Instantiate(levelSettings.playerController, root.transform);
+
+        // if (levelSettings.gameManager == null)
+        //     levelSettings.gameManager = FindObjectOfType<GameManager>();
+        // if (levelSettings.menuManagerName.Length > 0)
+        //     levelSettings.gameManager.ShowMenu(levelSettings.menuManagerName);
+        levelSettings.gameManager.root = root;
+        // return root;
     }
 
-    public virtual void Destroy(){
-    
+    public virtual void OnGenerateLevelComplete()
+    {
+        levelSettings.scoreKeeper.OnLevelStart();
+        menuManager.ShowMenu("Title");
+    }
+
+    public virtual void Destroy()
+    {
+
     }
 
     public virtual void SetRandomPhysics()
@@ -31,8 +63,8 @@ public class LevelGenerator : MonoBehaviour
         float energy = Random.Range(.5f, 5f);
         GlobalSettings.Physics.ballSpeed = Random.Range(1, 3) * energy;
         GlobalSettings.Physics.ballGravity = energy * .5f;
-        GlobalSettings.Physics.platformBounce = Random.Range(.2f,.7f);
-        GlobalSettings.Physics.ballSize =  Random.Range(.4f,.8f);
+        GlobalSettings.Physics.platformBounce = Random.Range(.2f, .7f);
+        GlobalSettings.Physics.ballSize = Random.Range(.4f, .8f);
     }
 
     public virtual void SetRandomStyle()

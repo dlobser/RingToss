@@ -7,12 +7,13 @@ using UnityEngine;
 public class LevelGenerator_Round : LevelGenerator
 {
     [System.Serializable]
-    public class LevelItems : LevelSettings
+    public class LevelItems
     {
         [Header("Prefabs")]
         public Platform platformPrefab;
         public Material platformMaterial;
         public GameObject ringPrefab;
+        public GameScoreKeeper scoreKeeper;
 
         [Header("Platform Settings")]
         public int minPlatforms;
@@ -31,18 +32,15 @@ public class LevelGenerator_Round : LevelGenerator
 
         public GameObject titleSprite;
         public GameObject bgSprite;
-        public GameObject originSprite;
 
         public Vector2 minMaxPlatformAnimateBounds;
         public Vector2 minMaxPlatformAnimateSpeed;
 
         public Vector2 minMaxProjectileSpeed;
         public Vector2 minMaxProjectileGravity;
-        public Vector2 minMaxProjectilSize;
 
         public GameObject target;
         public GameObject bonusTarget;
-
     }
 
     [SerializeField]
@@ -70,8 +68,6 @@ public class LevelGenerator_Round : LevelGenerator
     {
         // imageLoader = FindObjectOfType<ImageLoader>();
         // print(imageLoader);
-
-
     }
 
     void Update()
@@ -83,32 +79,43 @@ public class LevelGenerator_Round : LevelGenerator
         }
     }
 
-    public override GameObject GenerateLevel()
+    public override void GenerateLevel()
     {
-
+        base.GenerateLevel();
+        root = levelSettings.gameManager.root;
         SetRandomPhysics();
         SetRandomStyle();
-        PlayerControllerManager.Instance.SetActiveController(levelItems.playerController);
 
-        if (GameManager.instance.root != null)
-            Destroy(GameManager.instance.root);
+        GameObject platforms = new GameObject("Platforms");
+        platforms.transform.SetParent(root.transform);
 
-        if (root != null)
-        {
-            Destroy(root);
-        }
+        // if (GameManager.Instance.root != null)
+        //     Destroy(GameManager.Instance.root);
 
-        root = new GameObject("Root");
+        // if (root != null)
+        // {
+        //     Destroy(root);
+        // }
 
-        if (rootParent != null)
-            root.transform.SetParent(rootParent.transform);
+        // root = new GameObject("Root");
 
-        GameManager.instance.gameScoreKeeper = levelItems.scoreKeeper;
+        if (levelSettings.gameManager.rootParent != null)
+            root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
 
-        levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
-        levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
-        levelItems.originSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Emitter", GlobalSettings.ImageIndeces.Style);
+        GameManager.Instance.gameScoreKeeper = levelItems.scoreKeeper;
 
+        // levelSettings.menuManager.ModifyMenu("Title", (menu) =>
+        // {
+        //     // You can now do arbitrary things with the menu
+        //     menu.menuSprite.sprite = yourSprite; // Set the sprite
+        //     // ... any other operation you want to perform on the menu
+        // });
+
+        // ImageLoader.Instance.SetSprite()
+        levelSettings.menuManager.SetSprite("Title", ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style));
+        levelSettings.menuManager.SetSprite("Game", ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style));
+        // levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
+        // levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
         // imageLoader.GetImageWithIndex("Background", GlobalSettings.ImageIndeces.Style);
 
         int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
@@ -119,7 +126,7 @@ public class LevelGenerator_Round : LevelGenerator
         for (int i = 0; i < platformCount; i++)
         {
             GameObject rotator = new GameObject("Rotator");
-            rotator.transform.SetParent(root.transform);
+            rotator.transform.SetParent(platforms.transform);
 
             Platform newPlatform = Instantiate(levelItems.platformPrefab, rotator.transform);
 
@@ -175,22 +182,32 @@ public class LevelGenerator_Round : LevelGenerator
 
         }
 
-        TransformUniversal tUniversal = root.gameObject.AddComponent<TransformUniversal>();
+        TransformUniversal tUniversal = platforms.gameObject.AddComponent<TransformUniversal>();
         tUniversal.doRotateOscillate = true;
         tUniversal.rotateOscillateLowerBounds = new Vector3(0, 0, Random.Range(-180, -360));
         tUniversal.rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(180, 360));
         tUniversal.rotateOscillateSpeed = new Vector3(0, 0, Random.Range(.05f, .2f));
 
-        return root;
+        OnGenerateLevelComplete();
 
     }
 
-    public override void SetRandomPhysics()
+    public void SetRandomPhysics()
     {
-        base.SetRandomPhysics();
-        GlobalSettings.Physics.ballSize = Random.Range(levelItems.minMaxProjectilSize.x, levelItems.minMaxProjectilSize.y);
-
+        float energy = Random.Range(.5f, 5f);
+        GlobalSettings.Physics.ballSpeed = Random.Range(1, 3) * energy;
+        GlobalSettings.Physics.ballGravity = energy * .5f;
+        GlobalSettings.Physics.platformBounce = Random.Range(.2f, .9f);
+        GlobalSettings.Physics.ballSize = Random.Range(.2f, .7f);
     }
 
+    public void SetRandomStyle()
+    {
+        GlobalSettings.ImageIndeces.Style = int.Parse(ImageLoader.Instance.styleNum);
+        GlobalSettings.ImageIndeces.BG = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Background");
+        GlobalSettings.ImageIndeces.Platform = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Platform");
+        GlobalSettings.ImageIndeces.Title = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Title");
+
+    }
 
 }

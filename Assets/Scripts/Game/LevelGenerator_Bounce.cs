@@ -84,15 +84,15 @@ public class LevelGenerator_Bounce : LevelGenerator
         }
     }
 
-    public override GameObject GenerateLevel()
+    public override void GenerateLevel()
     {
 
         SetRandomPhysics();
         SetRandomStyle();
         PlayerControllerManager.Instance.SetActiveController(levelItems.playerController);
 
-        if (GameManager.instance.root != null)
-            Destroy(GameManager.instance.root);
+        if (GameManager.Instance.root != null)
+            Destroy(GameManager.Instance.root);
 
         if (root != null)
         {
@@ -101,10 +101,10 @@ public class LevelGenerator_Bounce : LevelGenerator
 
         root = new GameObject("Root");
 
-        if (rootParent != null)
-            root.transform.SetParent(rootParent.transform);
+        if (levelItems.gameManager.rootParent != null)
+            root.transform.SetParent(levelItems.gameManager.rootParent.transform);
 
-        GameManager.instance.gameScoreKeeper = levelItems.scoreKeeper;
+        GameManager.Instance.gameScoreKeeper = levelItems.scoreKeeper;
 
         levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
         levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
@@ -183,7 +183,7 @@ public class LevelGenerator_Bounce : LevelGenerator
         // tUniversal.rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(180, 360));
         // tUniversal.rotateOscillateSpeed = new Vector3(0, 0, Random.Range(.05f, .2f));
 
-        return root;
+        // return root;
 
     }
 

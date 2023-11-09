@@ -7,13 +7,13 @@ using UnityEngine;
 public class LevelGenerator_Stacked : LevelGenerator
 {
     [System.Serializable]
-    public class LevelItems : LevelSettings
+    public class LevelItems
     {
         [Header("Prefabs")]
         public Platform platformPrefab;
         public Material platformMaterial;
         public GameObject ringPrefab;
-        // public GameScoreKeeper scoreKeeper;
+        public GameScoreKeeper scoreKeeper;
 
         [Header("Platform Settings")]
         public int minPlatforms;
@@ -32,19 +32,15 @@ public class LevelGenerator_Stacked : LevelGenerator
 
         public GameObject titleSprite;
         public GameObject bgSprite;
-        public GameObject originSprite;
 
         public Vector2 minMaxPlatformAnimateBounds;
         public Vector2 minMaxPlatformAnimateSpeed;
 
         public Vector2 minMaxProjectileSpeed;
         public Vector2 minMaxProjectileGravity;
-        public Vector2 minMaxProjectilSize;
 
         public GameObject target;
         public GameObject bonusTarget;
-
-        // public GameObject playerController;
     }
 
     [SerializeField]
@@ -72,7 +68,6 @@ public class LevelGenerator_Stacked : LevelGenerator
     {
         // imageLoader = FindObjectOfType<ImageLoader>();
         // print(imageLoader);
-
     }
 
     void Update()
@@ -84,15 +79,15 @@ public class LevelGenerator_Stacked : LevelGenerator
         }
     }
 
-    public override GameObject GenerateLevel()
+    public override void GenerateLevel()
     {
-
+        base.GenerateLevel();
+        root = levelSettings.gameManager.root;
         SetRandomPhysics();
         SetRandomStyle();
-        PlayerControllerManager.Instance.SetActiveController(levelItems.playerController);
 
-        if (GameManager.instance.root != null)
-            Destroy(GameManager.instance.root);
+        if (GameManager.Instance.root != null)
+            Destroy(GameManager.Instance.root);
 
         if (root != null)
         {
@@ -101,15 +96,14 @@ public class LevelGenerator_Stacked : LevelGenerator
 
         root = new GameObject("Root");
 
-        if (rootParent != null)
-            root.transform.SetParent(rootParent.transform);
+        if (levelSettings.gameManager.rootParent != null)
+            root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
 
-        GameManager.instance.gameScoreKeeper = levelItems.scoreKeeper;
+        GameManager.Instance.gameScoreKeeper = levelItems.scoreKeeper;
 
         levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
         levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
-        levelItems.originSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Emitter", GlobalSettings.ImageIndeces.Style);
-
+        // imageLoader.GetImageWithIndex("Background", GlobalSettings.ImageIndeces.Style);
 
         int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
 
@@ -182,18 +176,26 @@ public class LevelGenerator_Stacked : LevelGenerator
         // tUniversal.rotateOscillateLowerBounds = new Vector3(0, 0, Random.Range(-180, -360));
         // tUniversal.rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(180, 360));
         // tUniversal.rotateOscillateSpeed = new Vector3(0, 0, Random.Range(.05f, .2f));
-
-        return root;
+        OnGenerateLevelComplete();
+        // return root;
 
     }
 
-    public override void SetRandomPhysics()
+    public void SetRandomPhysics()
     {
-        base.SetRandomPhysics();
         float energy = Random.Range(.5f, 5f);
-        GlobalSettings.Physics.ballSpeed = Random.Range(levelItems.minMaxProjectileSpeed.x, levelItems.minMaxProjectileSpeed.y);
-        GlobalSettings.Physics.ballGravity = Random.Range(levelItems.minMaxProjectileGravity.x, levelItems.minMaxProjectileGravity.y);
-        GlobalSettings.Physics.ballSize = Random.Range(levelItems.minMaxProjectilSize.x, levelItems.minMaxProjectilSize.y);
+        GlobalSettings.Physics.ballSpeed = Random.Range(1, 3) * energy;
+        GlobalSettings.Physics.ballGravity = energy * .5f;
+        GlobalSettings.Physics.platformBounce = Random.Range(.2f, .9f);
+        GlobalSettings.Physics.ballSize = Random.Range(.2f, .7f);
+    }
+
+    public void SetRandomStyle()
+    {
+        GlobalSettings.ImageIndeces.Style = int.Parse(ImageLoader.Instance.styleNum);
+        GlobalSettings.ImageIndeces.BG = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Background");
+        GlobalSettings.ImageIndeces.Platform = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Platform");
+        GlobalSettings.ImageIndeces.Title = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Title");
 
     }
 

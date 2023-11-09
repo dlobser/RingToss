@@ -9,28 +9,33 @@ public class GameScoreKeeper : MonoBehaviour
     public int score;
     public int totalItemsInLevel;
     public bool win;
+    private GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     public virtual void RegisterActions()
     {
         // Subscribe to the event
-        // GameManager.instance.IncrementScore  += OnIncrementScore;
-        GameManager.instance.GameStart  += OnLevelStart;
-
-
+        // GameManager.Instance.IncrementScore  += OnIncrementScore;
+        gameManager.GameStart += OnLevelStart;
     }
 
     public virtual void DeregisterActions()
     {
         // Unsubscribe from the event
-        // GameManager.instance.IncrementScore  -= OnIncrementScore;
-        GameManager.instance.GameStart  -= OnLevelStart;
+        // GameManager.Instance.IncrementScore  -= OnIncrementScore;
+        gameManager.GameStart -= OnLevelStart;
     }
 
-    public virtual void OnLevelStart(){
+    public virtual void OnLevelStart()
+    {
         totalItemsInLevel = 0;
         score = 0;
         // Find all GameObjects with the 'Target' tag
-        Item[] targets = GameManager.instance.root.GetComponentsInChildren<Item>();// FindObjectsOfType<Target>();
+        Item[] targets = GameManager.Instance.root.GetComponentsInChildren<Item>();// FindObjectsOfType<Target>();
         foreach (Item t in targets)
         {
             if (t.customTag == CustomTag.Item)
@@ -38,7 +43,8 @@ public class GameScoreKeeper : MonoBehaviour
         }
     }
 
-    public virtual void IncrementScore(){
+    public virtual void IncrementScore()
+    {
         score++;
         CheckLevelFinished();
     }
@@ -48,7 +54,7 @@ public class GameScoreKeeper : MonoBehaviour
         // If the score matches the number of 'Target' objects, set 'levelFinished' to true
         if (score >= totalItemsInLevel)
         {
-            GameManager.instance.GenerateGame();
+            GameManager.Instance.GenerateGame();
         }
     }
 }
