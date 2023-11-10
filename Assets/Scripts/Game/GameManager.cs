@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public GameObject root;
-    [HideInInspector]
+    // [HideInInspector]
     public GameScoreKeeper gameScoreKeeper;
 
     public GameObject rootParent;

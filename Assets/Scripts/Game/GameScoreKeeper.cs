@@ -9,7 +9,7 @@ public class GameScoreKeeper : MonoBehaviour
     public int score;
     public int totalItemsInLevel;
     public bool win;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     void Awake()
     {
@@ -43,13 +43,18 @@ public class GameScoreKeeper : MonoBehaviour
         }
     }
 
+    public virtual void IncrementProjectile()
+    {
+
+    }
+
     public virtual void IncrementScore()
     {
         score++;
         CheckLevelFinished();
     }
 
-    public void CheckLevelFinished()
+    public virtual void CheckLevelFinished()
     {
         // If the score matches the number of 'Target' objects, set 'levelFinished' to true
         if (score >= totalItemsInLevel)

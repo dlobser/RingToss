@@ -48,11 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menus:
   - name: Title
-    menuObject: {fileID: 4328894845457443348}
-    menuSprite: {fileID: 4328894845312553473}
+    menuObject: {fileID: 7517429655321503785}
   - name: Game
-    menuObject: {fileID: 4328894846315258806}
-    menuSprite: {fileID: 4328894845855771079}
+    menuObject: {fileID: 4868707702742951278}
 --- !u!1 &4328894845050291358
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4328894845457443349}
-  - component: {fileID: 4328894845457443348}
+  - component: {fileID: 7517429655321503785}
   m_Layer: 0
   m_Name: GameScreen_Title
   m_TagString: Untagged
@@ -363,7 +361,7 @@ Transform:
   m_Father: {fileID: 4328894844798248824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4328894845457443348
+--- !u!114 &7517429655321503785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,10 +370,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4328894845457443350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58fc3e63e5b4c0438701d9b300ac490, type: 3}
+  m_Script: {fileID: 11500000, guid: 690c3872c1d57864e9b5a581d3aaedb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 4328894845296578256}
+  spriteRenderer: {fileID: 4328894845312553473}
 --- !u!1 &4328894845651357431
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4328894846315258807}
-  - component: {fileID: 4328894846315258806}
+  - component: {fileID: 4868707702742951278}
   m_Layer: 0
   m_Name: GameScreen_Game
   m_TagString: Untagged
@@ -524,7 +523,7 @@ Transform:
   m_Father: {fileID: 4328894844798248824}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4328894846315258806
+--- !u!114 &4868707702742951278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,10 +532,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4328894846315258800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58fc3e63e5b4c0438701d9b300ac490, type: 3}
+  m_Script: {fileID: 11500000, guid: 690c3872c1d57864e9b5a581d3aaedb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 4328894846418042830}
+  spriteRenderer: {fileID: 4328894845855771079}
 --- !u!1 &4328894846418042830
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class LevelGenerator_Round : LevelGenerator
         public Platform platformPrefab;
         public Material platformMaterial;
         public GameObject ringPrefab;
-        public GameScoreKeeper scoreKeeper;
+        // public GameScoreKeeper scoreKeeper;
 
         [Header("Platform Settings")]
         public int minPlatforms;
@@ -46,6 +46,8 @@ public class LevelGenerator_Round : LevelGenerator
     [SerializeField]
     public LevelItems levelItems;
 
+    // PlayerController controller;
+
     // ImageLoader imageLoader;
     public bool reload = false;
 
@@ -68,6 +70,7 @@ public class LevelGenerator_Round : LevelGenerator
     {
         // imageLoader = FindObjectOfType<ImageLoader>();
         // print(imageLoader);
+        // GameObject control = Instantiate(levelSettings.playerController, levelSettings.gameManager.rootParent.transform);
     }
 
     void Update()
@@ -95,25 +98,31 @@ public class LevelGenerator_Round : LevelGenerator
         // if (root != null)
         // {
         //     Destroy(root);
-        // }
+        // }fsco
 
         // root = new GameObject("Root");
 
         if (levelSettings.gameManager.rootParent != null)
             root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
 
-        GameManager.Instance.gameScoreKeeper = levelItems.scoreKeeper;
+        levelSettings.gameManager.gameScoreKeeper = levelSettings.scoreKeeper;
 
-        // levelSettings.menuManager.ModifyMenu("Title", (menu) =>
-        // {
-        //     // You can now do arbitrary things with the menu
-        //     menu.menuSprite.sprite = yourSprite; // Set the sprite
-        //     // ... any other operation you want to perform on the menu
-        // });
+        levelSettings.menuManager.ModifyMenu("Title", (menu) =>
+        {
+            print(menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer + "SPRITE");
+            menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
+            // ... any other operation you want to perform on the menu
+        });
+        levelSettings.menuManager.ModifyMenu("Game", (menu) =>
+       {
+           print(menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer + "SPRITE");
+           menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
+           // ... any other operation you want to perform on the menu
+       });
 
         // ImageLoader.Instance.SetSprite()
-        levelSettings.menuManager.SetSprite("Title", ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style));
-        levelSettings.menuManager.SetSprite("Game", ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style));
+        // levelSettings.menuManager.SetSprite("Title", ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style));
+        // levelSettings.menuManager.SetSprite("Game", ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style));
         // levelItems.titleSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
         // levelItems.bgSprite.GetComponentInChildren<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
         // imageLoader.GetImageWithIndex("Background", GlobalSettings.ImageIndeces.Style);

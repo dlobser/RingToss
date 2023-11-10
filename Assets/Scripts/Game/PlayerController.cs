@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Instantiate the currentRing for the actual toss
-            currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity);
+            currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity, GameManager.Instance.rootParent.transform);
             currentRing.transform.localScale = Vector3.one * GlobalSettings.Physics.ballSize;
 
             if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
             // Apply the force to the currentRing when releasing the mouse button
             rb.AddForce(dragDirection * Mathf.Clamp(dragDistance * tossForceMultiply, 0, maxTossForce), ForceMode2D.Impulse);
             rb.gravityScale = GlobalSettings.Physics.ballGravity;
+
+            FindObjectOfType<GameScoreKeeper>().IncrementProjectile();
 
             canToss = false;
         }

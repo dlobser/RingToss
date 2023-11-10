@@ -23,7 +23,8 @@ public class Ring : MonoBehaviour
             {
                 case CustomTag.Item:
                     // Handle a successful toss (e.g., scoring points)
-                    GameManager.Instance.gameScoreKeeper.IncrementScore();
+                    if (GameManager.Instance.gameScoreKeeper != null)
+                        GameManager.Instance.gameScoreKeeper.IncrementScore();
                     if (burster != null)
                     {
                         GameObject burst = Instantiate(burster);
