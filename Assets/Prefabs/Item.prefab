@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1237950799220984122}
   - component: {fileID: 1237950799220984121}
   - component: {fileID: 1237950799220984120}
+  - component: {fileID: 8993865135989208125}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -148,3 +149,64 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.99
+--- !u!114 &8993865135989208125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237950799220984124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f31d77b663ae1d48a0b6f42bddd5b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalTimeScale: 1
+  doTranslate: 0
+  translateSpeed: {x: 0, y: 0, z: 0}
+  translateUseBounds: 0
+  pingPong: 0
+  translateOffset: {x: 0, y: 0, z: 0}
+  translateUpperBounds: {x: 0, y: 0, z: 0}
+  translateLowerBounds: {x: 0, y: 0, z: 0}
+  doTranslateOscillate: 0
+  translateOscillateUpperBounds: {x: 0, y: 0, z: 0}
+  translateOscillateLowerBounds: {x: 0, y: 0, z: 0}
+  translateOscillateSpeed: {x: 0, y: 0, z: 0}
+  translateOscillateOffset: {x: 0, y: 0, z: 0}
+  doTranslateNoise: 0
+  translateNoiseUpperBounds: {x: 0, y: 0, z: 0}
+  translateNoiseLowerBounds: {x: 0, y: 0, z: 0}
+  translateNoiseSpeed: {x: 0, y: 0, z: 0}
+  translateNoiseOffset: {x: 0, y: 0, z: 0}
+  doRotate: 0
+  rotate: {x: 0, y: 0, z: 0}
+  doRotateOscillate: 0
+  rotateOscillateUpperBounds: {x: 0, y: 0, z: 0}
+  rotateOscillateLowerBounds: {x: 0, y: 0, z: 0}
+  rotateOscillateSpeed: {x: 0, y: 0, z: 0}
+  rotateOscillateOffset: {x: 0, y: 0, z: 0}
+  doRotateNoise: 0
+  rotateNoiseUpperBounds: {x: 0, y: 0, z: 0}
+  rotateNoiseLowerBounds: {x: 0, y: 0, z: 0}
+  rotateNoiseSpeed: {x: 0, y: 0, z: 0}
+  rotateNoiseOffset: {x: 0, y: 0, z: 0}
+  doScale: 0
+  useInitialScale: 1
+  scale: {x: 0, y: 0, z: 0}
+  scaleOffset: {x: 0, y: 0, z: 0}
+  scaleUseBounds: 0
+  scalePingPong: 0
+  scaleDirection: {x: 1, y: 1, z: 1}
+  scaleUpperBounds: {x: 0, y: 0, z: 0}
+  scaleLowerBounds: {x: 0, y: 0, z: 0}
+  doScaleOscillate: 1
+  scaleOscillateUpperBounds: {x: 0.5, y: 0.5, z: 0.5}
+  scaleOscillateLowerBounds: {x: 0, y: 0, z: 0}
+  scaleOscillateSpeed: {x: 6, y: 6, z: 6}
+  scaleOscillateOffset: {x: 0, y: 0, z: 0}
+  doScaleNoise: 0
+  scaleNoiseUpperBounds: {x: 0, y: 0, z: 0}
+  scaleNoiseLowerBounds: {x: 0, y: 0, z: 0}
+  scaleNoiseSpeed: {x: 0, y: 0, z: 0}
+  scaleNoiseOffset: {x: 0, y: 0, z: 0}
