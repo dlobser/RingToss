@@ -9,6 +9,7 @@ public enum CustomTag
     Platform,
 }
 
+
 public static class GlobalSettings
 {
 
@@ -53,30 +54,29 @@ public class GameManager : MonoBehaviour
 
     public event Action GameStart;
 
-    public int sed;
+    // public int randomSeed;
+    
+    // private int seed;
 
-    [SerializeField]
-    private int seed;
-
-    public int Seed
-    {
-        get
-        {
-            return GlobalSettings.randomSeed;
-        }
-        set
-        {
-            seed = value;
-            GlobalSettings.randomSeed = value;
-            UnityEngine.Random.InitState(GlobalSettings.randomSeed);
-        }
-    }
+    // public int Seed
+    // {
+    //     get
+    //     {
+    //         return GlobalSettings.randomSeed;
+    //     }
+    //     set
+    //     {
+    //         seed = value;
+    //         GlobalSettings.randomSeed = value;
+    //         UnityEngine.Random.InitState(GlobalSettings.randomSeed);
+    //     }
+    // }
 
 
     private void Awake()
     {
         Instance = this;
-        UnityEngine.Random.InitState(sed);
+        UnityEngine.Random.InitState(GlobalSettings.randomSeed);
     }
 
     private void Start()
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     public void LevelStart()
     {
         // gameScoreKeeper.OnLevelStart();
+        print(UnityEngine.Random.seed);
         GameStart?.Invoke();
     }
 

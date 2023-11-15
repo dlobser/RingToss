@@ -83,7 +83,7 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
         SetupRenderers();
         if (switchToInitialMaterial)
             SwitchToInitialMaterial();
-        if (switchToProjectionMaterial)
+        if (switchToProjectionMaterial && projectionMaterial!=null)
             SwitchToProjection();
 
         SaveCullingMask();
@@ -94,6 +94,23 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
 
         Texture2D tex;
         Texture2D texD;
+
+         // Find all TextMesh objects in the scene
+        TextMesh[] textMeshes = FindObjectsOfType<TextMesh>();
+        foreach (TextMesh textMesh in textMeshes)
+        {
+            if (textMesh.font != null)
+            {
+                // Get the MeshRenderer component
+                MeshRenderer meshRenderer = textMesh.GetComponent<MeshRenderer>();
+                if (meshRenderer != null)
+                {
+                    // Update the material to the font's material
+                    meshRenderer.sharedMaterial = textMesh.font.material;
+                }
+            }
+        }
+
 
         tex = render360 ? Render360((int)resolution.x, (int)resolution.y) : SDRenderUtils.Capture(projectionCam, (int)resolution.x, (int)resolution.y);
         string render = Convert.ToBase64String(tex.EncodeToPNG());
@@ -107,7 +124,9 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
 
         SetLayerMask();
 
-        SwitchToDepth();
+        if(depthMaterial!=null)
+            SwitchToDepth();
+
         texD = render360 ? Render360((int)resolution.x, (int)resolution.y) : SDRenderUtils.Capture(projectionCam, (int)resolution.x, (int)resolution.y);
         string depth = Convert.ToBase64String(texD.EncodeToPNG());
         if (saveDepthImageLocation.Length > 0)
@@ -118,7 +137,8 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
         {
             depth = SDRenderUtils.TextureToString(startingDepthImage);
         }
-        SwitchToInitialMaterial();
+        if(switchToInitialMaterial||switchToProjectionMaterial)
+            SwitchToInitialMaterial();
         if (extraValues is ExtraValuesForTxt2Image)
         {
             args = new string[1];

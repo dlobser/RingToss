@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using UnityEngine.Networking;
 
 public class SDRenderChainLinkSave : SDRenderChainLink
 {
@@ -18,11 +19,18 @@ public class SDRenderChainLinkSave : SDRenderChainLink
     public float postBlurThreshold = 0;
     public int antiAliasingKernel = 3;
 
+    public bool useMatte;
+    public string matteLocation;
+
+    public bool debug = false;
+    string sdImage;
+
     public override void RunUnityFunction(string image)
     {
+        sdImage = image;
         // Extract the directory path from the location parameter
         string directory = Path.GetDirectoryName(location);
-
+        if(debug) print(this.gameObject.name + " Save Dir: " + location);
         // Check if the directory exists, and create it if it doesn't
         if (!Directory.Exists(directory))
         {
@@ -68,12 +76,52 @@ public class SDRenderChainLinkSave : SDRenderChainLink
             }
             SDRenderUtils.SaveImage(tex, location, width, height);
         }
+        else if(useMatte){
+            LoadTexture(matteLocation, SetMatteOnTexture);
+        }
         else
             SDRenderUtils.SaveImage(image, location, width, height);
 
         foreach (SDRenderChainLink l in link)
         {
+            if(debug) print(l.gameObject.name + " Run Unity Function " );
             l.RunUnityFunction(image);
+        }
+    }
+
+    void SetMatteOnTexture(Texture2D texture){
+        Texture2D tex = SDRenderUtils.StringToTexture(sdImage);
+        tex = SDRenderUtils.SetAlpha(tex, texture);
+        SDRenderUtils.SaveImage(tex, location, width, height);
+    }
+
+    // Define a callback delegate to return the texture
+    public delegate void TextureCallback(Texture2D texture);
+
+    // Coroutine to load a texture
+    public void LoadTexture(string filePath, TextureCallback callback)
+    {
+        StartCoroutine(CoroutineLoadTexture(filePath, callback));
+    }
+
+    private IEnumerator CoroutineLoadTexture(string filePath, TextureCallback callback)
+    {
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture("file://" + filePath))
+        {
+            // Send the request
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result == UnityWebRequest.Result.Success)
+            {
+                // Get the downloaded texture and invoke the callback
+                Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
+                callback?.Invoke(texture);
+            }
+            else
+            {
+                Debug.LogError("Failed to load texture: " + uwr.error);
+                callback?.Invoke(null);
+            }
         }
     }
 

@@ -7,6 +7,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 public class ApiManagerTxt2Img : Singleton<ApiManagerTxt2Img>
 {
@@ -38,12 +39,14 @@ public class ApiManagerTxt2Img : Singleton<ApiManagerTxt2Img>
     public TMP_InputField s_tmin;
     public TMP_InputField s_noise;
     public TMP_InputField sampler_index;
-
+    public Tiling Asymmetric_tiling_Argument;
 
     public class AlwaysonScripts
     {
         public Controlnet controlnet { get; set; }
-        // public Tiling asymmetric_tiling { get; set; }
+
+        [JsonProperty("Asymmetric tiling")] 
+        public Tiling Asymmetric_tiling { get; set; }
     }
 
     public class Arg
@@ -71,7 +74,7 @@ public class ApiManagerTxt2Img : Singleton<ApiManagerTxt2Img>
 
     public class Tiling
     {
-        public List<TilingArgs> args { get; set; }
+        public List<object> args;
     }
 
     public class ScriptArgs
@@ -160,7 +163,7 @@ public class ApiManagerTxt2Img : Singleton<ApiManagerTxt2Img>
         public int s_tmin { get; set; }
         public int s_noise { get; set; }
         public string sampler_index { get; set; }
-
+        
         public override string PostUrl() =>
             "http://127.0.0.1:7860/sdapi/v1/txt2img";//"http://3.137.201.231:8080/sdapi/v1/txt2img";
     }
@@ -241,7 +244,8 @@ public class ApiManagerTxt2Img : Singleton<ApiManagerTxt2Img>
             s_tmax = Int32.Parse(s_tmax.text),
             s_tmin = Int32.Parse(s_tmin.text),
             s_noise = Int32.Parse(s_noise.text),
-            sampler_index = sampler_index.text
+            sampler_index = sampler_index.text,
+
         },
             msg =>
             {

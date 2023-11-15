@@ -35,4 +35,6 @@ public class ExtraValuesForTxt2Image : ExtraValues
 
     public float controlnet_weight = 1;
     public float controlnet_guidance_end = 1f;
+    public bool tileX;
+    public bool tileY;
 }

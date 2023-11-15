@@ -105,7 +105,7 @@ public class SD_BatchRender : SDRenderChainLink
         print(arr.Length);
         for (int i = 0; i < arr.Length; i++)
         {
-            // Random.InitState(seed);
+            Random.InitState(seed);
             string[] options = arr[i].Split('|');
             string replacement = options[UnityEngine.Random.Range(0, options.Length)];
             print(replacement);

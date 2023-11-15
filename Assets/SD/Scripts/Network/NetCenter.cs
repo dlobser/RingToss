@@ -61,6 +61,7 @@ public class NetCenter : MM.Singleton<NetCenter>
                 ? Encoding.UTF8.GetBytes("{\"request\": \"" + NetHelper.Encrypt(msg.ToJson()) + "\"}")
                 : Encoding.UTF8.GetBytes(msg.ToJson());
 
+            Debug.Log("SANDROO -- " + msg.ToJson());
             request.uploadHandler = new UploadHandlerRaw(data);
             request.downloadHandler = new DownloadHandlerBuffer();
             foreach (var item in headers)

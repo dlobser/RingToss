@@ -13,5 +13,10 @@ public class LevelGenerator_SkeeBallEditor : Editor
         {
             generator.GeneratePlatforms();
         }
+        
+        if (GUILayout.Button("Generate Platform Positions"))
+        {
+            generator.GeneratePlatformPositions();
+        }
     }
 }

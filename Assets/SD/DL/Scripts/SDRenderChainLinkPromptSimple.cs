@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SDRenderChainLinkPrompt : SDRenderChainLink
+public class SDRenderChainLinkPromptSimple : SDRenderChainLink
 {
     // First run functions in Unity, probably a screen render
     // Pass these renders along to stable diffusion with a link to arguments
@@ -11,30 +11,27 @@ public class SDRenderChainLinkPrompt : SDRenderChainLink
     public string prompt;
     public ExtraValuesForImg2Img extraValuesImg2Img;
     public ExtraValuesForTxt2Image extraValuesTxt2Img;
-    public bool useVariations;
 
     void Start()
     {
         string outputString = ReplaceVariations(prompt);
-        // Debug.Log(outputString);
+        Debug.Log(outputString);
     }
 
     string ReplaceVariations(string input)
     {
-        if(useVariations){
-            int startIndex = input.IndexOf("{");
-            while (startIndex >= 0)
-            {
-                int endIndex = input.IndexOf("}", startIndex);
-                if (endIndex < 0) break;
+        int startIndex = input.IndexOf("{");
+        while (startIndex >= 0)
+        {
+            int endIndex = input.IndexOf("}", startIndex);
+            if (endIndex < 0) break;
 
-                string block = input.Substring(startIndex + 1, endIndex - startIndex - 1);
-                string[] options = block.Split('|');
-                string replacement = options[UnityEngine.Random.Range(0, options.Length)];
+            string block = input.Substring(startIndex + 1, endIndex - startIndex - 1);
+            string[] options = block.Split('|');
+            string replacement = options[UnityEngine.Random.Range(0, options.Length)];
 
-                input = input.Substring(0, startIndex) + replacement + input.Substring(endIndex + 1);
-                startIndex = input.IndexOf("{", startIndex + replacement.Length);
-            }
+            input = input.Substring(0, startIndex) + replacement + input.Substring(endIndex + 1);
+            startIndex = input.IndexOf("{", startIndex + replacement.Length);
         }
         return input;
     }

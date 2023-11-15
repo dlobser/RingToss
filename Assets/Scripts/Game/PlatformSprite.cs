@@ -22,8 +22,19 @@ public class PlatformSprite : Platform
 
     public override void SetSize(Vector2 scale)
     {
+        base.SetSize(scale);
         spriteRenderer.size = scale;
-        size = new Vector3(scale.x,scale.y,1);
+    }
+
+    public override void SetPosition(Vector3 position)
+    {
+        base.SetPosition(position);
+        this.transform.localPosition = position;
+    }
+
+    public override void SetRotation(float z, float x = 0, float y = 0){
+        base.SetRotation(z,x,y);
+        this.transform.localEulerAngles = new Vector3(x,y,z);
     }
 
     public override void SetMainTexture(Sprite tex)
@@ -45,17 +56,19 @@ public class PlatformSprite : Platform
     }
 
     public override void PopulatePlatformWithItems(PlatformItemArguments itemArguments){
+
         if(itemArguments.amount>0){
+            
             GameObject items = new GameObject("Items");
             items.transform.SetParent(itemParent);
             items.transform.localPosition = Vector3.zero;
             items.transform.localScale = Vector3.one;
             items.transform.localEulerAngles = Vector3.zero;
-            float spacing = size.x / (itemArguments.amount + 1);
+            float spacing = platformScale.x / (itemArguments.amount + 1);
 
             for (int j = 1; j <= itemArguments.amount; j++)
             {
-                Vector3 itemPosition = itemArguments.offset + new Vector3(spacing * j - size.x*.5f, 0, 0);
+                Vector3 itemPosition = itemArguments.offset + new Vector3(spacing * j - platformScale.x*.5f, 0, 0);
                 GameObject item = Instantiate(itemArguments.item, itemPosition, Quaternion.identity, items.transform);
                 item.transform.localPosition = itemPosition;
                 item.transform.localScale = Vector3.one*.05f;
@@ -63,6 +76,7 @@ public class PlatformSprite : Platform
                 SetSprite(item.transform.GetChild(0).GetComponent<SpriteRenderer>());
             }
         }
+
     }
 
     public void SetSprite(SpriteRenderer spriteRenderer){

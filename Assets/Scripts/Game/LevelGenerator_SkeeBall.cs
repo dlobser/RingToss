@@ -48,6 +48,7 @@ public class LevelGenerator_SkeeBall : LevelGenerator
     public bool reload = false;
     public int randomSeed;
     public bool randomizeSeed = false;
+    List<Platform> allPlatforms;
     List<GameObject> movingPlatforms;
     List<GameObject> platformsWithItems;
 
@@ -68,7 +69,7 @@ public class LevelGenerator_SkeeBall : LevelGenerator
 
     void Start()
     {
-        
+        allPlatforms = new List<Platform>();
         movingPlatforms = new List<GameObject>();
         platformsWithItems = new List<GameObject>();
     }
@@ -82,9 +83,38 @@ public class LevelGenerator_SkeeBall : LevelGenerator
         }
     }
 
+    public GameObject GeneratePlatformPositions(){
+
+        Random.InitState(GlobalSettings.randomSeed);
+        GameObject platforms = new GameObject("Platforms");
+        allPlatforms = new List<Platform>();
+
+        if(root!=null)
+            platforms.transform.SetParent(root.transform);
+
+        int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
+        List<Vector3> circles = CirclePacker.PackCircles(levelItems.platformWidthBounds.x, levelItems.platformWidthBounds.y, platformCount,levelItems.platformPositionBounds.y);
+        circles = ProcessCircles(circles);
+
+        for (int i = 0; i < Mathf.Min(circles.Count,platformCount); i++)
+        {
+            Platform newPlatform = Instantiate(levelItems.platformPrefab, platforms.transform);
+            float platformWidth = Random.Range(levelItems.platformWidthBounds.x, levelItems.platformWidthBounds.y);
+            newPlatform.SetSize(new Vector2(circles[i].z/2, Mathf.Min(circles[i].z/2, levelItems.platformHeight)));
+            newPlatform.SetPosition(new Vector3(circles[i].x,circles[i].y,0));
+            allPlatforms.Add(newPlatform);
+        }
+
+        return platforms;
+        
+    }
+
     public void GeneratePlatforms(){
         Random.InitState(GlobalSettings.randomSeed);
         GameObject platforms = new GameObject("Platforms");
+        if(root==null){
+            root = new GameObject("Root");
+        }
         platforms.transform.SetParent(root.transform);
         int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));
         
@@ -113,7 +143,7 @@ public class LevelGenerator_SkeeBall : LevelGenerator
             newPlatform.SetMainTexture(Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f)));
             newPlatform.SetAlpha(Random.Range(0, 1f));
             newPlatform.SetSize(new Vector2(circles[i].z/2, Mathf.Min(circles[i].z/2, levelItems.platformHeight)));
-            newPlatform.transform.localPosition = new Vector3(circles[i].x,circles[i].y,0);
+            newPlatform.SetPosition(new Vector3(circles[i].x,circles[i].y,0));
 
             if(circles[i].z*.5f > levelItems.minPlatformSizeForItems)
                 platformsWithItems.Add(newPlatform.gameObject);

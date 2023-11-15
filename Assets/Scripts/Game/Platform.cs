@@ -16,22 +16,26 @@ public class Platform : MonoBehaviour
 {
 
     public CustomTag customTag;
-    public Vector3 size;
+    public Vector3 platformScale;
+    public Vector3 platformPosition;
+    public Vector3 platformRotation;
     public float bounce;
     public float friction;
-    public Renderer renderer;
+    // public Renderer renderer;
 
     public virtual void SetSize(Vector3 scale){
-        this.transform.localScale = scale;
+        // this.transform.localScale = scale;
+        platformScale = scale;
     }
 
     public virtual void SetSize(Vector2 scale){
-        SetSize(new Vector3(scale.x,scale.y,this.transform.localScale.z));
+        SetSize(new Vector3(scale.x,scale.y,1));
     }
     
     public virtual void SetPosition(Vector3 position)
     {
-        this.transform.localPosition = position;
+        this.platformPosition = position;
+        // this.transform.localPosition = position;
     }
 
     public virtual void SetPosition(Vector2 position)
@@ -40,11 +44,11 @@ public class Platform : MonoBehaviour
     }
 
     public virtual void SetRotation(float z, float x = 0, float y = 0){
-        this.transform.localEulerAngles = new Vector3(x,y,z);
+        platformRotation = new Vector3(x,y,z);
     }
 
     public virtual void SetMaterial(Material mat){
-        renderer.material = mat;
+        // renderer.material = mat;
     }
 
     public virtual void SetColor(Color color){
@@ -52,7 +56,7 @@ public class Platform : MonoBehaviour
     }
 
     public virtual Color GetColor(){
-        return renderer.material.color;
+        return Color.white;
     }
 
     public virtual void SetAlpha(float a){
