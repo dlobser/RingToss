@@ -136,7 +136,7 @@ public class PlayerControllerRedirect : MonoBehaviour
             if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
             {
                 // imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile");
-                ImageLoader.Instance.SetSprite(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile", GlobalSettings.ImageIndeces.Projectile);
+                // ImageLoader.Instance.SetSprite(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile", GlobalSettings.ImageIndeces.Projectile);
             }
 
             Rigidbody2D rb = currentRing.GetComponent<Rigidbody2D>();

@@ -42,6 +42,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
     public int seedStart;
     public int seedIterate = 1;
     int seedIterationCounter = 0;
+    int artDescriptionIndexCounter = 0;
     public int seedIterationsPerSet = 1;
     int seed = 0;
     int ID = 0;
@@ -121,7 +122,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
 
     void SetPromptValue(string childName, string value)
     {
-        print("Child Name: " + childName);
+        // print("Child Name: " + childName);
         Transform childTransform = FindChildRecursive(this.transform, childName);
         
         if (childTransform != null)
@@ -130,7 +131,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
             if (extraValueComponent != null)
             {
                 extraValueComponent.prompt = value; 
-                print("Found Child: " + childTransform.name + ", " + value);
+                // print("Found Child: " + childTransform.name + ", " + value);
                 // if(extraValueComponent.extraValuesTxt2Img!=null){
                 //     extraValueComponent.extraValuesTxt2Img.prompt = value;
                 // }
@@ -143,20 +144,24 @@ public class SD_BatchRenderForGames : SDRenderChainLink
 
     public void UpdatePrompts()
     {
-        print("art descriptions length: " + artDescriptions.Length);
+        // print("art descriptions length: " + artDescriptions.Length);
         if (artDescriptionIndex < artDescriptions.Length)
         {
             var art = artDescriptions[artDescriptionIndex];
 
-            if(textMesh.GetComponent<SetTextMeshWidth>()!=null)
-                textMesh.GetComponent<SetTextMeshWidth>().SetText(art.Name);
-            else
-                textMesh.text = art.Name;
-            
             if(fonts.Length>0){
                 textMesh.font = fonts[UnityEngine.Random.Range(0, fonts.Length)];
                 textMesh.GetComponent<MeshRenderer>().sharedMaterial = textMesh.font.material;
             }
+
+            if(textMesh.GetComponent<SetTextMeshWidth>()!=null){
+                textMesh.GetComponent<SetTextMeshWidth>().SetText(art.Name);
+                textMesh.GetComponent<SetTextMeshWidth>().FitTextToWidth();
+            }
+            else
+                textMesh.text = art.Name;
+            
+            
 
             SetPromptValue("BackgroundPrompt", art.BackgroundPrompt + " by " + art.ArtistName);
             SetPromptValue("PlatformPrompt", art.PlatformPrompt + " by " + art.ArtistName);
@@ -171,10 +176,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
 
             // artDescriptionIndex++;
         }
-        else
-        {
-            Debug.Log("All art descriptions have been used.");
-        }
+        
     }
 
     public override void RunUnityFunction(string image)
@@ -217,7 +219,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
 
             // }
             if(textRenderer!=null)
-                textRenderer.saveDepthImageLocation = rootDirectory + "/" + "TextDepth" + "_" + artDescriptionIndex.ToString("0000") + "_" + seed.ToString()+ ".png";
+                textRenderer.saveDepthImageLocation = rootDirectory + "/" + artDescriptions[artDescriptionIndex].Name.Split(' ')[0] + "_TitleAlpha" + "_" + artDescriptionIndex.ToString("0000") + "_" + seed.ToString()+ ".png";
             // for (int i = 0; i < saveLinks.Length; i++)
             // {
             //     saveLinks[i].location = rootDirectory + "/" + familyName + "_" + ID.ToString("D4") + "_" + seed.ToString() + "_" + saveNames[i] + ".png";
@@ -225,13 +227,14 @@ public class SD_BatchRenderForGames : SDRenderChainLink
             // writeBG.location = rootDirectory + "/" + ID.ToString("D4") + "_" + familyName + "_BG_" + seed.ToString("D4") + ".png";
             // writeMG.location = rootDirectory + "/" + ID.ToString("D4") + "_" + familyName + "_MG_" + seed.ToString("D4") + ".png";
             // writeFG.location = rootDirectory + "/" + ID.ToString("D4") + "_" + familyName + "_FG_" + seed.ToString("D4") + ".png";
-            startingLink.RunUnityFunction("");
-            seed += seedIterate;
             
-            GlobalSettings.randomSeed = seed;
+            seed += seedIterate;
+
+            GlobalSettings.randomSeed = artDescriptionIndexCounter;
             UnityEngine.Random.InitState(seed);
 
             ID++;
+
             if(seedIterationCounter < seedIterationsPerSet){
                 seedIterationCounter ++;
             }
@@ -240,6 +243,17 @@ public class SD_BatchRenderForGames : SDRenderChainLink
                 artDescriptionIndex++;
             }
             
+            startingLink.RunUnityFunction("");
+            
+        }
+        else
+        {
+            artDescriptionIndex = 0;
+            artDescriptionIndexCounter++;
+            Debug.Log("All art descriptions have been used.");
+            GlobalSettings.randomSeed = artDescriptionIndexCounter;
+            UnityEngine.Random.InitState(seed);
+            startingLink.RunUnityFunction("");
         }
     }
 
@@ -251,7 +265,8 @@ public class SD_BatchRenderForGames : SDRenderChainLink
         SDRenderChainLinkSave[] sdRenderChainLinkSaves = GameObject.FindObjectsOfType<SDRenderChainLinkSave>();
 
         foreach(SDRenderChainLinkSave save in sdRenderChainLinkSaves){
-            save.location = rootDirectory + "" + artDescriptions[artDescriptionIndex].Name.Split(' ')[0] + "_" + save.transform.parent.parent.name.Replace("Prompt", "") + "_" + artDescriptionIndex.ToString("0000") + "_" + seed.ToString()+ ".png";
+            save.location = rootDirectory + "" + artDescriptions[artDescriptionIndex].Name.Split(' ')[0] + "_" + save.transform.parent.parent.name.Replace("Prompt", "") 
+            + "_" + artDescriptionIndex.ToString("0000") + "_" + seed.ToString() + "_" + artDescriptionIndexCounter + ".png";
         }
     }
 

@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
                 menu.menuObject.Deactivate();
             }
         }
+        print("Show Menu: " + menuName);
     }
 
     public void SetSprite(string name, Sprite sprite)

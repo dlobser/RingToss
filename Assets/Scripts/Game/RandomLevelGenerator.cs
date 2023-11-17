@@ -38,8 +38,10 @@ public class RandomLevelGenerator : MonoBehaviour
 
     public void GenerateLevel()
     {
+        UnityEngine.Random.InitState(GlobalSettings.randomSeed);
         FindObjectOfType<ImageLoader>().SetRandomStyle();
-        levelGenerators[(int)(Random.value * levelGenerators.Length)].GenerateLevel();
+        if(levelGenerators.Length>0)
+            levelGenerators[(int)(Random.value * levelGenerators.Length)].GenerateLevel();
         // root = levelGenerators[(int)(Random.value * levelGenerators.Length)].GenerateLevel();
         // return root;
     }

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public GameScoreKeeper gameScoreKeeper;
 
     public GameObject rootParent;
-    public MenuManager menus;
+    // public MenuManager menus;
 
     public event Action GameStart;
 
@@ -72,7 +72,9 @@ public class GameManager : MonoBehaviour
     //     }
     // }
 
-
+    void Update(){
+        // print("Global Seed: " + GlobalSettings.randomSeed);
+    }
     private void Awake()
     {
         Instance = this;
@@ -96,9 +98,9 @@ public class GameManager : MonoBehaviour
         GameStart?.Invoke();
     }
 
-    public void ShowMenu(string name)
-    {
-        menus.ShowMenu(name);
-    }
+    // public void ShowMenu(string name)
+    // {
+    //     menus.ShowMenu(name);
+    // }
 
 }

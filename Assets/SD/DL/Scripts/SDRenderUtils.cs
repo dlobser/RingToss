@@ -123,7 +123,7 @@ public static class SDRenderUtils
         if (whereToSave.Length != 0)
         {
             File.WriteAllBytes(filename, bytes);
-            Debug.Log("File saved at: " + filename);
+            // Debug.Log("File saved at: " + filename);
         }
 
     }

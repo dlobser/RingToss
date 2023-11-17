@@ -174,6 +174,8 @@ public class ImageLoader : MonoBehaviour
         return Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),Vector2.one*.5f);
     }
 
+    
+
     public Texture2D GetImageWithIndex(string imageType, int index = -1)
     {
         // Format styleNum with padding, assuming it needs to be 4 digits long
@@ -206,6 +208,45 @@ public class ImageLoader : MonoBehaviour
 
         // Return the selected texture
         return textures[index];
+    }
+
+    public Sprite GetSpriteWithIndexSeed(string imageType, int index = -1, int globalSeed = -1){
+        Texture2D tex = GetImageWithIndexSeed(imageType,index,globalSeed);
+        return Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),Vector2.one*.5f);
+    }
+
+    public Texture2D GetImageWithIndexSeed(string imageType, int imageSeed = -1, int globalSeed = -1)
+    {
+        // Format styleNum with padding, assuming it needs to be 4 digits long
+        // string styleNumFormatted = styleNum;
+
+        // Construct the partial filename with styleNum
+        // string partialFileName = $"_{styleNumFormatted}_";
+
+        // print(directory + " " + " " + styleNum + " " + partialFileName + " " + imageType);
+
+        // Get all files in the directory
+        Texture2D[] textures = Resources.LoadAll<Texture2D>(directory)
+            .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType) && t.name.EndsWith("_"+globalSeed.ToString())).ToArray();
+
+        // Log how many textures were found
+        Debug.Log("Number of textures found: " + textures.Length + " index: " + imageSeed + " globalSeed: " + globalSeed);
+
+        // If there are no textures, return null
+        if (textures.Length == 0)
+        {
+            Debug.LogWarning("No textures found with the given criteria.");
+            return null;
+        }
+
+        // Choose a random texture if index is -1 or if it is out of bounds
+        if (imageSeed == -1 || imageSeed >= textures.Length)
+        {
+            imageSeed = Random.Range(0, textures.Length);
+        }
+
+        // Return the selected texture
+        return textures[imageSeed];
     }
 
     public void AssignRandomImage(Renderer renderer, string imageType, bool setMaterial = false)

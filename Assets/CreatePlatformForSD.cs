@@ -15,7 +15,7 @@ public class CreatePlatformForSD : MonoBehaviour
         }
 
         // Call this to generate the initial platform
-        GenerateAndManagePlatform();
+        // GenerateAndManagePlatform();
     }
 
     public void GenerateAndManagePlatform()

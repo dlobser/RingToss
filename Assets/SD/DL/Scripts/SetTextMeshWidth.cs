@@ -34,7 +34,7 @@ public class SetTextMeshWidth : MonoBehaviour
         SetText();
     }
 
-    private void FitTextToWidth()
+    public void FitTextToWidth()
     {
         // Define a max font size so the text doesn't become excessively large
         float maxFontSize = 100f;  // Adjust this value based on your needs

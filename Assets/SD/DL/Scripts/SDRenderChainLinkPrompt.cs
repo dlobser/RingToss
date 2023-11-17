@@ -12,6 +12,8 @@ public class SDRenderChainLinkPrompt : SDRenderChainLink
     public ExtraValuesForImg2Img extraValuesImg2Img;
     public ExtraValuesForTxt2Image extraValuesTxt2Img;
     public bool useVariations;
+    public string prePrompt;
+    public string postPrompt;
 
     void Start()
     {
@@ -41,7 +43,8 @@ public class SDRenderChainLinkPrompt : SDRenderChainLink
 
     public override void RunUnityFunction(string image)
     {
-        string outputString = ReplaceVariations(prompt);
+        string outputString = prePrompt + " " + ReplaceVariations(prompt) + " " + postPrompt;
+
 
         if (extraValuesImg2Img != null)
         {

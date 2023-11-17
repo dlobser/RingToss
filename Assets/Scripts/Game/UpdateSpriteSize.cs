@@ -4,14 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
 public class UpdateSpriteSize : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider;
+    public SpriteRenderer spriteRenderer;
+    public BoxCollider2D boxCollider;
     public float nudge;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        if(spriteRenderer==null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        if(boxCollider==null)
+            boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()

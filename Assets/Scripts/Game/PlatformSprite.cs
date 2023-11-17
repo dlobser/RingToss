@@ -80,7 +80,7 @@ public class PlatformSprite : Platform
     }
 
     public void SetSprite(SpriteRenderer spriteRenderer){
-        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex("Item");
+        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex("Item",-1);
         spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
         spriteRenderer.material.SetTexture("_MainTex",chosenTexture);
     }
