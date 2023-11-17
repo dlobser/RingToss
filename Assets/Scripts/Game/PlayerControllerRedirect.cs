@@ -1,9 +1,11 @@
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 
 public class PlayerControllerRedirect : MonoBehaviour
 {
     public GameObject ringPrefab;
     public Transform ringSpawnPoint;
+    public GameObject onClickDisplayObject;
     public float maxTossForce = 10.0f;
     public float tossForceMultiply = 10;
 
@@ -48,9 +50,6 @@ public class PlayerControllerRedirect : MonoBehaviour
         if (rings.Length > 0)
         {
             bounce = true;
-            
-           
-            // platformBounce.SetActive(true);
         }
         else
         {
@@ -109,11 +108,15 @@ public class PlayerControllerRedirect : MonoBehaviour
             dragEndPos.z = 0;
             
             Ring[] rings = FindObjectsOfType<Ring>();
+
+            Instantiate(onClickDisplayObject,dragEndPos,Quaternion.identity,GameManager.Instance.root.transform);
+
             foreach(Ring r in rings){
                 Rigidbody2D rb = r.GetComponent<Rigidbody2D>();
                 dragDirection = (r.transform.position - dragEndPos).normalized;
                 dragDistance = Vector3.Distance(r.transform.position, dragEndPos);
-                rb.AddForce(dragDirection * Mathf.Clamp(dragDistance * tossForceMultiply, 0, maxTossForce), ForceMode2D.Impulse);
+                rb.AddForce(dragDirection * Mathf.Clamp(tossForceMultiply/dragDistance, 0, maxTossForce), ForceMode2D.Impulse);
+                rb.AddTorque(-100,ForceMode2D.Impulse);
             }
 
             // platformBounce.SetActive(false);

@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour
     // public GameObject rootParent;
     public LevelSettings levelSettings;
 
+    [HideInInspector]
     public MenuManager menuManager;
     private GameObject playerController;
 

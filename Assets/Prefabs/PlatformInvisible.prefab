@@ -83,10 +83,12 @@ MonoBehaviour:
   platformRotation: {x: 0, y: 0, z: 0}
   bounce: 0.8
   friction: 1
+  itemParent: {fileID: 482677058354716917}
   material: {fileID: 2100000, guid: 017ebbf87963b3248ad4f87929c6c3b2, type: 2}
   spriteRenderer: {fileID: 8015969684105445321}
-  boxCollider: {fileID: 8015969684105445322}
-  itemParent: {fileID: 482677058354716917}
+  collider: {fileID: 8015969684105445322}
+  bevel: 1
+  colliderSizeNudge: 0
 --- !u!1 &8015969684105445325
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 8015969684105445325}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8015969683873008425}
@@ -169,7 +171,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 7, y: 7}
+  m_Size: {x: 0, y: 0}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -193,13 +195,13 @@ BoxCollider2D:
     border: {x: 0.24900001, y: 0.24900001, z: 0.24800001, w: 0.24800001}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.512, y: 0.512}
-    newSize: {x: 7, y: 7}
+    newSize: {x: 0, y: 0}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 7}
+  m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
 --- !u!114 &8015969684105445323
 MonoBehaviour:

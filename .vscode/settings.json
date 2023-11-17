@@ -56,5 +56,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Ring_Toss.sln"
+    "dotnet.defaultSolution": "Ring_Toss.sln",
+    "dotnet.codeLens.enableReferencesCodeLens": false,
+    "editor.codeLens": true,
+    "dotnet.codeLens.enableTestsCodeLens": false,
+    "references.preferredLocation": "peek",
+    "workbench.statusBar.visible": true
 }

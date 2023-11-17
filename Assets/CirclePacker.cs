@@ -48,7 +48,11 @@ public static class CirclePacker
         Random.InitState(GlobalSettings.randomSeed);
         circmat = initializeCoords(num);
         if(initPositions!=null){
-            positionAndRadius.AddRange(initPositions);
+            for (int i = 0; i < initPositions.Count; i++)
+            {
+                positionAndRadius.Add(initPositions[i]);
+            }
+            // positionAndRadius.AddRange(initPositions);
             for (int i = 0; i < initPositions.Count; i++)
             {
                 circmat[i,0] = initPositions[i].x;
@@ -100,7 +104,18 @@ public static class CirclePacker
             {
                 cmat[indx, 2] = radius;
                 radius = radius * 2;
-                positionAndRadius.Add(new Vector3(cmat[indx, 0], cmat[indx, 1], radius));
+                //loop through positionandradius to check if the new vector3 is identical to any existing ones
+                // bool addToList = true;
+                // for (int i = 0; i < positionAndRadius.Count; i++)
+                // {
+                //     if (positionAndRadius[i].x.Equals(cmat[indx, 0]) && positionAndRadius[i].Equals(cmat[indx, 1]))
+                //     {
+                //         addToList = false;
+                //         break;
+                //     }
+                // }
+                // if(addToList)
+                    positionAndRadius.Add(new Vector3(cmat[indx, 0], cmat[indx, 1], radius));
                 return cmat;
             }
         }

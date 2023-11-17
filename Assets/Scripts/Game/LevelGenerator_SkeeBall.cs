@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
-using System.Windows.Forms;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
+// using System.Windows.Forms;
+// using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
 
 public class LevelGenerator_SkeeBall : LevelGenerator
@@ -14,8 +14,6 @@ public class LevelGenerator_SkeeBall : LevelGenerator
         [Header("Prefabs")]
         public Platform platformPrefab;
         public Material platformMaterial;
-        public GameObject ringPrefab;
-        // public GameScoreKeeper scoreKeeper;
 
         [Header("Platform Settings")]
         public int minPlatforms;
@@ -102,7 +100,13 @@ public class LevelGenerator_SkeeBall : LevelGenerator
             new Vector3(0, Random.Range(-1,-1.5f), Random.Range(.75f,1.25f))
         };
 
-        List<Vector3> circles = CirclePacker.PackCircles(levelItems.platformWidthBounds.x, levelItems.platformWidthBounds.y, platformCount,levelItems.platformPositionBounds.x,levelItems.platformPositionBounds.y,initCircles);
+        List<Vector3> circles = CirclePacker.PackCircles(
+            levelItems.platformWidthBounds.x, 
+            levelItems.platformWidthBounds.y, 
+            platformCount,levelItems.platformPositionBounds.x,
+            levelItems.platformPositionBounds.y,
+            initCircles);
+
         circles = ProcessCircles(circles);
 
         for (int i = 0; i < Mathf.Min(circles.Count,platformCount); i++)
@@ -253,7 +257,7 @@ public class LevelGenerator_SkeeBall : LevelGenerator
         foreach (Vector3 circle in originalCircles)
         {
             // Only process circles on the right side (x >= 0)
-            if (circle.x >= 0)
+            if (circle.x > 0)
             {
                 // Add the original circle
                 
@@ -266,6 +270,11 @@ public class LevelGenerator_SkeeBall : LevelGenerator
                     processedCircles.Add(circle);
                     processedCircles.Add(mirroredCircle);
                 // }
+            }
+            else if(circle.x==0)
+            {
+                // Add the original circle
+                processedCircles.Add(circle);
             }
         }
 
@@ -359,7 +368,7 @@ public class LevelGenerator_SkeeBall : LevelGenerator
     {
         float energy = Random.Range(levelItems.minMaxProjectileSpeed.x,levelItems.minMaxProjectileSpeed.y);
         GlobalSettings.Physics.ballSpeed = Random.Range(levelItems.minMaxProjectileSpeed.x,levelItems.minMaxProjectileSpeed.y);
-        GlobalSettings.Physics.ballGravity = energy * .2f;
+        GlobalSettings.Physics.ballGravity = Random.Range(levelItems.minMaxProjectileGravity.x,levelItems.minMaxProjectileGravity.y);
         GlobalSettings.Physics.platformBounce = Random.Range(.8f, .99f);
         GlobalSettings.Physics.ballSize = Random.Range(.1f, .2f);
     }

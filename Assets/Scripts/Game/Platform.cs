@@ -79,5 +79,9 @@ public class Platform : MonoBehaviour
 
     }
 
+    public virtual void SetColliderSize(Vector2 size){
+
+    }
+
 
 }

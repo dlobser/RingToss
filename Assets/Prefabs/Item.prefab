@@ -133,6 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customTag: 1
   scoreValue: 10
+  destroyOnHit: 1
+  collisionSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!58 &1237950799220984120
 CircleCollider2D:
   m_ObjectHideFlags: 0

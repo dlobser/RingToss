@@ -2,17 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class PlatformSprite : Platform
 {
+    public Transform itemParent;
     public Material material;
     public SpriteRenderer spriteRenderer;
-    public BoxCollider2D boxCollider;
-    public Transform itemParent;
+    public Collider2D collider;
+    public float bevel = 1;
+    public float colliderSizeNudge = 0;
 
     void Start(){
         // SetMaterial(material);
         if(spriteRenderer==null && spriteRenderer.GetComponent<SpriteRenderer>()!=null)
             spriteRenderer.GetComponent<SpriteRenderer>();
+    }
+
+    void Update(){
+        //execute if in edit mode
+        if(!Application.isPlaying){
+            spriteRenderer.transform.localScale = Vector2.one * bevel;
+            spriteRenderer.size = platformScale/bevel;
+            this.transform.localEulerAngles = new Vector3(platformRotation.x,platformRotation.x,platformRotation.z);
+            SetColliderSize(platformScale);
+
+        }
+    }
+
+    public override void SetColliderSize(Vector2 size)
+    {
+        Vector2 spriteSize = new Vector2(spriteRenderer.size.x, spriteRenderer.size.y);
+        Vector2 scale = transform.localScale;
+        Vector2 scaledSize = new Vector2(spriteSize.x / scale.x, spriteSize.y / scale.y) * new Vector2(this.transform.lossyScale.x, this.transform.lossyScale.y);
+        if (collider is BoxCollider2D boxCollider)
+        {
+            boxCollider.size = new Vector2(scaledSize.x + colliderSizeNudge, scaledSize.y + colliderSizeNudge);
+        }
+        else if (collider is CapsuleCollider2D capsuleCollider)
+        {
+            capsuleCollider.size = new Vector2(scaledSize.x + colliderSizeNudge, scaledSize.y + colliderSizeNudge);
+        }
+        else if (collider is CircleCollider2D circleCollider)
+        {
+            circleCollider.radius = scaledSize.x / 2 + colliderSizeNudge; // Assuming circular symmetry for resizing
+        }
     }
 
     public override void SetMaterial(Material mat)
@@ -23,7 +56,9 @@ public class PlatformSprite : Platform
     public override void SetSize(Vector2 scale)
     {
         base.SetSize(scale);
+        spriteRenderer.transform.localScale = Vector2.one * bevel;
         spriteRenderer.size = scale;
+        SetColliderSize(scale);
     }
 
     public override void SetPosition(Vector3 position)
@@ -44,8 +79,8 @@ public class PlatformSprite : Platform
 
     public override void SetPhysicsBounciness(float bounceValue)
     {
-        PhysicsMaterial2D physMat = Instantiate(boxCollider.sharedMaterial);
-        boxCollider.sharedMaterial = physMat;
+        PhysicsMaterial2D physMat = Instantiate(collider.sharedMaterial);
+        collider.sharedMaterial = physMat;
         physMat.bounciness = bounceValue;
     }
 

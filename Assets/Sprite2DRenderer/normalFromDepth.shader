@@ -54,8 +54,8 @@
                 float downDepth = tex2D(_MainTex, i.uv - float2(0, delta.y)).r;
                 
                 float3 normal;
-                normal.x = (rightDepth - leftDepth) / (2.0 * delta.x);
-                normal.y = (upDepth - downDepth) / (2.0 * delta.y);
+                normal.x = (leftDepth - rightDepth) / (2.0 * delta.x);
+                normal.y = (downDepth - upDepth) / (2.0 * delta.y);
                 normal.z = 1.0; // Assuming depth increases towards the camera
                 
                 // Transform normal to world space

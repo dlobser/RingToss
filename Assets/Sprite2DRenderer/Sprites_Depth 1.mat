@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sprites_Depth 1
-  m_Shader: {fileID: 4800000, guid: 66c3abf80489d8b45bea0fc36ca6863c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 386f8c03ac326ef40be6a3696837121f, type: 3}
   m_ValidKeywords:
   - ETC1_EXTERNAL_ALPHA
   m_InvalidKeywords: []
@@ -34,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureTex:
-        m_Texture: {fileID: 2800000, guid: fcd3ce24b32ab9241991816d56646367, type: 3}
+        m_Texture: {fileID: 2800000, guid: 96b9a366a78f65344941176729cd4255, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -43,14 +43,14 @@ Material:
     - _EnableExternalAlpha: 0
     - _Power: 1
     m_Colors:
-    - _Ambient: {r: 0, g: 0, b: 0, a: 1}
-    - _CamPos: {r: 0.42, g: 0.83, b: 0.39, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Data: {r: 0.44, g: 1, b: 0.2, a: 0.31}
+    - _Ambient: {r: 0.097157665, g: 0.08870297, b: 0.122641504, a: 1}
+    - _CamPos: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.7169812, g: 0.70288956, b: 0.68090665, a: 1}
+    - _Data: {r: 0.44, g: 1, b: 0.01, a: 0.67}
     - _Edge: {r: 0.08, g: 0.1, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _LineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainLightPosition: {r: 0, g: 3.34, b: 0, a: 0.33}
-    - _Power: {r: -0.22, g: 1, b: 0, a: 1.05}
+    - _MainLightPosition: {r: -0.35, g: 4.77, b: -0.99, a: 0.33}
+    - _Power: {r: 9.25, g: 1.83, b: 4.51, a: 0.37}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

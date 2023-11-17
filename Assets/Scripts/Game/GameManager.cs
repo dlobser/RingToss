@@ -7,8 +7,8 @@ public enum CustomTag
     Item,
     Projectile,
     Platform,
+    PlatformBouncy,
 }
-
 
 public static class GlobalSettings
 {
@@ -93,14 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void LevelStart()
     {
-        // gameScoreKeeper.OnLevelStart();
-        print(UnityEngine.Random.seed);
         GameStart?.Invoke();
     }
-
-    // public void ShowMenu(string name)
-    // {
-    //     menus.ShowMenu(name);
-    // }
 
 }
