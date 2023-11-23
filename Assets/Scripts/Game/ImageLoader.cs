@@ -96,22 +96,30 @@ public class ImageLoader : MonoBehaviour
         {
             ResetStyles();
         }
-
-        int index = Random.Range(0, availableStyles.Count);
-        int chosenStyle = availableStyles[index];
-
-        if (useSetStyle)
+        if (availableStyles.Count != 0)
         {
-            chosenStyle = setStyle;
-            availableStyles.Remove(chosenStyle);
+            int index = Random.Range(0, availableStyles.Count);
+            int chosenStyle = availableStyles[index];
+
+            if (useSetStyle)
+            {
+                chosenStyle = setStyle;
+                availableStyles.Remove(chosenStyle);
+            }
+            else
+            {
+                availableStyles.RemoveAt(index);
+            }
+
+            styleNum = chosenStyle.ToString("D4");
+            print("styleNum: " + styleNum + " Chosen Style: " + chosenStyle);
         }
         else
         {
-            availableStyles.RemoveAt(index);
+            styleNum = 0.ToString("D4");
+            Debug.LogWarning("No styles available.");
         }
-
-        styleNum = chosenStyle.ToString("D4");
-        print("styleNum: " + styleNum + " Chosen Style: " + chosenStyle);
+        
     }
 
     // public Texture2D GetImageWithIndex(string imageType, int index = -1){
@@ -171,6 +179,13 @@ public class ImageLoader : MonoBehaviour
 
     public Sprite GetSpriteWithIndex(string imageType, int index = -1){
         Texture2D tex = GetImageWithIndex(imageType,index);
+        // Check if tex is null
+        if (tex == null) {
+            // Create a 1x1 white texture
+            tex = new Texture2D(1, 1);
+            tex.SetPixel(0, 0, Color.white);
+            tex.Apply();
+        }
         return Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),Vector2.one*.5f);
     }
 
@@ -207,11 +222,27 @@ public class ImageLoader : MonoBehaviour
         }
 
         // Return the selected texture
-        return textures[index];
+        // Check if tex is null
+        if (textures[index]==null) {
+            // Create a 1x1 white texture
+            Texture2D tex = new Texture2D(1, 1);
+            tex.SetPixel(0, 0, Color.white);
+            tex.Apply();
+            return tex;
+        }
+        else
+            return textures[index];
     }
 
     public Sprite GetSpriteWithIndexSeed(string imageType, int index = -1, int globalSeed = -1){
         Texture2D tex = GetImageWithIndexSeed(imageType,index,globalSeed);
+        // Check if tex is null
+        if (tex == null) {
+            // Create a 1x1 white texture
+            tex = new Texture2D(1, 1);
+            tex.SetPixel(0, 0, Color.white);
+            tex.Apply();
+        }
         return Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),Vector2.one*.5f);
     }
 

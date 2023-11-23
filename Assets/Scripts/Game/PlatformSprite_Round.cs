@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class PlatformSprite : Platform
+public class PlatformSprite_Round : Platform
 {
     public Transform itemParent;
+    public GameObject BGCirclePrefab;
+    public GameObject BGCircle;
     public Material material;
     public SpriteRenderer spriteRenderer;
     public Collider2D collider;
@@ -16,24 +18,38 @@ public class PlatformSprite : Platform
         // SetMaterial(material);
         if(spriteRenderer==null && spriteRenderer.GetComponent<SpriteRenderer>()!=null)
             spriteRenderer.GetComponent<SpriteRenderer>();
+        
     }
 
     void Update(){
         //execute if in edit mode
         if(!Application.isPlaying){
             spriteRenderer.transform.localScale = Vector2.one * bevel;
-            spriteRenderer.size = platformScale/bevel;
+            spriteRenderer.size = (platformScale/bevel ) * new Vector2(.75f,1);
+            spriteRenderer.transform.localPosition = new Vector3(0,-platformScale.x*.25f,0);
             this.transform.localEulerAngles = new Vector3(platformRotation.x,platformRotation.x,platformRotation.z);
             SetColliderSize(platformScale);
 
         }
+        // SetColliderSize(platformScale);
     }
 
     public override void SetColliderSize(Vector2 size)
     {
-        Vector2 spriteSize = new Vector2(spriteRenderer.size.x, spriteRenderer.size.y);
+        if(BGCircle==null){
+            BGCircle = Instantiate(BGCirclePrefab, this.transform);
+            BGCircle.transform.localPosition = Vector3.zero;
+            BGCircle.transform.localScale = Vector3.one;
+            BGCircle.transform.localEulerAngles = Vector3.zero;
+        }
+
+       
+
+        Vector2 spriteSize = new Vector2(platformScale.x, platformScale.y);
+        BGCircle.transform.localScale = new Vector3(platformScale.x*2, platformScale.x*2, 1);
         Vector2 scale = transform.localScale;
-        Vector2 scaledSize = spriteSize;// new Vector2(spriteSize.x / scale.x, spriteSize.y / scale.y) * new Vector2(this.transform.lossyScale.x, this.transform.lossyScale.y);
+        Vector2 scaledSize = new Vector2((spriteSize.x / scale.x), spriteSize.y / scale.y) * new Vector2(this.transform.lossyScale.x, this.transform.lossyScale.y);
+ 
         if (collider is BoxCollider2D boxCollider)
         {
             boxCollider.size = new Vector2(scaledSize.x + colliderSizeNudge, scaledSize.y + colliderSizeNudge);
@@ -65,6 +81,7 @@ public class PlatformSprite : Platform
     {
         base.SetPosition(position);
         this.transform.localPosition = position;
+        spriteRenderer.transform.localPosition = new Vector3(0,0,0);
     }
 
     public override void SetRotation(float z, float x = 0, float y = 0){

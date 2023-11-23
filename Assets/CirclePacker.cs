@@ -57,19 +57,56 @@ public static class CirclePacker
             {
                 circmat[i,0] = initPositions[i].x;
                 circmat[i,1] = initPositions[i].y;
-                circmat[i,2] = initPositions[i].z;
+                circmat[i,2] = initPositions[i].z/2;
             }
         }
         FindAllRadii(circmat, initPositions!=null?initPositions.Count:0);
         return positionAndRadius;
     }
 
+    // static float[,] initializeCoords(int numell)
+    // {
+        
+    //     // Ensure numell is even for pairing
+    //     if (numell % 2 != 0)
+    //     {
+    //         numell += 1;
+    //     }
+        
+    //     float[,] outmat = new float[numell, 3];
+
+    //     for (int i = 0; i < numell / 2; i++)
+    //     {
+    //         // Generate a random point
+    //         float x = Random.Range(-width, width);
+    //         float y = Random.Range(-height, height);
+
+    //         // Assign the point to the matrix
+    //         outmat[i, 0] = x;
+    //         outmat[i, 1] = y;
+    //         outmat[i, 2] = 0;
+
+    //         // Calculate the index for the mirrored point
+    //         int mirroredIndex = numell - i - 1;
+
+    //         // Assign the mirrored point to the matrix
+    //         outmat[mirroredIndex, 0] = -x;
+    //         outmat[mirroredIndex, 1] = y;
+    //         outmat[mirroredIndex, 2] = 0;
+            
+            
+    //     }
+
+    //     return outmat;
+    // }
+
+
     static float[,] initializeCoords(int numell)
     {
         float[,] outmat = new float[numell, 3];
         for (int i = 0; i < numell; i++)
         {
-            outmat[i, 0] = Random.Range(-width, width);
+            outmat[i, 0] = Random.Range(.15f, width);
             outmat[i, 1] = Random.Range(-height, height);
             outmat[i, 2] = 0;
         }
@@ -120,11 +157,11 @@ public static class CirclePacker
             }
         }
 
-        cmat[indx, 0] = Random.Range(-width, width);
+        cmat[indx, 0] = Random.Range(.25f, width);
         cmat[indx, 1] = Random.Range(-height, height);
 
         overFlow += 1;
-        if(overFlow<1000)
+        if(overFlow<2000)
             return FindNextRadius(cmat, indx, overFlow);
         else
             return cmat;
