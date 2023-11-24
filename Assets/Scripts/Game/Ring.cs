@@ -55,6 +55,16 @@ public class Ring : MonoBehaviour
                     }
                     break;
 
+                case CustomTag.Platform:
+                    // instantiate a bounce effect
+                    this.transform.localScale *= .9f;
+                    if (bounceEffect != null)
+                    {
+                        GameObject bounce = Instantiate(bounceEffect);
+                        bounce.transform.position = this.transform.position;
+                    }
+                    break;
+
                 // Add cases for other custom tags as needed
                 case CustomTag.Projectile:
                     // Handle a successful toss (e.g., scoring points)
