@@ -14,42 +14,52 @@ public class PlatformSprite_Round : Platform
     public float bevel = 1;
     public float colliderSizeNudge = 0;
 
-    void Start(){
+    void Start()
+    {
         // SetMaterial(material);
-        if(spriteRenderer==null && spriteRenderer.GetComponent<SpriteRenderer>()!=null)
+        if (spriteRenderer == null && spriteRenderer.GetComponent<SpriteRenderer>() != null)
             spriteRenderer.GetComponent<SpriteRenderer>();
-        
+
     }
 
-    void Update(){
+    void Update()
+    {
         //execute if in edit mode
-        if(!Application.isPlaying){
-            spriteRenderer.transform.localScale = Vector2.one * bevel;
-            spriteRenderer.size = (platformScale/bevel ) * new Vector2(.75f,1);
-            spriteRenderer.transform.localPosition = new Vector3(0,-platformScale.x*.25f,0);
-            this.transform.localEulerAngles = new Vector3(platformRotation.x,platformRotation.x,platformRotation.z);
+        if (!Application.isPlaying)
+        {
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.transform.localScale = Vector2.one * bevel;
+                spriteRenderer.size = (platformScale / bevel) * new Vector2(.75f, 1);
+                spriteRenderer.transform.localPosition = new Vector3(0, -platformScale.x * .25f, 0);
+            }
+            this.transform.localEulerAngles = new Vector3(platformRotation.x, platformRotation.x, platformRotation.z);
             SetColliderSize(platformScale);
 
+
         }
+        if (itemParent.GetComponentsInChildren<Item>().Length == 0 && spriteRenderer != null)
+            spriteRenderer.gameObject.SetActive(false);
         // SetColliderSize(platformScale);
     }
 
     public override void SetColliderSize(Vector2 size)
     {
-        if(BGCircle==null){
+        if (BGCircle == null)
+        {
             BGCircle = Instantiate(BGCirclePrefab, this.transform);
             BGCircle.transform.localPosition = Vector3.zero;
             BGCircle.transform.localScale = Vector3.one;
             BGCircle.transform.localEulerAngles = Vector3.zero;
         }
 
-       
+
 
         Vector2 spriteSize = new Vector2(platformScale.x, platformScale.y);
-        BGCircle.transform.localScale = new Vector3(platformScale.x*2, platformScale.x*2, 1);
+        BGCircle.transform.localScale = new Vector3(platformScale.x * 2, platformScale.x * 2, 1);
         Vector2 scale = transform.localScale;
         Vector2 scaledSize = new Vector2((spriteSize.x / scale.x), spriteSize.y / scale.y) * new Vector2(this.transform.lossyScale.x, this.transform.lossyScale.y);
- 
+
         if (collider is BoxCollider2D boxCollider)
         {
             boxCollider.size = new Vector2(scaledSize.x + colliderSizeNudge, scaledSize.y + colliderSizeNudge);
@@ -81,12 +91,13 @@ public class PlatformSprite_Round : Platform
     {
         base.SetPosition(position);
         this.transform.localPosition = position;
-        spriteRenderer.transform.localPosition = new Vector3(0,0,0);
+        spriteRenderer.transform.localPosition = new Vector3(0, 0, 0);
     }
 
-    public override void SetRotation(float z, float x = 0, float y = 0){
-        base.SetRotation(z,x,y);
-        this.transform.localEulerAngles = new Vector3(x,y,z);
+    public override void SetRotation(float z, float x = 0, float y = 0)
+    {
+        base.SetRotation(z, x, y);
+        this.transform.localEulerAngles = new Vector3(x, y, z);
     }
 
     public override void SetMainTexture(Sprite tex)
@@ -101,16 +112,19 @@ public class PlatformSprite_Round : Platform
         physMat.bounciness = bounceValue;
     }
 
-    public override void SetAlpha(float a){
+    public override void SetAlpha(float a)
+    {
         Color c = spriteRenderer.color;
         c.a = a;
         spriteRenderer.color = c;
     }
 
-    public override void PopulatePlatformWithItems(PlatformItemArguments itemArguments){
+    public override void PopulatePlatformWithItems(PlatformItemArguments itemArguments)
+    {
 
-        if(itemArguments.amount>0){
-            
+        if (itemArguments.amount > 0)
+        {
+
             GameObject items = new GameObject("Items");
             items.transform.SetParent(itemParent);
             items.transform.localPosition = Vector3.zero;
@@ -120,10 +134,10 @@ public class PlatformSprite_Round : Platform
 
             for (int j = 1; j <= itemArguments.amount; j++)
             {
-                Vector3 itemPosition = itemArguments.offset + new Vector3(spacing * j - platformScale.x*.5f, 0, 0);
+                Vector3 itemPosition = itemArguments.offset + new Vector3(spacing * j - platformScale.x * .5f, 0, 0);
                 GameObject item = Instantiate(itemArguments.item, itemPosition, Quaternion.identity, items.transform);
                 item.transform.localPosition = itemPosition;
-                item.transform.localScale = Vector3.one*.05f;
+                item.transform.localScale = Vector3.one * .05f;
                 item.transform.localEulerAngles = Vector3.zero;
                 SetSprite(item.transform.GetChild(0).GetComponent<SpriteRenderer>());
             }
@@ -131,10 +145,11 @@ public class PlatformSprite_Round : Platform
 
     }
 
-    public void SetSprite(SpriteRenderer spriteRenderer){
-        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex("Item",-1);
+    public void SetSprite(SpriteRenderer spriteRenderer)
+    {
+        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex("Item", -1);
         spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
-        spriteRenderer.material.SetTexture("_MainTex",chosenTexture);
+        spriteRenderer.material.SetTexture("_MainTex", chosenTexture);
     }
 
 }

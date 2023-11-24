@@ -54,8 +54,12 @@ public class GameManager : MonoBehaviour
 
     public event Action GameStart;
 
+    public bool isPaused = false;
+
+    public int maxRandomSeed = 100000;
+
     // public int randomSeed;
-    
+
     // private int seed;
 
     // public int Seed
@@ -72,9 +76,21 @@ public class GameManager : MonoBehaviour
     //     }
     // }
 
-    void Update(){
+    void Update()
+    {
         // print("Global Seed: " + GlobalSettings.randomSeed);
+
     }
+
+    public void RandomizeSeed()
+    {
+        GlobalSettings.randomSeed++;
+        if (GlobalSettings.randomSeed > maxRandomSeed)
+            GlobalSettings.randomSeed = 0;
+        UnityEngine.Random.InitState(GlobalSettings.randomSeed);
+        print("Random Seed: " + GlobalSettings.randomSeed + " " + UnityEngine.Random.state);
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -83,7 +99,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GenerateGame();
+        if (!isPaused)
+            GenerateGame();
     }
 
     public void GenerateGame()

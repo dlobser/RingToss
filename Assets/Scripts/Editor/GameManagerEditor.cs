@@ -20,6 +20,13 @@ public class GameManagerEditor : Editor
 
         // Display an input field for the random seed
         newSeed = EditorGUILayout.IntField("Random Seed", newSeed);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+
+            GlobalSettings.randomSeed = UnityEngine.Random.Range(0, 100000);
+            newSeed = GlobalSettings.randomSeed;
+            UnityEngine.Random.InitState(GlobalSettings.randomSeed);
+        }
 
         // Add a button that will only update the seed when clicked
         if (GUILayout.Button("Update Seed"))

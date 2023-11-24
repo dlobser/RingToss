@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     Vector3 dragDirection;
     float dragDistance;
 
+    public GameObject indicatorSprite;
+
     ImageLoader imageLoader;
 
     bool canToss = false;
@@ -77,6 +79,9 @@ public class PlayerController : MonoBehaviour
     {
         if (canToss)
         {
+            Vector2 mousePos = Input.mousePosition;
+            dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+            Instantiate(indicatorSprite, dragEndPos, Quaternion.identity, GameManager.Instance.rootParent.transform.GetChild(0).transform);
 
             tossForceMultiply = GlobalSettings.Physics.ballSpeed;
 
@@ -89,6 +94,7 @@ public class PlayerController : MonoBehaviour
             // Instantiate the currentRing for the actual toss
             currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity, GameManager.Instance.rootParent.transform);
             currentRing.transform.localScale = Vector3.one * GlobalSettings.Physics.ballSize;
+            currentRing.transform.parent = GameManager.Instance.rootParent.transform.GetChild(0);
 
             if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
             {

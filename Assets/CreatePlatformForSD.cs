@@ -4,7 +4,7 @@ public class CreatePlatformForSD : MonoBehaviour
 {
     public GameObject root;
     public string layerName = "BG";
-    public LevelGenerator_SkeeBall levelGenerator;
+    public LevelGenerator_SkeeBall_Round levelGenerator;
 
     void Start()
     {
@@ -28,6 +28,7 @@ public class CreatePlatformForSD : MonoBehaviour
 
         // Generate new platform
         GameObject newPlatform = levelGenerator.GeneratePlatformPositions();
+        print("Made Platform" + newPlatform.name);
         if (newPlatform != null)
         {
             newPlatform.transform.SetParent(root.transform, false);

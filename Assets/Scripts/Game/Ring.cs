@@ -5,6 +5,7 @@ public class Ring : MonoBehaviour
 
     bool emitted = false;
     public GameObject burster;
+    public GameObject bounceEffect;
     public int destroyOnBounces = 1;
     int bounces = 0;
 
@@ -29,7 +30,7 @@ public class Ring : MonoBehaviour
                     {
                         GameObject burst = Instantiate(burster);
                         burst.transform.position = this.transform.position;
-                        Destroy(burst.gameObject, 5);
+                        // Destroy(burst.gameObject, 5);
                     }
                     print("Got it!");
                     target.Hit();
@@ -42,6 +43,16 @@ public class Ring : MonoBehaviour
                     // Destroy the ring when it hits a boundary
                     print("Out of bounds!");
                     Destroy(gameObject);
+                    break;
+
+                case CustomTag.PlatformBouncy:
+                    // instantiate a bounce effect
+                    this.transform.localScale *= .9f;
+                    if (bounceEffect != null)
+                    {
+                        GameObject bounce = Instantiate(bounceEffect);
+                        bounce.transform.position = this.transform.position;
+                    }
                     break;
 
                 // Add cases for other custom tags as needed

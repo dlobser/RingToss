@@ -66,20 +66,21 @@ public class Request : MonoBehaviour
         ApiManagerTxt2Img.AlwaysonScripts alwaysonScripts = new ApiManagerTxt2Img.AlwaysonScripts();
 
         // if(ExtraValuesForTxt2Image.useControlNet){
-            alwaysonScripts.controlnet = new ApiManagerTxt2Img.Controlnet();
-            alwaysonScripts.controlnet.args = new List<ApiManagerTxt2Img.Arg>();
-            ApiManagerTxt2Img.Arg arg = new ApiManagerTxt2Img.Arg();
+        alwaysonScripts.controlnet = new ApiManagerTxt2Img.Controlnet();
+        alwaysonScripts.controlnet.args = new List<ApiManagerTxt2Img.Arg>();
+        ApiManagerTxt2Img.Arg arg = new ApiManagerTxt2Img.Arg();
 
-            arg.input_image = depth;
-            arg.module = "none";
-            arg.model = "control_v11f1p_sd15_depth [cfd03158]";//diff_control_sd15_depth_fp16 [978ef0a1]";
-            arg.weight = ExtraValuesForTxt2Image.controlnet_weight;
-            arg.guidance_end = ExtraValuesForTxt2Image.controlnet_guidance_end;
-            alwaysonScripts.controlnet.args.Add(arg);
+        arg.input_image = depth;
+        arg.module = "none";
+        // arg.model = "control_v11f1p_sd15_depth [cfd03158]";
+        arg.model = "diff_control_sd15_depth_fp16 [978ef0a1]";
+        arg.weight = ExtraValuesForTxt2Image.controlnet_weight;
+        arg.guidance_end = ExtraValuesForTxt2Image.controlnet_guidance_end;
+        alwaysonScripts.controlnet.args.Add(arg);
         // }
 
         alwaysonScripts.Asymmetric_tiling = new ApiManagerTxt2Img.Tiling();
-        alwaysonScripts.Asymmetric_tiling.args= new List<object>(){true,true,true,0,-1};
+        alwaysonScripts.Asymmetric_tiling.args = new List<object>() { true, true, true, 0, -1 };
 
 
         print("always on: " + alwaysonScripts);
@@ -190,7 +191,8 @@ public class Request : MonoBehaviour
         //Values
         apimanager_txt2img_arg.input_image = depthImage;//depthFromComputer;
         apimanager_txt2img_arg.module = "none";
-        apimanager_txt2img_arg.model = "control_v11f1p_sd15_depth [cfd03158]";//"diff_control_sd15_depth_fp16 [978ef0a1]";
+        // apimanager_txt2img_arg.model = "control_v11f1p_sd15_depth [cfd03158]";//
+        apimanager_txt2img_arg.model = "diff_control_sd15_depth_fp16 [978ef0a1]";
         apimanager_txt2img_arg.weight = extraValuesForImg2Img.controlnet_weight;
         apimanager_txt2img_arg.guidance_end = extraValuesForImg2Img.controlnet_guidance_end;
 

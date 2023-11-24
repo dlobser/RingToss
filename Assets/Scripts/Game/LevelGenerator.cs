@@ -36,16 +36,10 @@ public class LevelGenerator : MonoBehaviour
 
         root = new GameObject("Root");
         root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
-
         menuManager = Instantiate(levelSettings.menuManager, root.transform);
         playerController = Instantiate(levelSettings.playerController, root.transform);
-
-        // if (levelSettings.gameManager == null)
-        //     levelSettings.gameManager = FindObjectOfType<GameManager>();
-        // if (levelSettings.menuManagerName.Length > 0)
-        //     levelSettings.gameManager.ShowMenu(levelSettings.menuManagerName);
         levelSettings.gameManager.root = root;
-        // return root;
+
     }
 
     public virtual void OnGenerateLevelComplete()
@@ -57,6 +51,11 @@ public class LevelGenerator : MonoBehaviour
     public virtual void Destroy()
     {
 
+    }
+
+    public virtual GameObject GeneratePlatformPositions()
+    {
+        return null;
     }
 
     public virtual void SetRandomPhysics()

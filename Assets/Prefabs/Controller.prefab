@@ -51,6 +51,7 @@ MonoBehaviour:
   maxTossForce: 41.9
   tossForceMultiply: 11.81
   displayRing: {fileID: 4821320582045440767}
+  indicatorSprite: {fileID: 7303650851800178305, guid: 487bb1db91731b743a8509297102fe70, type: 3}
 --- !u!1 &5747939692353692303
 GameObject:
   m_ObjectHideFlags: 0

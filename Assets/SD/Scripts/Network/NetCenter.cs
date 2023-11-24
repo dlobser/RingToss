@@ -41,7 +41,7 @@ public class NetCenter : MM.Singleton<NetCenter>
             {"Content-Type", "application/json"}
         };
         headers.Add("Authorization", "Bearer " + "47e93ea948f856482ed2d1e1e45836187df0c48387b567b3b9973963dcbd1c91");
-        
+
         // if (IgroveAppdata.HasJWTToken)
         // {
         //     headers.Add("Authorization", "Bearer " + IgroveAppdata.JWTToken);
@@ -61,7 +61,7 @@ public class NetCenter : MM.Singleton<NetCenter>
                 ? Encoding.UTF8.GetBytes("{\"request\": \"" + NetHelper.Encrypt(msg.ToJson()) + "\"}")
                 : Encoding.UTF8.GetBytes(msg.ToJson());
 
-            Debug.Log("SANDROO -- " + msg.ToJson());
+            // Debug.Log("SANDROO -- " + msg.ToJson());
             request.uploadHandler = new UploadHandlerRaw(data);
             request.downloadHandler = new DownloadHandlerBuffer();
             foreach (var item in headers)
@@ -156,7 +156,7 @@ public class NetCenter : MM.Singleton<NetCenter>
 
         success_callback?.Invoke(ack);
     }
-    
+
 
 }
 

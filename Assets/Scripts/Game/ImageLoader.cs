@@ -112,18 +112,18 @@ public class ImageLoader : MonoBehaviour
             }
 
             styleNum = chosenStyle.ToString("D4");
-            print("styleNum: " + styleNum + " Chosen Style: " + chosenStyle);
+            // print("styleNum: " + styleNum + " Chosen Style: " + chosenStyle);
         }
         else
         {
             styleNum = 0.ToString("D4");
             Debug.LogWarning("No styles available.");
         }
-        
+
     }
 
     // public Texture2D GetImageWithIndex(string imageType, int index = -1){
-        
+
     //     string resourcePath = directory + styleNum + "/" + imageType + "/";
     //     Debug.Log("Loading from resource path: " + resourcePath);
     //     Texture2D[] textures = Resources.LoadAll<Texture2D>(resourcePath);
@@ -132,7 +132,7 @@ public class ImageLoader : MonoBehaviour
     //     }
     //     return textures[index];
     // }
-    
+
     public int GetRandomStyleNum(string imageType)
     {
         // Assuming `GetFilenames` retrieves all filenames from the specified directory
@@ -177,19 +177,21 @@ public class ImageLoader : MonoBehaviour
         return filenames;
     }
 
-    public Sprite GetSpriteWithIndex(string imageType, int index = -1){
-        Texture2D tex = GetImageWithIndex(imageType,index);
+    public Sprite GetSpriteWithIndex(string imageType, int index = -1)
+    {
+        Texture2D tex = GetImageWithIndex(imageType, index);
         // Check if tex is null
-        if (tex == null) {
+        if (tex == null)
+        {
             // Create a 1x1 white texture
             tex = new Texture2D(1, 1);
             tex.SetPixel(0, 0, Color.white);
             tex.Apply();
         }
-        return Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),Vector2.one*.5f);
+        return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.one * .5f);
     }
 
-    
+
 
     public Texture2D GetImageWithIndex(string imageType, int index = -1)
     {
@@ -223,7 +225,8 @@ public class ImageLoader : MonoBehaviour
 
         // Return the selected texture
         // Check if tex is null
-        if (textures[index]==null) {
+        if (textures[index] == null)
+        {
             // Create a 1x1 white texture
             Texture2D tex = new Texture2D(1, 1);
             tex.SetPixel(0, 0, Color.white);
@@ -234,16 +237,18 @@ public class ImageLoader : MonoBehaviour
             return textures[index];
     }
 
-    public Sprite GetSpriteWithIndexSeed(string imageType, int index = -1, int globalSeed = -1){
-        Texture2D tex = GetImageWithIndexSeed(imageType,index,globalSeed);
+    public Sprite GetSpriteWithIndexSeed(string imageType, int index = -1, int globalSeed = -1)
+    {
+        Texture2D tex = GetImageWithIndexSeed(imageType, index, globalSeed);
         // Check if tex is null
-        if (tex == null) {
+        if (tex == null)
+        {
             // Create a 1x1 white texture
             tex = new Texture2D(1, 1);
             tex.SetPixel(0, 0, Color.white);
             tex.Apply();
         }
-        return Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),Vector2.one*.5f);
+        return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.one * .5f);
     }
 
     public Texture2D GetImageWithIndexSeed(string imageType, int imageSeed = -1, int globalSeed = -1)
@@ -258,7 +263,7 @@ public class ImageLoader : MonoBehaviour
 
         // Get all files in the directory
         Texture2D[] textures = Resources.LoadAll<Texture2D>(directory)
-            .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType) && t.name.EndsWith("_"+globalSeed.ToString())).ToArray();
+            .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType) && t.name.EndsWith("_" + globalSeed.ToString())).ToArray();
 
         // Log how many textures were found
         Debug.Log("Number of textures found: " + textures.Length + " index: " + imageSeed + " globalSeed: " + globalSeed);
@@ -282,23 +287,23 @@ public class ImageLoader : MonoBehaviour
 
     public void AssignRandomImage(Renderer renderer, string imageType, bool setMaterial = false)
     {
-       
+
         string resourcePath = directory + styleNum + "/" + imageType + "/";
         Debug.Log("Loading from resource path: " + resourcePath);
         Texture2D[] textures = Resources.LoadAll<Texture2D>(resourcePath);
         print(textures.Length);
-        
+
         if (textures.Length > 0)
         {
             Texture2D chosenTexture = textures[Random.Range(0, textures.Length)];
 
             if (renderer is SpriteRenderer spriteRenderer)
             {
-                if(!setMaterial)
+                if (!setMaterial)
                     spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
                 else
                     spriteRenderer.material.SetTexture(textureChannel, chosenTexture);
-                
+
                 print("assigned sprite");
             }
             else if (renderer is MeshRenderer meshRenderer)
@@ -341,18 +346,18 @@ public class ImageLoader : MonoBehaviour
         Debug.Log("Loading from resource path: " + resourcePath);
         Texture2D[] textures = Resources.LoadAll<Texture2D>(resourcePath);
         print(textures.Length);
-        
+
         if (textures.Length > 0)
         {
             Texture2D chosenTexture = textures[index];//Random.Range(0, textures.Length)];
 
             if (renderer is SpriteRenderer spriteRenderer)
             {
-                if(!setMaterial)
+                if (!setMaterial)
                     spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
                 else
                     spriteRenderer.material.SetTexture(textureChannel, chosenTexture);
-                
+
                 print("assigned sprite");
             }
             else if (renderer is MeshRenderer meshRenderer)
@@ -378,10 +383,11 @@ public class ImageLoader : MonoBehaviour
         }
     }
 
-    public void SetSprite(SpriteRenderer spriteRenderer, string imageType, int index = -1){
-        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex(imageType,index);
+    public void SetSprite(SpriteRenderer spriteRenderer, string imageType, int index = -1)
+    {
+        Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex(imageType, index);
         spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
-        spriteRenderer.material.SetTexture("_MainTex",chosenTexture);
+        spriteRenderer.material.SetTexture("_MainTex", chosenTexture);
     }
 
 }
@@ -437,7 +443,7 @@ public class ImageLoader : MonoBehaviour
 //     //     styleNum = rint.ToString("00");
 //     //     print("styleNum: " + styleNum + " randint " + randInt + " " + Random.value*44);
 //     // }
-    
+
 //     public void SetRandomStyle()
 //     {
 //         if (availableStyles.Count == 0)
@@ -464,10 +470,10 @@ public class ImageLoader : MonoBehaviour
 
 //     public void AssignRandomImage(Renderer renderer, string imageType, bool setMaterial = false)
 //     {
-        
+
 //         string thisDirectory = Application.dataPath + directory + styleNum + "/" + imageType + "/";
 //         print("Checking in: " + thisDirectory);
-        
+
 //         if (Directory.Exists(thisDirectory))
 //         {
 //             string[] pngFiles = Directory.GetFiles(thisDirectory, "*.png");

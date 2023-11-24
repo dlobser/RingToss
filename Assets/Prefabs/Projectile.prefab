@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: -1242835881240133750}
   - component: {fileID: 802954786286293429}
   - component: {fileID: -6476600750061392165}
+  - component: {fileID: 3760007799010246289}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -186,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burster: {fileID: 6675763753893421309, guid: 7b6af216c13957e4eb81b9d36b49319c, type: 3}
+  bounceEffect: {fileID: 6128824119604436990, guid: 1316213b0411fca43b161e2855bc93db, type: 3}
   destroyOnBounces: 5
 --- !u!50 &-8280560375139447642
 Rigidbody2D:
@@ -358,3 +360,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.05
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &3760007799010246289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779040916832652633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8783c0db0cda8146b9dab417675b339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 15
