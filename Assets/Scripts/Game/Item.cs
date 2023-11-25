@@ -8,6 +8,8 @@ public class Item : MonoBehaviour
     public AudioClip collisionSound; // Audio clip to be played on collision
     public AudioSource audioSource; // Public AudioSource to be set in the Unity Editor
     public Vector2 audioPitchRange = new Vector2(.7f, 1); // Range of possible pitches for the audio clip
+    public Platform platform;
+
     private void Start()
     {
         // Ensure the AudioSource is set
@@ -20,7 +22,7 @@ public class Item : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Play the collision sound
-        if (audioSource != null && collisionSound != null)
+        if (audioSource != null && collisionSound != null && collision.gameObject.GetComponent<Ring>() != null)
         {
             audioSource.pitch = Random.Range(audioPitchRange.x, audioPitchRange.y);
             audioSource.PlayOneShot(collisionSound);
@@ -33,7 +35,7 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Play the collision sound
-        if (audioSource != null && collisionSound != null)
+        if (audioSource != null && collisionSound != null && collision.gameObject.GetComponent<Ring>() != null)
         {
             audioSource.pitch = Random.Range(audioPitchRange.x, audioPitchRange.y);
             audioSource.PlayOneShot(collisionSound);
@@ -45,7 +47,10 @@ public class Item : MonoBehaviour
 
     public virtual void Hit()
     {
+        if (platform != null)
+            platform.OnItemHit();
         if (destroyOnHit)
             Destroy(this.gameObject);
+
     }
 }

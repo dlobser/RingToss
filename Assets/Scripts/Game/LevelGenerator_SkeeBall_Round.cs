@@ -47,6 +47,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
 
         public GameObject target;
         public GameObject bonusTarget;
+        public float ballSize;
     }
 
     [SerializeField]
@@ -286,6 +287,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
             trans.rotateOscillateUpperBounds = new Vector3(0, 0, bounds);
 
             trans.rotateOscillateSpeed = new Vector3(0, 0, even ? speed : speed * -1);
+            // newPlatform.transform.LookAt(Vector2.zero, Vector3.forward);
             if (i % 2 == 0)
             {
                 bounds = Random.Range(-180, 180);
@@ -301,9 +303,20 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
             // newPlatform.SetPosition(new Vector3(circles[i].x,circles[i].y,0));
 
             if (newPlatform.platformScale.x * .5f > levelItems.minPlatformSizeForItems)
+            {
                 platformsWithItems.Add(newPlatform.gameObject);
+                // TransformUniversal trans = newPlatform.AddComponent<TransformUniversal>();
+
+                // trans.doRotateOscillate = true;
+                // trans.rotateOscillateLowerBounds = new Vector3(0, 0, -bounds);
+                // trans.rotateOscillateUpperBounds = new Vector3(0, 0, bounds);
+
+                // trans.rotateOscillateSpeed = new Vector3(0, 0, even ? speed : speed * -1);
+            }
             else if (platformStyleCoinFlip > .5f)
             {
+                RotateObjectXAxisTowardsTarget(newPlatform.transform, Vector3.up, Vector3.up);
+
                 foreach (Transform child in newPlatform.transform)
                 {
                     child.gameObject.SetActive(false);
@@ -315,6 +328,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
                 force.transform.localEulerAngles = new Vector3(0, 0, evenForce ? 0 : 180);
                 evenForce = !evenForce;
 
+                trans.doRotateOscillate = false;
 
 
                 // CapsuleCollider capsuleCollider = newPlatform.GetComponent<CapsuleCollider>();
@@ -329,21 +343,28 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
             }
             else
             {
+                RotateObjectXAxisTowardsTarget(newPlatform.transform, Vector3.up, Vector3.up);
+
                 foreach (Transform child in newPlatform.transform)
                 {
                     child.gameObject.SetActive(false);
                 }
+                trans.doRotateOscillate = false;
+
                 GameObject wall = Instantiate(levelItems.wallPrefab, newPlatform.transform);
-                TransformUniversal transformUniversal = wall.AddComponent<TransformUniversal>();
-                transformUniversal.doScaleOscillate = true;
-                transformUniversal.scaleOscillateLowerBounds = new Vector3(-newPlatform.platformScale.x, -newPlatform.platformScale.x, 0);
-                transformUniversal.scaleOscillateSpeed = new Vector3(2, 2, 0);
-                transformUniversal.scaleOscillateOffset = new Vector3(newPlatform.transform.localPosition.y, newPlatform.transform.localPosition.y, 0);
+                // TransformUniversal transformUniversal = wall.AddComponent<TransformUniversal>();
+                // TransformUniversal trans = wall.AddComponent<TransformUniversal>();
+                // trans.doRotate = true;
+                // trans.rotate = new Vector3(0, 0, speed * 10);//even ? speed : speed * -1);
+                // transformUniversal.doScaleOscillate = true;
+                // transformUniversal.scaleOscillateLowerBounds = new Vector3(-newPlatform.platformScale.x, -newPlatform.platformScale.x, 0);
+                // transformUniversal.scaleOscillateSpeed = new Vector3(2, 2, 0);
+                // transformUniversal.scaleOscillateOffset = new Vector3(newPlatform.transform.localPosition.y, newPlatform.transform.localPosition.y, 0);
                 wall.transform.localPosition = Vector3.zero;
                 wall.transform.localScale = Vector3.one * newPlatform.platformScale.x;
                 float angle = even ? 0 : 180;
                 wall.transform.localEulerAngles = new Vector3(0, 0, evenForce ? 0 : 180);
-                evenForce = !evenForce;
+                // evenForce = !evenForce;
             }
         }
 
@@ -359,6 +380,33 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
             thisPlatform.GetComponent<Platform>().PopulatePlatformWithItems(itemArguments);
 
         }
+    }
+
+    public void RotateObjectXAxisTowardsTarget(Transform obj, Vector3 targetPos, Vector3 upDirection)
+    {
+        // Create a temporary GameObject to assist in aligning the X-axis
+        GameObject tempObj = new GameObject("TempObjectForAlignment");
+        tempObj.transform.position = obj.position;
+        tempObj.transform.LookAt(targetPos, upDirection); // Align Z-axis to the target
+
+        // Rotate the temporary object so that its X-axis points towards the target
+        tempObj.transform.Rotate(0, 90, 0);
+        // if tempobj position x is greater than 0, rotate 180
+        if (tempObj.transform.position.x < 0)
+        {
+            tempObj.transform.Rotate(180, 0, 0);
+            tempObj.transform.Rotate(0, 0, 180);
+        }
+
+
+
+
+        // Apply the same rotation to the actual object
+        obj.rotation = tempObj.transform.rotation;
+
+
+        // Clean up the temporary object
+        Destroy(tempObj);
     }
 
     // public void GeneratePlatforms(){
@@ -551,7 +599,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         GlobalSettings.Physics.ballSpeed = Random.Range(levelItems.minMaxProjectileSpeed.x, levelItems.minMaxProjectileSpeed.y);
         GlobalSettings.Physics.ballGravity = GlobalSettings.Physics.ballSpeed * .2f;// Random.Range(levelItems.minMaxProjectileGravity.x,levelItems.minMaxProjectileGravity.y);
         GlobalSettings.Physics.platformBounce = Random.Range(.8f, .99f);
-        GlobalSettings.Physics.ballSize = Random.Range(.1f, .2f);
+        GlobalSettings.Physics.ballSize = levelItems.ballSize;//Random.Range(.1f, .2f);
     }
 
     public override void SetRandomStyle()

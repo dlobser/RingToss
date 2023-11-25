@@ -13,6 +13,7 @@ public class PlatformSprite_Round : Platform
     public Collider2D collider;
     public float bevel = 1;
     public float colliderSizeNudge = 0;
+    public bool hideColliderOnItemEmpty = true;
 
     void Start()
     {
@@ -27,20 +28,28 @@ public class PlatformSprite_Round : Platform
         //execute if in edit mode
         if (!Application.isPlaying)
         {
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.transform.localScale = Vector2.one * bevel;
-                spriteRenderer.size = (platformScale / bevel) * new Vector2(.75f, 1);
-                spriteRenderer.transform.localPosition = new Vector3(0, -platformScale.x * .25f, 0);
-            }
-            this.transform.localEulerAngles = new Vector3(platformRotation.x, platformRotation.x, platformRotation.z);
-            SetColliderSize(platformScale);
+            // if (spriteRenderer != null)
+            // {
+            //     spriteRenderer.transform.localScale = Vector2.one * bevel;
+            //     spriteRenderer.size = (platformScale / bevel) * new Vector2(.75f, 1);
+            //     spriteRenderer.transform.localPosition = new Vector3(0, -platformScale.x * .25f, 0);
+            // }
+            // this.transform.localEulerAngles = new Vector3(platformRotation.x, platformRotation.x, platformRotation.z);
+            // SetColliderSize(platformScale);
 
+            collider.transform.localScale = Vector2.one * platformScale.x;
+            Debug.Log("Update" + collider.transform.localScale);
 
         }
-        if (itemParent.GetComponentsInChildren<Item>().Length == 0 && spriteRenderer != null)
-            spriteRenderer.gameObject.SetActive(false);
+        // if (itemParent.GetComponentsInChildren<Item>().Length == 0 && hideColliderOnItemEmpty)
+        // collider.gameObject.SetActive(false);
         // SetColliderSize(platformScale);
+    }
+
+    public override void OnItemHit()
+    {
+        Debug.Log("OnItemHit");
+        collider.gameObject.SetActive(false);
     }
 
     public override void SetColliderSize(Vector2 size)
@@ -82,9 +91,11 @@ public class PlatformSprite_Round : Platform
     public override void SetSize(Vector2 scale)
     {
         base.SetSize(scale);
-        spriteRenderer.transform.localScale = Vector2.one * bevel;
-        spriteRenderer.size = scale;
-        SetColliderSize(scale);
+        collider.transform.localScale = Vector2.one * platformScale.x * .5f;
+        Debug.Log("Update" + collider.transform.localScale);
+
+        // spriteRenderer.size = scale;
+        // SetColliderSize(scale);
     }
 
     public override void SetPosition(Vector3 position)
@@ -136,8 +147,16 @@ public class PlatformSprite_Round : Platform
             {
                 Vector3 itemPosition = itemArguments.offset + new Vector3(spacing * j - platformScale.x * .5f, 0, 0);
                 GameObject item = Instantiate(itemArguments.item, itemPosition, Quaternion.identity, items.transform);
-                item.transform.localPosition = itemPosition;
-                item.transform.localScale = Vector3.one * .05f;
+                if (item.GetComponentsInChildren<Item>().Length != 0)
+                {
+                    Item[] theseItems = item.GetComponentsInChildren<Item>();
+                    foreach (Item thisItem in theseItems)
+                    {
+                        thisItem.platform = this;
+                    }
+                }
+                item.transform.localPosition = Vector3.zero;//itemPosition;
+                item.transform.localScale = Vector3.one * .1f;
                 item.transform.localEulerAngles = Vector3.zero;
                 SetSprite(item.transform.GetChild(0).GetComponent<SpriteRenderer>());
             }

@@ -8,9 +8,27 @@ public class Ring : MonoBehaviour
     public GameObject bounceEffect;
     public int destroyOnBounces = 1;
     int bounces = 0;
+    public TrailRenderer trailRenderer;
+
+    float initScale = 1;//this.transform.localScale.x;
+    float initLineTime = 1;//this.trailRenderer.time;
+
+    void OnEnable()
+    {
+        initScale = this.transform.localScale.x;
+        initLineTime = this.trailRenderer.time;
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        bounces++;
+
+        this.transform.localScale = Mathf.Lerp(initScale, 0, (float)bounces / (float)destroyOnBounces) * Vector3.one;
+        trailRenderer.time = Mathf.Lerp(initLineTime, 0, (float)bounces / (float)destroyOnBounces);
+
+        if (bounces > destroyOnBounces)
+            Destroy(gameObject);
+
         Item target = null;
 
         if (other.gameObject.GetComponent<Item>() != null)
@@ -34,9 +52,7 @@ public class Ring : MonoBehaviour
                     }
                     print("Got it!");
                     target.Hit();
-                    bounces++;
-                    if (bounces >= destroyOnBounces)
-                        Destroy(gameObject); // Remove the ring
+
                     break;
 
                 case CustomTag.Boundary:

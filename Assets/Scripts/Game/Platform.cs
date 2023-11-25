@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformItemArguments{
+public class PlatformItemArguments
+{
     public float amount = 0;
     public Vector3 offset = Vector3.zero;
     //percent
@@ -23,15 +24,17 @@ public class Platform : MonoBehaviour
     public float friction;
     // public Renderer renderer;
 
-    public virtual void SetSize(Vector3 scale){
+    public virtual void SetSize(Vector3 scale)
+    {
         // this.transform.localScale = scale;
         platformScale = scale;
     }
 
-    public virtual void SetSize(Vector2 scale){
-        SetSize(new Vector3(scale.x,scale.y,1));
+    public virtual void SetSize(Vector2 scale)
+    {
+        SetSize(new Vector3(scale.x, scale.y, 1));
     }
-    
+
     public virtual void SetPosition(Vector3 position)
     {
         this.platformPosition = position;
@@ -43,43 +46,58 @@ public class Platform : MonoBehaviour
         SetPosition(new Vector3(position.x, position.y, this.transform.localPosition.z));
     }
 
-    public virtual void SetRotation(float z, float x = 0, float y = 0){
-        platformRotation = new Vector3(x,y,z);
+    public virtual void SetRotation(float z, float x = 0, float y = 0)
+    {
+        platformRotation = new Vector3(x, y, z);
     }
 
-    public virtual void SetMaterial(Material mat){
+    public virtual void SetMaterial(Material mat)
+    {
         // renderer.material = mat;
     }
 
-    public virtual void SetColor(Color color){
+    public virtual void SetColor(Color color)
+    {
 
     }
 
-    public virtual Color GetColor(){
+    public virtual Color GetColor()
+    {
         return Color.white;
     }
 
-    public virtual void SetAlpha(float a){
+    public virtual void SetAlpha(float a)
+    {
 
     }
 
-    public virtual void SetMainTexture(Texture2D tex){
+    public virtual void SetMainTexture(Texture2D tex)
+    {
 
     }
 
-    public virtual void SetMainTexture(Sprite tex){
-        
-    }
-
-    public virtual void SetPhysicsBounciness(float bounceValue){
-        
-    }
-
-    public virtual void PopulatePlatformWithItems(PlatformItemArguments itemArguments){
+    public virtual void SetMainTexture(Sprite tex)
+    {
 
     }
 
-    public virtual void SetColliderSize(Vector2 size){
+    public virtual void SetPhysicsBounciness(float bounceValue)
+    {
+
+    }
+
+    public virtual void PopulatePlatformWithItems(PlatformItemArguments itemArguments)
+    {
+
+    }
+
+    public virtual void SetColliderSize(Vector2 size)
+    {
+
+    }
+
+    public virtual void OnItemHit()
+    {
 
     }
 
