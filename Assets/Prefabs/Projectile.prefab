@@ -205,7 +205,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.4
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -247,6 +247,7 @@ MonoBehaviour:
   collisionSound: {fileID: 0}
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
+  platform: {fileID: 0}
 --- !u!96 &-6476600750061392165
 TrailRenderer:
   serializedVersion: 2
