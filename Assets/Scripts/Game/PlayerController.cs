@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public Transform ringSpawnPoint;
     public float maxTossForce = 10.0f;
     public float tossForceMultiply = 10;
+
+    GameScoreKeeperLimitedProjectiles scoreKeeper;
+    public GameObject projectileParent;
+    public GameObject projectileDisplay;
 
     private GameObject currentRing;
     public GameObject displayRing;
@@ -22,6 +28,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         imageLoader = FindObjectOfType<ImageLoader>();
+        if(FindObjectOfType<GameScoreKeeperLimitedProjectiles>()!=null)
+            scoreKeeper = FindObjectOfType<GameScoreKeeperLimitedProjectiles>();
+
+
     }
 
     private void Update()
@@ -38,7 +48,54 @@ public class PlayerController : MonoBehaviour
         {
             OnMouseUp();
         }
+        if(scoreKeeper!=null)
+            if(scoreKeeper.usedProjectiles != projectileParent.transform.childCount)
+                UpdateProjectileDisplay();
+
     }
+
+    // Assuming projectileParent is a Transform and projectileDisplay is a GameObject prefab
+    // void UpdateProjectileDisplay()
+    // {
+    //     int count = projectileParent.transform.childCount;
+
+    //     for (int i = 0; i < count; i++)
+    //     {
+    //         Destroy(projectileParent.transform.GetChild(i).gameObject);
+    //     }
+
+    //     // Instantiate new objects based on the game score
+    //     for (int i = 0; i < GameManager.Instance.gameScoreKeeper.usedProjectiles; i++)
+    //     {
+    //         GameObject g = Instantiate(projectileDisplay, projectileParent.transform.position, Quaternion.identity, projectileParent.transform);
+    //         g.transform.localPosition = new Vector3((float)i*.3f + 1,0,0);
+    //     }
+    // }
+    void UpdateProjectileDisplay()
+    {
+        // Destroy existing children
+        while (projectileParent.transform.childCount > 0)
+        {
+            DestroyImmediate(projectileParent.transform.GetChild(0).gameObject);
+        }
+
+        // Instantiate new objects based on the used projectiles
+        int itemsPerRow = 5;
+        float spacing = 0.3f; // Adjust spacing as needed
+        for (int i = 0; i < (scoreKeeper.totalProjectiles- scoreKeeper.usedProjectiles); i++)
+        {
+            int row = i / itemsPerRow;
+            int col = i % itemsPerRow;
+
+            // Calculate position for each new object
+            Vector3 position = new Vector3(col * spacing, -row * spacing, 0) + projectileParent.transform.position;
+
+            GameObject g = Instantiate(projectileDisplay, position, Quaternion.identity, projectileParent.transform);
+            g.transform.localPosition = position - projectileParent.transform.position; // Adjust local position relative to the parent
+        }
+    }
+
+
 
     private void OnMouseDown()
     {

@@ -15,6 +15,8 @@ public class PlatformSprite_Round : Platform
     public float bevel = 1;
     public float colliderSizeNudge = 0;
     public bool hideColliderOnItemEmpty = true;
+    GameObject thisBonusItem;
+    public float bonusItemOdds = 5;
 
     void Start()
     {
@@ -55,8 +57,12 @@ public class PlatformSprite_Round : Platform
     }
 
     void MakeBonusItem(){
-        GameObject b = Instantiate(bonusItem, this.transform.position, Quaternion.identity, itemParent);
-        b.transform.localScale = Vector3.one*.1f;
+        if(Random.value<(1/bonusItemOdds)){
+            if(thisBonusItem==null){
+                thisBonusItem = Instantiate(bonusItem, this.transform.position, Quaternion.identity, itemParent);
+                thisBonusItem.transform.localScale = Vector3.one*.4f;
+            }
+        }
     }
 
     public override void SetColliderSize(Vector2 size)

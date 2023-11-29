@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 2
   win: 0
   gameManager: {fileID: 663251605}
@@ -3584,7 +3584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 7
   win: 0
   gameManager: {fileID: 1074671791}
@@ -3719,11 +3719,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 2
   win: 0
   gameManager: {fileID: 1074671791}
-  totalProjectiles: 250
+  totalProjectiles: 12
   usedProjectiles: 0
   scoreUI: {fileID: 436453665}
   projectilesUI: {fileID: 1630414811}
@@ -10460,7 +10460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 2
   win: 0
   gameManager: {fileID: 271323557}
@@ -22702,7 +22702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 0
   win: 0
   gameManager: {fileID: 0}
@@ -32327,7 +32327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 0
   win: 0
   gameManager: {fileID: 0}
@@ -43837,6 +43837,8 @@ MonoBehaviour:
   ringSpawnPoint: {fileID: 2032876245}
   maxTossForce: 41.9
   tossForceMultiply: 11.81
+  projectileParent: {fileID: 0}
+  projectileDisplay: {fileID: 0}
   displayRing: {fileID: 2461176753754708120}
   indicatorSprite: {fileID: 0}
 --- !u!4 &1973730231
@@ -43938,7 +43940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
-  farts: 0
+  items: 0
   totalItemsInLevel: 2
   win: 0
   gameManager: {fileID: 1074671791}

@@ -76,8 +76,10 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
     public override void CheckLevelFinished()
     {
         if (scoreUI != null)
-            scoreUI.text = farts + " / " + totalItemsInLevel;
+            scoreUI.text = items + " / " + totalItemsInLevel;
         base.CheckLevelFinished();
+        if(usedProjectiles>totalProjectiles)
+            GameManager.Instance.GenerateGame();
         
     }
 }

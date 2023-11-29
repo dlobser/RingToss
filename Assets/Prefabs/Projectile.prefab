@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 500
-  m_Sprite: {fileID: 21300000, guid: 6f60402fd4331244c984e6ec8e33c4ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f80cb36e6c1a52498b05bd29b6cb1dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,6 +192,7 @@ MonoBehaviour:
   bounceEffect: {fileID: 6128824119604436990, guid: 1316213b0411fca43b161e2855bc93db, type: 3}
   destroyOnBounces: 15
   trailRenderer: {fileID: -6476600750061392165}
+  initScale: 1
 --- !u!50 &-8280560375139447642
 Rigidbody2D:
   serializedVersion: 4
@@ -307,8 +308,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.10857527
-        value: 0.38024253
+        time: 0.13218062
+        value: 0.7464382
         inSlope: 0.13587438
         outSlope: 0.13587438
         tangentMode: 0

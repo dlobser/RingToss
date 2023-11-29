@@ -7,7 +7,7 @@ public class GameScoreKeeper : MonoBehaviour
 {
 
     public int totalScore;
-    public int farts;
+    public int items;
     public int totalItemsInLevel;
     public bool win;
     public GameManager gameManager;
@@ -42,8 +42,8 @@ public class GameScoreKeeper : MonoBehaviour
             if (t.customTag == CustomTag.Item)
                 totalItemsInLevel++;
         }
-        farts = totalItemsInLevel;
-        print("Start Items: " + farts);
+        items = totalItemsInLevel;
+        print("Start Items: " + items);
     }
 
     public virtual void IncrementProjectile()
@@ -53,7 +53,7 @@ public class GameScoreKeeper : MonoBehaviour
 
     public virtual void DecrementItem()
     {
-        farts--;
+        items--;
         
     }
 
@@ -63,13 +63,14 @@ public class GameScoreKeeper : MonoBehaviour
         CheckLevelFinished();
     }
 
-    void Update(){
-         print("Items: " + farts);
-    }
+    // void Update(){
+    //      print("Items: " + items);
+    // }
+    
     public virtual void CheckLevelFinished()
     {
-        print("Items: " + farts);
-        if (farts <= 0)
+        print("Items: " + items);
+        if (items <= 0)
         {
             GameManager.Instance.GenerateGame();
         }

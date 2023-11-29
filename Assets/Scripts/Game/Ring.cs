@@ -10,7 +10,7 @@ public class Ring : MonoBehaviour
     int bounces = 0;
     public TrailRenderer trailRenderer;
 
-    float initScale = 1;//this.transform.localScale.x;
+    public float initScale = 1;//this.transform.localScale.x;
     float initLineTime = 1;//this.trailRenderer.time;
 
     int itemsCollectedAmount = 0;
@@ -24,6 +24,8 @@ public class Ring : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         bounces++;
+
+        print("Collide! " + this.gameObject.name + " " + other.gameObject.name);
 
         this.transform.localScale = Mathf.Lerp(initScale, 0, (float)bounces / (float)destroyOnBounces) * Vector3.one;
         trailRenderer.time = Mathf.Lerp(initLineTime, 0, (float)bounces / (float)destroyOnBounces);
@@ -66,12 +68,12 @@ public class Ring : MonoBehaviour
                     // Handle a successful toss (e.g., scoring points)
                     Destroy(gameObject);
                     Destroy(target.gameObject);
-                    if (!emitted)
-                        BurstObjects(8, GetComponent<Rigidbody2D>().velocity);
 
                     // Destroy(gameObject); // Remove the ring
                     // Destroy(target.gameObject);
                     print("Got Bonus!");
+                    if (!emitted)
+                        BurstObjects(4, GetComponent<Rigidbody2D>().velocity);
                     target.Hit();
 
                     break;
@@ -123,13 +125,15 @@ public class Ring : MonoBehaviour
         for (int i = 0; i < numberOfObjects; i++)
         {
             // Randomly position inside a circle
-            Vector2 randomPosInCircle = Random.insideUnitCircle;
+            Vector2 randomPosInCircle = Random.insideUnitCircle *.5f;
             Vector3 spawnPosition = new Vector3(randomPosInCircle.x, randomPosInCircle.y, 0) + transform.position; // Assuming you want the burst centered around the position of the GameObject this script is attached to.
 
             // Instantiate
             GameObject obj = Instantiate(this.gameObject, spawnPosition, Quaternion.identity, GameManager.Instance.rootParent.transform.GetChild(0).transform);
-            obj.transform.localScale = this.transform.localScale*.05f;
+            obj.transform.localScale = this.transform.localScale*.5f;
+            obj.GetComponent<Ring>().initScale = this.transform.localScale.x*.5f;
             obj.GetComponent<Ring>().emitted = true;
+            obj.GetComponent<Ring>().destroyOnBounces = 3;
             obj.GetComponent<CircleCollider2D>().enabled = true;
 
 
@@ -137,7 +141,7 @@ public class Ring : MonoBehaviour
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                Vector2 directionOutward = (obj.transform.position - transform.position).normalized;
+                Vector2 directionOutward = (obj.transform.position - Vector3.down).normalized;
                 rb.AddForce(directionOutward * 4 + new Vector2(velocity.x, velocity.y), ForceMode2D.Impulse);
             }
             else

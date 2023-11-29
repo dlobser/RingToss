@@ -51,7 +51,7 @@ Shader "Custom/MovingLinesCircleMask"
             float4 frag (v2f i) : SV_Target
             {
                 // Create moving lines
-                float lineValue = abs(sin(i.uv.x * _LineFrequency + _Time.y * _Speed));
+                float lineValue = abs(sin(i.uv.x * _LineFrequency + _Time.y * _Speed+ abs(i.uv.y-.5)*10));
 
                 // Create circle mask
                 float2 center = float2(0.5, 0.5);
