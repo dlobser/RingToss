@@ -6,7 +6,8 @@ using UnityEngine;
 public class GameScoreKeeper : MonoBehaviour
 {
 
-    public int score;
+    public int totalScore;
+    public int farts;
     public int totalItemsInLevel;
     public bool win;
     public GameManager gameManager;
@@ -33,7 +34,7 @@ public class GameScoreKeeper : MonoBehaviour
     public virtual void OnLevelStart()
     {
         totalItemsInLevel = 0;
-        score = 0;
+        totalScore = 0;
         // Find all GameObjects with the 'Target' tag
         Item[] targets = GameManager.Instance.root.GetComponentsInChildren<Item>();// FindObjectsOfType<Target>();
         foreach (Item t in targets)
@@ -41,6 +42,8 @@ public class GameScoreKeeper : MonoBehaviour
             if (t.customTag == CustomTag.Item)
                 totalItemsInLevel++;
         }
+        farts = totalItemsInLevel;
+        print("Start Items: " + farts);
     }
 
     public virtual void IncrementProjectile()
@@ -48,16 +51,25 @@ public class GameScoreKeeper : MonoBehaviour
 
     }
 
-    public virtual void IncrementScore()
+    public virtual void DecrementItem()
     {
-        score++;
+        farts--;
+        
+    }
+
+    public virtual void IncrementScore(int amount = 1)
+    {
+        totalScore+=amount;
         CheckLevelFinished();
     }
 
+    void Update(){
+         print("Items: " + farts);
+    }
     public virtual void CheckLevelFinished()
     {
-        // If the score matches the number of 'Target' objects, set 'levelFinished' to true
-        if (score >= totalItemsInLevel)
+        print("Items: " + farts);
+        if (farts <= 0)
         {
             GameManager.Instance.GenerateGame();
         }

@@ -23,8 +23,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _CircleRadius: 0.4
-    - _LineFrequency: 30
-    - _Speed: -5
+    - _LineFrequency: 5
+    - _Speed: -25
     m_Colors:
     - _BackgroundColor: {r: 0.754717, g: 0.11747954, b: 0.11747954, a: 1}
     - _LineColor: {r: 0.4198113, g: 0.90305024, b: 1, a: 1}

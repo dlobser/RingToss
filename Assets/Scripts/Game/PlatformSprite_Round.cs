@@ -11,6 +11,7 @@ public class PlatformSprite_Round : Platform
     public Material material;
     public SpriteRenderer spriteRenderer;
     public Collider2D collider;
+    public GameObject bonusItem;
     public float bevel = 1;
     public float colliderSizeNudge = 0;
     public bool hideColliderOnItemEmpty = true;
@@ -49,7 +50,13 @@ public class PlatformSprite_Round : Platform
     public override void OnItemHit()
     {
         Debug.Log("OnItemHit");
+        Invoke("MakeBonusItem", .5f);
         collider.gameObject.SetActive(false);
+    }
+
+    void MakeBonusItem(){
+        GameObject b = Instantiate(bonusItem, this.transform.position, Quaternion.identity, itemParent);
+        b.transform.localScale = Vector3.one*.1f;
     }
 
     public override void SetColliderSize(Vector2 size)
@@ -61,8 +68,6 @@ public class PlatformSprite_Round : Platform
             BGCircle.transform.localScale = Vector3.one;
             BGCircle.transform.localEulerAngles = Vector3.zero;
         }
-
-
 
         Vector2 spriteSize = new Vector2(platformScale.x, platformScale.y);
         BGCircle.transform.localScale = new Vector3(platformScale.x * 2, platformScale.x * 2, 1);
@@ -91,8 +96,8 @@ public class PlatformSprite_Round : Platform
     public override void SetSize(Vector2 scale)
     {
         base.SetSize(scale);
-        collider.transform.localScale = Vector2.one * platformScale.x * .5f;
-        Debug.Log("Update" + collider.transform.localScale);
+        collider.transform.localScale = Vector2.one * platformScale.x * .45f;
+        // Debug.Log("Update" + collider.transform.localScale);
 
         // spriteRenderer.size = scale;
         // SetColliderSize(scale);

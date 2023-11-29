@@ -91,6 +91,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 017ebbf87963b3248ad4f87929c6c3b2, type: 2}
   spriteRenderer: {fileID: 2027535124741226560}
   collider: {fileID: 4511868428145167074}
+  bonusItem: {fileID: 1237950798981719944, guid: 642f85f6f23bbe447a275e0e2557d171, type: 3}
   bevel: 0.6
   colliderSizeNudge: 0
   hideColliderOnItemEmpty: 1

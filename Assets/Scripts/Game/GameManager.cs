@@ -8,6 +8,7 @@ public enum CustomTag
     Projectile,
     Platform,
     PlatformBouncy,
+    BonusItem
 }
 
 public static class GlobalSettings

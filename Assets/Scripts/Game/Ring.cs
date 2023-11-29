@@ -13,6 +13,8 @@ public class Ring : MonoBehaviour
     float initScale = 1;//this.transform.localScale.x;
     float initLineTime = 1;//this.trailRenderer.time;
 
+    int itemsCollectedAmount = 0;
+
     void OnEnable()
     {
         initScale = this.transform.localScale.x;
@@ -25,7 +27,7 @@ public class Ring : MonoBehaviour
 
         this.transform.localScale = Mathf.Lerp(initScale, 0, (float)bounces / (float)destroyOnBounces) * Vector3.one;
         trailRenderer.time = Mathf.Lerp(initLineTime, 0, (float)bounces / (float)destroyOnBounces);
-
+    
         if (bounces > destroyOnBounces)
             Destroy(gameObject);
 
@@ -41,16 +43,35 @@ public class Ring : MonoBehaviour
             switch (otherTag)
             {
                 case CustomTag.Item:
+
+                    itemsCollectedAmount++;
                     // Handle a successful toss (e.g., scoring points)
-                    if (GameManager.Instance.gameScoreKeeper != null)
-                        GameManager.Instance.gameScoreKeeper.IncrementScore();
+                    if (GameManager.Instance.gameScoreKeeper != null){
+                        GameManager.Instance.gameScoreKeeper.DecrementItem();
+                        GameManager.Instance.gameScoreKeeper.IncrementScore(itemsCollectedAmount*itemsCollectedAmount*10);
+                    }
+
                     if (burster != null)
                     {
                         GameObject burst = Instantiate(burster);
                         burst.transform.position = this.transform.position;
                         // Destroy(burst.gameObject, 5);
                     }
-                    print("Got it!");
+                    print("Got it! " + itemsCollectedAmount);
+                    target.Hit();
+
+                    break;
+                
+                case CustomTag.BonusItem:
+                    // Handle a successful toss (e.g., scoring points)
+                    Destroy(gameObject);
+                    Destroy(target.gameObject);
+                    if (!emitted)
+                        BurstObjects(8, GetComponent<Rigidbody2D>().velocity);
+
+                    // Destroy(gameObject); // Remove the ring
+                    // Destroy(target.gameObject);
+                    print("Got Bonus!");
                     target.Hit();
 
                     break;
@@ -84,19 +105,20 @@ public class Ring : MonoBehaviour
                 // Add cases for other custom tags as needed
                 case CustomTag.Projectile:
                     // Handle a successful toss (e.g., scoring points)
-                    if (!target.GetComponent<Ring>().emitted)
-                        BurstObjects(2, 8, GetComponent<Rigidbody2D>().velocity);
-                    Destroy(gameObject); // Remove the ring
-                    Destroy(target.gameObject);
+                    // if (!target.GetComponent<Ring>().emitted)
+                    //     BurstObjects(2, 8, GetComponent<Rigidbody2D>().velocity);
+
+                    // Destroy(gameObject); // Remove the ring
+                    // Destroy(target.gameObject);
                     break;
 
             }
         }
     }
 
-    public void BurstObjects(int minObjects, int maxObjects, Vector2 velocity)
+    public void BurstObjects(int maxObjects, Vector2 velocity)
     {
-        int numberOfObjects = Random.Range(minObjects, maxObjects + 1);
+        int numberOfObjects = maxObjects;// Random.Range(minObjects, maxObjects + 1);
 
         for (int i = 0; i < numberOfObjects; i++)
         {
@@ -105,8 +127,8 @@ public class Ring : MonoBehaviour
             Vector3 spawnPosition = new Vector3(randomPosInCircle.x, randomPosInCircle.y, 0) + transform.position; // Assuming you want the burst centered around the position of the GameObject this script is attached to.
 
             // Instantiate
-            GameObject obj = Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
-            obj.transform.localScale = Vector3.one * .2f;
+            GameObject obj = Instantiate(this.gameObject, spawnPosition, Quaternion.identity, GameManager.Instance.rootParent.transform.GetChild(0).transform);
+            obj.transform.localScale = this.transform.localScale*.05f;
             obj.GetComponent<Ring>().emitted = true;
             obj.GetComponent<CircleCollider2D>().enabled = true;
 
@@ -116,7 +138,7 @@ public class Ring : MonoBehaviour
             if (rb != null)
             {
                 Vector2 directionOutward = (obj.transform.position - transform.position).normalized;
-                rb.AddForce(directionOutward * 2 + new Vector2(velocity.x, velocity.y), ForceMode2D.Impulse);
+                rb.AddForce(directionOutward * 4 + new Vector2(velocity.x, velocity.y), ForceMode2D.Impulse);
             }
             else
             {

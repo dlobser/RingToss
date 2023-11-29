@@ -49,17 +49,17 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
         // }
         base.OnLevelStart();
         usedProjectiles = 0;
-        score = 0;
+        totalScore = 0;
         if (projectilesUI != null)
             projectilesUI.text = usedProjectiles + " / " + totalProjectiles;
         if (scoreUI != null)
-            scoreUI.text = score + " / " + totalItemsInLevel;
+            scoreUI.text = totalScore + "";
 
     }
 
-    public override void IncrementScore()
+    public override void IncrementScore(int amount)
     {
-        base.IncrementScore();
+        base.IncrementScore(amount);
         // scoreUI.text = score + " / " + totalItemsInLevel;
         // print("ON LEVEL START");
 
@@ -76,11 +76,8 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
     public override void CheckLevelFinished()
     {
         if (scoreUI != null)
-            scoreUI.text = score + " / " + totalItemsInLevel;
-        // If the score matches the number of 'Target' objects, set 'levelFinished' to true
-        if (score >= totalItemsInLevel || usedProjectiles > totalProjectiles)
-        {
-            GameManager.Instance.GenerateGame();
-        }
+            scoreUI.text = farts + " / " + totalItemsInLevel;
+        base.CheckLevelFinished();
+        
     }
 }

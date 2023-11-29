@@ -313,58 +313,63 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
 
                 // trans.rotateOscillateSpeed = new Vector3(0, 0, even ? speed : speed * -1);
             }
-            else if (platformStyleCoinFlip > .5f)
-            {
-                RotateObjectXAxisTowardsTarget(newPlatform.transform, Vector3.up, Vector3.up);
-
-                foreach (Transform child in newPlatform.transform)
-                {
-                    child.gameObject.SetActive(false);
-                }
-                GameObject force = Instantiate(levelItems.forcePrefab, newPlatform.transform);
-                force.transform.localPosition = Vector3.zero;
-                force.transform.localScale = Vector3.one * newPlatform.platformScale.x;
-                float angle = even ? 0 : 180;
-                force.transform.localEulerAngles = new Vector3(0, 0, evenForce ? 0 : 180);
-                evenForce = !evenForce;
-
-                trans.doRotateOscillate = false;
-
-
-                // CapsuleCollider capsuleCollider = newPlatform.GetComponent<CapsuleCollider>();
-
-                // if (capsuleCollider != null)
-                // {
-                //     CircleCollider2D circleCollider = newPlatform.gameObject.AddComponent<CircleCollider2D>();
-                //     circleCollider.radius = boxCollider.size.x;
-                //     newPlatform.GetComponent<Rigidbody>().isKinematic = false;
-                //     Destroy(boxCollider);
-                // }
-            }
             else
-            {
-                RotateObjectXAxisTowardsTarget(newPlatform.transform, Vector3.up, Vector3.up);
-
-                foreach (Transform child in newPlatform.transform)
+            {   
+                if (even)
                 {
-                    child.gameObject.SetActive(false);
-                }
-                trans.doRotateOscillate = false;
+                    RotateObjectXAxisTowardsTarget(newPlatform.transform, Vector3.up, Vector3.up);
 
-                GameObject wall = Instantiate(levelItems.wallPrefab, newPlatform.transform);
-                // TransformUniversal transformUniversal = wall.AddComponent<TransformUniversal>();
-                // TransformUniversal trans = wall.AddComponent<TransformUniversal>();
-                // trans.doRotate = true;
-                // trans.rotate = new Vector3(0, 0, speed * 10);//even ? speed : speed * -1);
-                // transformUniversal.doScaleOscillate = true;
-                // transformUniversal.scaleOscillateLowerBounds = new Vector3(-newPlatform.platformScale.x, -newPlatform.platformScale.x, 0);
-                // transformUniversal.scaleOscillateSpeed = new Vector3(2, 2, 0);
-                // transformUniversal.scaleOscillateOffset = new Vector3(newPlatform.transform.localPosition.y, newPlatform.transform.localPosition.y, 0);
-                wall.transform.localPosition = Vector3.zero;
-                wall.transform.localScale = Vector3.one * newPlatform.platformScale.x;
-                float angle = even ? 0 : 180;
-                wall.transform.localEulerAngles = new Vector3(0, 0, evenForce ? 0 : 180);
-                // evenForce = !evenForce;
+                    foreach (Transform child in newPlatform.transform)
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                    GameObject force = Instantiate(levelItems.forcePrefab, newPlatform.transform);
+                    force.transform.localPosition = Vector3.zero;
+                    force.transform.localScale = Vector3.one * newPlatform.platformScale.x;
+                    float angle = even ? 0 : 180;
+                    force.transform.localEulerAngles = new Vector3(0, 0, evenForce ? 0 : 180);
+                    float randomAmount = Mathf.Max(newPlatform.platformPosition.y,0)*130;
+                    force.transform.Rotate(new Vector3(0, 0, Random.Range(-randomAmount,randomAmount)));
+                    evenForce = !evenForce;
+
+                    trans.doRotateOscillate = false;
+
+
+                    // CapsuleCollider capsuleCollider = newPlatform.GetComponent<CapsuleCollider>();
+
+                    // if (capsuleCollider != null)
+                    // {
+                    //     CircleCollider2D circleCollider = newPlatform.gameObject.AddComponent<CircleCollider2D>();
+                    //     circleCollider.radius = boxCollider.size.x;
+                    //     newPlatform.GetComponent<Rigidbody>().isKinematic = false;
+                    //     Destroy(boxCollider);
+                    // }
+                }
+                else
+                {
+                    RotateObjectXAxisTowardsTarget(newPlatform.transform, Vector3.up, Vector3.up);
+
+                    foreach (Transform child in newPlatform.transform)
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                    trans.doRotateOscillate = false;
+
+                    GameObject wall = Instantiate(levelItems.wallPrefab, newPlatform.transform);
+                    // TransformUniversal transformUniversal = wall.AddComponent<TransformUniversal>();
+                    // TransformUniversal trans = wall.AddComponent<TransformUniversal>();
+                    // trans.doRotate = true;
+                    // trans.rotate = new Vector3(0, 0, speed * 10);//even ? speed : speed * -1);
+                    // transformUniversal.doScaleOscillate = true;
+                    // transformUniversal.scaleOscillateLowerBounds = new Vector3(-newPlatform.platformScale.x, -newPlatform.platformScale.x, 0);
+                    // transformUniversal.scaleOscillateSpeed = new Vector3(2, 2, 0);
+                    // transformUniversal.scaleOscillateOffset = new Vector3(newPlatform.transform.localPosition.y, newPlatform.transform.localPosition.y, 0);
+                    wall.transform.localPosition = Vector3.zero;
+                    wall.transform.localScale = Vector3.one * newPlatform.platformScale.x;
+                    float angle = even ? 0 : 180;
+                    wall.transform.localEulerAngles = new Vector3(0, 0, evenForce ? 0 : 180);
+                    // evenForce = !evenForce;
+                }
             }
         }
 

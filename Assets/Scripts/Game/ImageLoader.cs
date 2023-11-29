@@ -266,7 +266,7 @@ public class ImageLoader : MonoBehaviour
             .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType) && t.name.EndsWith("_" + globalSeed.ToString())).ToArray();
 
         // Log how many textures were found
-        Debug.Log("Number of textures found: " + textures.Length + " index: " + imageSeed + " globalSeed: " + globalSeed);
+        // Debug.Log("Number of textures found: " + textures.Length + " index: " + imageSeed + " globalSeed: " + globalSeed);
 
         // If there are no textures, return null
         if (textures.Length == 0)
