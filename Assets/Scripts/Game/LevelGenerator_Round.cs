@@ -114,11 +114,11 @@ public class LevelGenerator_Round : LevelGenerator
             // ... any other operation you want to perform on the menu
         });
         levelSettings.menuManager.ModifyMenu("Game", (menu) =>
-       {
-           print(menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer + "SPRITE");
-           menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
-           // ... any other operation you want to perform on the menu
-       });
+        {
+            print(menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer + "SPRITE");
+            menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.Style);
+            // ... any other operation you want to perform on the menu
+        });
 
         // ImageLoader.Instance.SetSprite()
         // levelSettings.menuManager.SetSprite("Title", ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style));

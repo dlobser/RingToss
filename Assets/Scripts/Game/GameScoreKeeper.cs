@@ -72,7 +72,7 @@ public class GameScoreKeeper : MonoBehaviour
         print("Items: " + items);
         if (items <= 0)
         {
-            GameManager.Instance.GenerateGame();
+            GameManager.Instance.GameOver();
         }
     }
 }

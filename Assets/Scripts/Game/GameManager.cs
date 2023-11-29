@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
     // public MenuManager menus;
 
     public event Action GameStart;
+    public event Action GameEnd;
+    public event Action Announcement;
+    private string AnnouncementMessage;
 
     public bool isPaused = false;
 
@@ -106,12 +109,32 @@ public class GameManager : MonoBehaviour
 
     public void GenerateGame()
     {
+        print("Generate Game");
         LevelStart();
     }
 
     public void LevelStart()
     {
         GameStart?.Invoke();
+    }
+
+    public void GameOver(){
+        print("Game Over");
+        GameEnd?.Invoke();
+    }
+
+    public void SendAnnouncement(){
+        Announcement?.Invoke();
+    }
+
+    public string GetAnnouncementMessage(){
+        return AnnouncementMessage;
+    }
+
+    public void SendAnnouncement(string message){
+        AnnouncementMessage = message;
+        print("Announcement: " + message);
+        SendAnnouncement();
     }
 
 }

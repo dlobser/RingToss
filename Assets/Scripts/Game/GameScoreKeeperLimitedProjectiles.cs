@@ -14,6 +14,8 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
 
     public TextMeshProUGUI scoreUI;
     public TextMeshProUGUI projectilesUI;
+
+    public float stopwatch = 0;
     // public bool win;
     // private GameManager gameManager;
 
@@ -22,6 +24,10 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
     //     gameManager = FindObjectOfType<GameManager>();
     // }
 
+    void Update(){
+        stopwatch+=Time.deltaTime;
+    }
+    
     public override void RegisterActions()
     {
         // Subscribe to the event
@@ -79,7 +85,7 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
             scoreUI.text = items + " / " + totalItemsInLevel;
         base.CheckLevelFinished();
         if(usedProjectiles>totalProjectiles)
-            GameManager.Instance.GenerateGame();
+            GameManager.Instance.GameOver();
         
     }
 }

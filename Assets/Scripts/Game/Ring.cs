@@ -50,7 +50,7 @@ public class Ring : MonoBehaviour
                     // Handle a successful toss (e.g., scoring points)
                     if (GameManager.Instance.gameScoreKeeper != null){
                         GameManager.Instance.gameScoreKeeper.DecrementItem();
-                        GameManager.Instance.gameScoreKeeper.IncrementScore(itemsCollectedAmount*itemsCollectedAmount*10);
+                        GameManager.Instance.gameScoreKeeper.IncrementScore(itemsCollectedAmount*itemsCollectedAmount*target.scoreValue);
                     }
 
                     if (burster != null)
@@ -74,6 +74,13 @@ public class Ring : MonoBehaviour
                     print("Got Bonus!");
                     if (!emitted)
                         BurstObjects(4, GetComponent<Rigidbody2D>().velocity);
+
+                    if (GameManager.Instance.gameScoreKeeper != null){
+                        GameManager.Instance.gameScoreKeeper.IncrementScore(target.scoreValue);
+                    }
+
+                    GameManager.Instance.SendAnnouncement("BONUS!");
+
                     target.Hit();
 
                     break;
