@@ -7,6 +7,7 @@ public class GameScoreKeeper : MonoBehaviour
 {
 
     public int totalScore;
+    public float elapsedTime;
     public int items;
     public int totalItemsInLevel;
     public bool win;
@@ -15,6 +16,10 @@ public class GameScoreKeeper : MonoBehaviour
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+    }
+
+    void Update(){
+        elapsedTime += Time.deltaTime;
     }
 
     public virtual void RegisterActions()

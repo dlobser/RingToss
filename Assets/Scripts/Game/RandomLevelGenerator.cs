@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 public class RandomLevelGenerator : MonoBehaviour
 {
 
-    private GameObject root;
+    // private GameObject root;
     private GameManager gameManager;
 
     public LevelGenerator[] levelGenerators;
@@ -49,10 +49,10 @@ public class RandomLevelGenerator : MonoBehaviour
 
     void Cleanup()
     {
-        if (root != null)
-        {
-            // Destroy(root);
-        }
+        // if (root != null)
+        // {
+        //     // Destroy(root);
+        // }
 
     }
 }

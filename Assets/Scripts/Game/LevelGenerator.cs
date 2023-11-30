@@ -26,12 +26,24 @@ public class LevelGenerator : MonoBehaviour
     public virtual void GenerateLevel()
     {
 
-        if (levelSettings.gameManager.root != null)
-            Destroy(levelSettings.gameManager.root);
+        // if (levelSettings.gameManager.root != null)
+        //     Destroy(levelSettings.gameManager.root);
 
-        if (root != null)
-        {
-            Destroy(root);
+        if(GameManager.Instance.rootParent!=null){
+            if (GameManager.Instance.rootParent.transform.childCount > 0)
+            {
+                List<GameObject> children = new List<GameObject>();
+
+                for (int i = 0; i < GameManager.Instance.rootParent.transform.childCount; i++)
+                {
+                    children.Add(GameManager.Instance.rootParent.transform.GetChild(i).gameObject);
+                }
+
+                foreach (GameObject child in children)
+                {
+                    Destroy(child);
+                }
+            }
         }
 
         root = new GameObject("Root");

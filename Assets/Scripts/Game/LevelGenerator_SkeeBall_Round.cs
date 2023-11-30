@@ -250,9 +250,12 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
     {
         Random.InitState(GlobalSettings.randomSeed);
         GameObject platforms = GeneratePlatformPositions();
+        root = FindObjectOfType<GameParent>().gameObject;
+        GameManager.Instance.root = root;
         if (root == null)
         {
-            root = new GameObject("Root");
+            Debug.LogError("No GameParent, attach GameParent component to an object in the menu");
+            // root = new GameObject("Root");
         }
         platforms.transform.SetParent(root.transform);
         // int platformCount = Mathf.Max(1, Random.Range(levelItems.minPlatforms, levelItems.maxPlatforms + 1));

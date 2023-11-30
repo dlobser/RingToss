@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public RandomLevelGenerator levelGenerator;
 
-    [HideInInspector]
+    // [HideInInspector]
     public GameObject root;
     // [HideInInspector]
     public GameScoreKeeper gameScoreKeeper;

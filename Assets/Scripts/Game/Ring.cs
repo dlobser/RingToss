@@ -55,7 +55,7 @@ public class Ring : MonoBehaviour
 
                     if (burster != null)
                     {
-                        GameObject burst = Instantiate(burster);
+                        GameObject burst = Instantiate(burster,GameManager.Instance.root.transform);
                         burst.transform.position = this.transform.position;
                         // Destroy(burst.gameObject, 5);
                     }
@@ -136,7 +136,7 @@ public class Ring : MonoBehaviour
             Vector3 spawnPosition = new Vector3(randomPosInCircle.x, randomPosInCircle.y, 0) + transform.position; // Assuming you want the burst centered around the position of the GameObject this script is attached to.
 
             // Instantiate
-            GameObject obj = Instantiate(this.gameObject, spawnPosition, Quaternion.identity, GameManager.Instance.rootParent.transform.GetChild(0).transform);
+            GameObject obj = Instantiate(this.gameObject, spawnPosition, Quaternion.identity, GameManager.Instance.root.transform);
             obj.transform.localScale = this.transform.localScale*.5f;
             obj.GetComponent<Ring>().initScale = this.transform.localScale.x*.5f;
             obj.GetComponent<Ring>().emitted = true;

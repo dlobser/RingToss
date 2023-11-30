@@ -915,6 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 2
   win: 0
@@ -923,7 +924,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 1470543877}
   projectilesUI: {fileID: 1995811571}
-  stopwatch: 0
 --- !u!4 &72677568
 Transform:
   m_ObjectHideFlags: 0
@@ -3699,6 +3699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 7
   win: 0
@@ -3707,7 +3708,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 0}
   projectilesUI: {fileID: 0}
-  stopwatch: 0
 --- !u!114 &190907577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3837,6 +3837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 2
   win: 0
@@ -3845,7 +3846,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 436453665}
   projectilesUI: {fileID: 1630414811}
-  stopwatch: 0
 --- !u!4 &193355204
 Transform:
   m_ObjectHideFlags: 0
@@ -9358,7 +9358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &436453664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10619,6 +10619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 2
   win: 0
@@ -10627,7 +10628,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 698871366}
   projectilesUI: {fileID: 542839202}
-  stopwatch: 0
 --- !u!1 &495155864
 GameObject:
   m_ObjectHideFlags: 0
@@ -22863,6 +22863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 0
   win: 0
@@ -22871,7 +22872,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 1377121142}
   projectilesUI: {fileID: 908927985}
-  stopwatch: 0
 --- !u!114 &994327056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32489,6 +32489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 0
   win: 0
@@ -32497,7 +32498,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 501656933}
   projectilesUI: {fileID: 79926481}
-  stopwatch: 0
 --- !u!1 &1470543874
 GameObject:
   m_ObjectHideFlags: 0
@@ -36490,7 +36490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1630414810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44337,6 +44337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScore: 0
+  elapsedTime: 0
   items: 0
   totalItemsInLevel: 2
   win: 0
@@ -44345,7 +44346,6 @@ MonoBehaviour:
   usedProjectiles: 0
   scoreUI: {fileID: 0}
   projectilesUI: {fileID: 0}
-  stopwatch: 0
 --- !u!114 &1987015184
 MonoBehaviour:
   m_ObjectHideFlags: 0

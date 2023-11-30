@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         imageLoader = FindObjectOfType<ImageLoader>();
         if(FindObjectOfType<GameScoreKeeperLimitedProjectiles>()!=null)
             scoreKeeper = FindObjectOfType<GameScoreKeeperLimitedProjectiles>();
-
+        projectileParent.transform.parent = GameManager.Instance.root.transform;
 
     }
 
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 mousePos = Input.mousePosition;
             dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
-            Instantiate(indicatorSprite, dragEndPos, Quaternion.identity, GameManager.Instance.rootParent.transform.GetChild(0).transform);
+            Instantiate(indicatorSprite, dragEndPos, Quaternion.identity, GameManager.Instance.root.transform);
 
             tossForceMultiply = GlobalSettings.Physics.ballSpeed;
 
@@ -149,9 +149,9 @@ public class PlayerController : MonoBehaviour
             }
 
             // Instantiate the currentRing for the actual toss
-            currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity, GameManager.Instance.rootParent.transform);
+            currentRing = Instantiate(ringPrefab, ringSpawnPoint.position, Quaternion.identity, GameManager.Instance.root.transform);
             currentRing.transform.localScale = Vector3.one * GlobalSettings.Physics.ballSize;
-            currentRing.transform.parent = GameManager.Instance.rootParent.transform.GetChild(0);
+            // currentRing.transform.parent = GameManager.Instance.rootParent.transform.GetChild(0);
 
             if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
             {

@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964eadf249a17cf4d8db75cda459fe5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 4
 --- !u!1001 &6640571708120919474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5066,7 +5066,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6454898794492878665, guid: 1316213b0411fca43b161e2855bc93db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1316213b0411fca43b161e2855bc93db, type: 3}
 --- !u!4 &4390395108272503230 stripped
 Transform:
