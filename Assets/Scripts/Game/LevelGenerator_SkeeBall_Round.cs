@@ -250,8 +250,8 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
     {
         Random.InitState(GlobalSettings.randomSeed);
         GameObject platforms = GeneratePlatformPositions();
-        root = FindObjectOfType<GameParent>().gameObject;
-        GameManager.Instance.root = root;
+        // root = FindObjectOfType<GameParent>().gameObject;
+        // GameManager.Instance.root = root;
         if (root == null)
         {
             Debug.LogError("No GameParent, attach GameParent component to an object in the menu");
@@ -577,12 +577,12 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         }
 
         base.GenerateLevel();
-        root = levelSettings.gameManager.root;
+        root = GameManager.Instance.root;
         SetRandomPhysics();
         SetRandomStyle();
 
-        if (levelSettings.gameManager.rootParent != null)
-            root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
+        // if (levelSettings.gameManager.rootParent != null)
+            // root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
 
         levelSettings.gameManager.gameScoreKeeper = levelSettings.scoreKeeper;
 

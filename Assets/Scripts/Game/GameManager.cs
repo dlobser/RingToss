@@ -21,6 +21,7 @@ public static class GlobalSettings
         public static int Platform;
         public static int Title;
         public static int Projectile;
+        public static int Font;
         public static string GetStyleString()
         {
             return Style.ToString("D4");
@@ -45,10 +46,12 @@ public class GameManager : MonoBehaviour
 
     public RandomLevelGenerator levelGenerator;
 
-    // [HideInInspector]
+    [HideInInspector]
     public GameObject root;
     // [HideInInspector]
     public GameScoreKeeper gameScoreKeeper;
+    
+    public PlayerController playerController;
 
     public GameObject rootParent;
     // public MenuManager menus;

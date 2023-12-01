@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HideChildOnClick : MonoBehaviour
+public class OnClickEvent : MonoBehaviour
 {
     public UnityEvent unityEvent;
 
@@ -23,7 +23,7 @@ public class HideChildOnClick : MonoBehaviour
 
             if (hit.collider != null)
             {
-                // unityEvent.Invoke();
+                unityEvent.Invoke();
                 print("Clicked");
                 // Check if the object that was hit is a child of this object
                 // if (hit.transform.parent == transform)

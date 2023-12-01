@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MM.Msg;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class GameScoreKeeper : MonoBehaviour
 
     public int totalScore;
     public float elapsedTime;
+    bool gameOver = false;
     public int items;
     public int totalItemsInLevel;
     public bool win;
@@ -19,7 +21,12 @@ public class GameScoreKeeper : MonoBehaviour
     }
 
     void Update(){
-        elapsedTime += Time.deltaTime;
+        if(!gameOver)
+            elapsedTime += Time.deltaTime;
+    }
+
+    public void OnLevelEnd(){
+        gameOver = true;
     }
 
     public virtual void RegisterActions()
@@ -38,6 +45,7 @@ public class GameScoreKeeper : MonoBehaviour
 
     public virtual void OnLevelStart()
     {
+        gameOver = false;
         totalItemsInLevel = 0;
         totalScore = 0;
         // Find all GameObjects with the 'Target' tag
@@ -80,4 +88,5 @@ public class GameScoreKeeper : MonoBehaviour
             GameManager.Instance.GameOver();
         }
     }
+
 }

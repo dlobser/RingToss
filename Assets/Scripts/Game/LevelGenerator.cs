@@ -49,7 +49,10 @@ public class LevelGenerator : MonoBehaviour
         root = new GameObject("Root");
         root.transform.SetParent(levelSettings.gameManager.rootParent.transform);
         menuManager = Instantiate(levelSettings.menuManager, root.transform);
-        playerController = Instantiate(levelSettings.playerController, root.transform);
+        GameObject menuRoot = FindObjectOfType<GameParent>().gameObject;
+        GameManager.Instance.root = menuRoot;
+        root = menuRoot;
+        playerController = Instantiate(levelSettings.playerController, GameManager.Instance.root.transform);
         levelSettings.gameManager.root = root;
 
     }

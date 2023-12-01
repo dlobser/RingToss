@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ring
-  m_Shader: {fileID: 4800000, guid: c8af385a20ac2d4498cf5af483c8c889, type: 3}
+  m_Name: Custom_MovingLinesTutorial
+  m_Shader: {fileID: 4800000, guid: aa19b279dabcdc54cbe890818f6f51d7, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -22,10 +22,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Brightness: 1.04
-    - _EdgeSoftness: 0.025
-    - _Scale: 1
-    - _Thickness: 0.55
+    - _AngleAmount: 2.62
+    - _CircleRadius: 0.45
+    - _LineFrequency: 10.21
+    - _Speed: -5
     m_Colors:
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BackgroundColor: {r: 0.754717, g: 0.11747954, b: 0.11747954, a: 1}
+    - _LineColor: {r: 0.7924528, g: 0.7543645, b: 0.497152, a: 1}
   m_BuildTextureStacks: []

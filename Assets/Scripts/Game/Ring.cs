@@ -25,7 +25,7 @@ public class Ring : MonoBehaviour
     {
         bounces++;
 
-        print("Collide! " + this.gameObject.name + " " + other.gameObject.name);
+        // print("Collide! " + this.gameObject.name + " " + other.gameObject.name);
 
         this.transform.localScale = Mathf.Lerp(initScale, 0, (float)bounces / (float)destroyOnBounces) * Vector3.one;
         trailRenderer.time = Mathf.Lerp(initLineTime, 0, (float)bounces / (float)destroyOnBounces);
@@ -52,6 +52,7 @@ public class Ring : MonoBehaviour
                         GameManager.Instance.gameScoreKeeper.DecrementItem();
                         GameManager.Instance.gameScoreKeeper.IncrementScore(itemsCollectedAmount*itemsCollectedAmount*target.scoreValue);
                     }
+                    GameManager.Instance.SendAnnouncement("YES!");
 
                     if (burster != null)
                     {
@@ -148,7 +149,7 @@ public class Ring : MonoBehaviour
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                Vector2 directionOutward = (obj.transform.position - Vector3.down).normalized;
+                Vector2 directionOutward = (Random.insideUnitSphere + Vector3.up).normalized;
                 rb.AddForce(directionOutward * 4 + new Vector2(velocity.x, velocity.y), ForceMode2D.Impulse);
             }
             else

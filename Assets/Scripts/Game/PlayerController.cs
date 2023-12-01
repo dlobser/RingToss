@@ -20,10 +20,13 @@ public class PlayerController : MonoBehaviour
     float dragDistance;
 
     public GameObject indicatorSprite;
+    GameObject indicator;
 
     ImageLoader imageLoader;
 
     bool canToss = false;
+
+    public Transform anchorSprite;
 
     void Start()
     {
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if(FindObjectOfType<GameScoreKeeperLimitedProjectiles>()!=null)
             scoreKeeper = FindObjectOfType<GameScoreKeeperLimitedProjectiles>();
         projectileParent.transform.parent = GameManager.Instance.root.transform;
-
+        GameManager.Instance.playerController = this;
     }
 
     private void Update()
@@ -49,8 +52,10 @@ public class PlayerController : MonoBehaviour
             OnMouseUp();
         }
         if(scoreKeeper!=null)
-            if(scoreKeeper.usedProjectiles != projectileParent.transform.childCount)
+            if(scoreKeeper.totalProjectiles-scoreKeeper.usedProjectiles != projectileParent.transform.childCount)
                 UpdateProjectileDisplay();
+        dragEndPos = Vector3.Lerp(dragEndPos,Vector3.up,Time.deltaTime);
+        anchorSprite.LookAt(dragEndPos,Vector3.forward);
 
     }
 
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour
         // Instantiate new objects based on the used projectiles
         int itemsPerRow = 5;
         float spacing = 0.3f; // Adjust spacing as needed
-        for (int i = 0; i < (scoreKeeper.totalProjectiles- scoreKeeper.usedProjectiles); i++)
+        for (int i = 0; i < (scoreKeeper.totalProjectiles - scoreKeeper.usedProjectiles); i++)
         {
             int row = i / itemsPerRow;
             int col = i % itemsPerRow;
@@ -92,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
             GameObject g = Instantiate(projectileDisplay, position, Quaternion.identity, projectileParent.transform);
             g.transform.localPosition = position - projectileParent.transform.position; // Adjust local position relative to the parent
+            g.transform.localScale = Vector3.one * 1f/(float)itemsPerRow; // Adjust scale as needed
         }
     }
 
@@ -102,10 +108,11 @@ public class PlayerController : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
         dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
         dragDistance = Vector3.Distance(ringSpawnPoint.position, dragEndPos);
-
+        
         if (dragDistance < 1)
         {
             canToss = true;
+            indicator = Instantiate(indicatorSprite, dragEndPos, Quaternion.identity, GameManager.Instance.root.transform);;
         }
     }
 
@@ -116,7 +123,8 @@ public class PlayerController : MonoBehaviour
 
             Vector2 mousePos = Input.mousePosition;
             dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
-
+            indicator.transform.position = dragEndPos;
+            // anchorSprite.LookAt(dragEndPos);
             dragEndPos.z = 0;
             dragDirection = (dragEndPos - ringSpawnPoint.position).normalized;
             dragDistance = Vector3.Distance(ringSpawnPoint.position, dragEndPos);
@@ -138,7 +146,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 mousePos = Input.mousePosition;
             dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
-            Instantiate(indicatorSprite, dragEndPos, Quaternion.identity, GameManager.Instance.root.transform);
+            
 
             tossForceMultiply = GlobalSettings.Physics.ballSpeed;
 
