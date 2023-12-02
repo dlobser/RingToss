@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TMPro;
 
 public class ImageLoader : MonoBehaviour
 {
@@ -388,6 +389,27 @@ public class ImageLoader : MonoBehaviour
         Texture2D chosenTexture = ImageLoader.Instance.GetImageWithIndex(imageType, index);
         spriteRenderer.sprite = Sprite.Create(chosenTexture, new Rect(0, 0, chosenTexture.width, chosenTexture.height), new Vector2(0.5f, 0.5f));
         spriteRenderer.material.SetTexture("_MainTex", chosenTexture);
+    }
+
+    
+    public void ApplySelectedFont(TextMeshProUGUI textMeshPro, string resourcePath, int fontIndex)
+    {
+        TMP_FontAsset[] fonts = Resources.LoadAll<TMP_FontAsset>(resourcePath);
+        if (fonts.Length > fontIndex && fontIndex >= 0)
+        {
+            textMeshPro.font = fonts[fontIndex];
+        }
+        else
+        {
+            Debug.LogError("Invalid font index or TMP font not found.");
+        }
+    }
+
+    public int GetRandomFontIndex(string resourcePath)
+    {
+        TMP_FontAsset[] fonts = Resources.LoadAll<TMP_FontAsset>(resourcePath);
+        int fontCount = fonts.Length;
+        return (fontCount > 0) ? Random.Range(0, fontCount) : -1;
     }
 
 }
