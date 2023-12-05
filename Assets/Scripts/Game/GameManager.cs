@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         if (GlobalSettings.randomSeed > maxRandomSeed)
             GlobalSettings.randomSeed = 0;
         UnityEngine.Random.InitState(GlobalSettings.randomSeed);
-        print("Random Seed: " + GlobalSettings.randomSeed + " " + UnityEngine.Random.state);
+        MyDebug.Instance.Log("Random Seed: " + GlobalSettings.randomSeed + " " + UnityEngine.Random.state,MyDebug.Instance.A);
     }
 
     private void Awake()

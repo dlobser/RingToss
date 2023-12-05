@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Reset : MonoBehaviour
 {
+    public bool randomizeSeed = false;
     public void DoReset(){
-        GameManager.Instance.RandomizeSeed();
+        if(randomizeSeed)
+            GameManager.Instance.RandomizeSeed();
         GameManager.Instance.levelGenerator.GenerateLevel();
     }
 }

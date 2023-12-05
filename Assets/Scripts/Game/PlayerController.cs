@@ -42,6 +42,17 @@ public class PlayerController : MonoBehaviour
 
     void OnGameEnd(){
         gameOver = true;
+        projectileParent.SetActive(false);
+        DisableAllOfType<Ring>();
+    }
+
+    private void DisableAllOfType<T>() where T : MonoBehaviour
+    {
+        T[] objects = FindObjectsOfType<T>(true); // true to include inactive objects
+        foreach (T obj in objects)
+        {
+            obj.gameObject.SetActive(false);
+        }
     }
 
     void Start()

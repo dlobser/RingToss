@@ -7,55 +7,30 @@ using TMPro;
 public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
 {
 
-    // public int score;
-    // public int totalItemsInLevel;
     public int totalProjectiles;
     public int usedProjectiles;
 
     public TextMeshProUGUI scoreUI;
     public TextMeshProUGUI projectilesUI;
 
-    // public float stopwatch = 0;
-    // public bool win;
-    // private GameManager gameManager;
+    private const string HighScoreKey = "HighScore"; // Key to store the high score in PlayerPrefs
 
-    // void Awake()
-    // {
-    //     gameManager = FindObjectOfType<GameManager>();
-    // }
 
-    // void Update(){
-    //     stopwatch+=Time.deltaTime;
-    // }
-    
     public override void RegisterActions()
     {
-        // Subscribe to the event
-        // GameManager.Instance.IncrementScore  += OnIncrementScore;
         gameManager.GameStart += OnLevelStart;
     }
 
     public override void DeregisterActions()
     {
-        // Unsubscribe from the event
-        // GameManager.Instance.IncrementScore  -= OnIncrementScore;
         gameManager.GameStart -= OnLevelStart;
     }
 
     public override void OnLevelStart()
     {
-        // totalItemsInLevel = 0;
-        // score = 0;
-        // // Find all GameObjects with the 'Target' tag
-        // Item[] targets = GameManager.Instance.root.GetComponentsInChildren<Item>();// FindObjectsOfType<Target>();
-        // foreach (Item t in targets)
-        // {
-        //     if (t.customTag == CustomTag.Item)
-        //         totalItemsInLevel++;
-        // }
         base.OnLevelStart();
         usedProjectiles = 0;
-        totalScore = 0;
+        totalScore = totalProjectiles;
         if (projectilesUI != null)
             projectilesUI.text = usedProjectiles + " / " + totalProjectiles;
         if (scoreUI != null)
@@ -66,14 +41,13 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
     public override void IncrementScore(int amount)
     {
         base.IncrementScore(amount);
-        // scoreUI.text = score + " / " + totalItemsInLevel;
-        // print("ON LEVEL START");
-
+        SaveHighScore();
     }
 
     public override void IncrementProjectile()
     {
         usedProjectiles++;
+        totalScore--;
         if (projectilesUI != null)
             projectilesUI.text = usedProjectiles + " / " + totalProjectiles;
         CheckLevelFinished();
@@ -84,8 +58,26 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
         if (scoreUI != null)
             scoreUI.text = items + " / " + totalItemsInLevel;
         base.CheckLevelFinished();
-        if(usedProjectiles>=totalProjectiles)
+        if(usedProjectiles>=totalProjectiles){
             GameManager.Instance.GameOver();
+        }
         
+    }
+
+    public void SaveHighScore()
+    {
+        int currentHighScore = PlayerPrefs.GetInt(HighScoreKey+GlobalSettings.randomSeed, 0);
+        if (totalScore > currentHighScore)
+        {
+            PlayerPrefs.SetInt(HighScoreKey+GlobalSettings.randomSeed, totalScore);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void LoadHighScore()
+    {
+        // Optionally, you can load the high score at the start to display it or use it
+        int highScore = PlayerPrefs.GetInt(HighScoreKey+GlobalSettings.randomSeed, 0);
+        // Do something with highScore if needed
     }
 }

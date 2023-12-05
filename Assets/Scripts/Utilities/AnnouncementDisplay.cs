@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class AnnouncementDisplay : MonoBehaviour
 {
-    public Text announcementText;
+    public TextMeshProUGUI announcementText;
     public float minScale = 1.0f;
     public float maxScale = 2.0f;
     public float duration = 3.0f;
@@ -26,6 +27,7 @@ public class AnnouncementDisplay : MonoBehaviour
             GameManager.Instance.Announcement += DisplayAnnouncement;
         }
         announcementText.gameObject.SetActive(false);
+        
     }
 
     private void OnDisable()
@@ -34,10 +36,17 @@ public class AnnouncementDisplay : MonoBehaviour
         {
             GameManager.Instance.Announcement -= DisplayAnnouncement;
         }
+
     }
 
     private void DisplayAnnouncement()
     {
+        if (this == null || gameObject == null || !gameObject.activeInHierarchy)
+        {
+            return; // Exit if the script or GameObject is destroyed or inactive
+        }
+
+                MyDebug.Instance.Log(this.ToString(), MyDebug.Instance.B);
         StartCoroutine(AnnounceRoutine(GameManager.Instance.GetAnnouncementMessage()));
     }
 

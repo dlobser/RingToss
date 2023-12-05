@@ -33,7 +33,7 @@ public class WinOrLose : MonoBehaviour
                 thisSprite.color = new Color(spriteColor.r,spriteColor.g,spriteColor.b,counter);
             }
             if(counter>animationTime){
-                OnAnimationComplete.Invoke();
+                OnAnimationComplete?.Invoke();
                 animating = false;
             }
         }

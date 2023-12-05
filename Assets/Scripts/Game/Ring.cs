@@ -104,7 +104,7 @@ public class Ring : MonoBehaviour
                     this.transform.localScale *= .9f;
                     if (bounceEffect != null)
                     {
-                        GameObject bounce = Instantiate(bounceEffect);
+                        GameObject bounce = Instantiate(bounceEffect,GameManager.Instance.root.transform);
                         bounce.transform.position = this.transform.position;
                     }
                     break;

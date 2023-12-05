@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
-
+using TMPro;
 // using System.Numerics;
 
 // using System.Windows.Forms;
 // using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
+using MM.Msg;
 
 public class LevelGenerator_SkeeBall_Round : LevelGenerator
 {
@@ -83,6 +84,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
 
     void Update()
     {
+        MyDebug.Print("Platforms: " + allPlatforms.Count);
         if (reload)
         {
             GenerateLevel();
@@ -90,7 +92,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         }
     }
 
-    public GameObject GeneratePlatformPositions()
+    public override GameObject GeneratePlatformPositions()
     {
 
         print("Random Seed For Platforms: " + GlobalSettings.randomSeed);
@@ -597,8 +599,24 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         });
 
         GeneratePlatforms();
+        ApplyFontRecursively(GameManager.Instance.rootParent, "Fonts", GlobalSettings.ImageIndeces.Font);
         OnGenerateLevelComplete();
 
+    }
+
+    public void ApplyFontRecursively(GameObject obj, string resourcePath, int fontIndex)
+    {
+        TextMeshProUGUI textMesh = obj.GetComponent<TextMeshProUGUI>();
+        if (textMesh != null)
+        {
+             ImageLoader.Instance.ApplySelectedFont(textMesh, resourcePath, fontIndex);
+        }
+
+        // Iterate through all children, even if they are inactive
+        foreach (Transform child in obj.transform)
+        {
+            ApplyFontRecursively(child.gameObject,resourcePath,fontIndex);
+        }
     }
 
     public override void SetRandomPhysics()
@@ -616,7 +634,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         GlobalSettings.ImageIndeces.BG = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Background");
         // GlobalSettings.ImageIndeces.Platform = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Platform");
         GlobalSettings.ImageIndeces.Title = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Title");
-
+        GlobalSettings.ImageIndeces.Font = FindObjectOfType<ImageLoader>().GetRandomFontIndex("Fonts");
     }
 
 }
