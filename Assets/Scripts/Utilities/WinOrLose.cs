@@ -41,12 +41,17 @@ public class WinOrLose : MonoBehaviour
 
     public void StartAnimating(){
         counter = 0;
+
+        Invoke("Announce",1);
+        animating = true;
+    }
+
+    public void Announce(){
         GameScoreKeeperLimitedProjectiles scoreKeeper = (GameScoreKeeperLimitedProjectiles)GameManager.Instance.gameScoreKeeper;
 
-        if(scoreKeeper)
+        if(scoreKeeper.items!=0)
             GameManager.Instance.SendAnnouncement("LOSE!");
         else
             GameManager.Instance.SendAnnouncement("WIN!");
-        animating = true;
     }
 }

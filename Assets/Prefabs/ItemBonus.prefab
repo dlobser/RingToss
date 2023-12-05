@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: db7c17e560f4d754ab91c1d4dd0f6fc3, type: 3}
   m_Color: {r: 0.7028302, g: 0.940815, b: 1, a: 0.65882355}
   m_FlipX: 0
@@ -193,7 +193,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: dbb2e6174d36ed646a6ffba5ae2ed2b6, type: 3}
   m_Color: {r: 1, g: 0.6255317, b: 0, a: 1}
   m_FlipX: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customTag: 5
-  scoreValue: 10
+  scoreValue: 50
   destroyOnHit: 1
   collisionSound: {fileID: 0}
   audioSource: {fileID: 0}
@@ -373,7 +373,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: db7c17e560f4d754ab91c1d4dd0f6fc3, type: 3}
   m_Color: {r: 0.7028302, g: 0.940815, b: 1, a: 0.34901962}
   m_FlipX: 0

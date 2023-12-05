@@ -3989,7 +3989,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  animationTime: 1
+  animationTime: 2
   sprite: {fileID: 5753034017887162092, guid: 40c58e20ddb96ee40971ad61e0fbbdcd, type: 3}
 --- !u!1 &200089367
 GameObject:
@@ -23748,6 +23748,8 @@ MonoBehaviour:
   scoreText: {fileID: 1052498389}
   timeText: {fileID: 0}
   addText: 0
+  canvasGroup: {fileID: 0}
+  canvasFadeTime: 0
 --- !u!114 &1052498389
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,6 +28,22 @@ public class PlayerController : MonoBehaviour
 
     public Transform anchorSprite;
 
+    bool gameOver = false;
+
+    void OnEnable()
+    {
+       GameManager.Instance.GameEnd  += OnGameEnd;
+    }
+
+    void OnDisable()
+    {
+       GameManager.Instance.GameEnd  -= OnGameEnd;
+    }
+
+    void OnGameEnd(){
+        gameOver = true;
+    }
+
     void Start()
     {
         imageLoader = FindObjectOfType<ImageLoader>();
@@ -39,23 +55,25 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnMouseDown();
+        if(!gameOver){
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnMouseDown();
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                OnMouseDrag();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                OnMouseUp();
+            }
+            if(scoreKeeper!=null)
+                if(scoreKeeper.totalProjectiles-scoreKeeper.usedProjectiles != projectileParent.transform.childCount)
+                    UpdateProjectileDisplay();
+            dragEndPos = Vector3.Lerp(dragEndPos,Vector3.up,Time.deltaTime);
+            anchorSprite.LookAt(dragEndPos,Vector3.forward);
         }
-        else if (Input.GetMouseButton(0))
-        {
-            OnMouseDrag();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            OnMouseUp();
-        }
-        if(scoreKeeper!=null)
-            if(scoreKeeper.totalProjectiles-scoreKeeper.usedProjectiles != projectileParent.transform.childCount)
-                UpdateProjectileDisplay();
-        dragEndPos = Vector3.Lerp(dragEndPos,Vector3.up,Time.deltaTime);
-        anchorSprite.LookAt(dragEndPos,Vector3.forward);
 
     }
 

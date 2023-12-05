@@ -12,7 +12,9 @@ Shader "Custom/SingleRingShader"
     {
         Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
         LOD 100
-                ZTest Off
+        Blend One One
+        ZTest Off
+        ZWrite Off
 
         Blend SrcAlpha OneMinusSrcAlpha
 

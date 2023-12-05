@@ -52,7 +52,14 @@ public class Ring : MonoBehaviour
                         GameManager.Instance.gameScoreKeeper.DecrementItem();
                         GameManager.Instance.gameScoreKeeper.IncrementScore(itemsCollectedAmount*itemsCollectedAmount*target.scoreValue);
                     }
-                    GameManager.Instance.SendAnnouncement("YES!");
+                    if(itemsCollectedAmount==1)
+                        GameManager.Instance.SendAnnouncement("YES!");
+                    else if(itemsCollectedAmount==2)
+                        GameManager.Instance.SendAnnouncement("DOUBLE!");
+                    else if(itemsCollectedAmount==3)
+                        GameManager.Instance.SendAnnouncement("TRIPLE!");
+                    else if(itemsCollectedAmount>3)
+                        GameManager.Instance.SendAnnouncement("SUPER!");
 
                     if (burster != null)
                     {

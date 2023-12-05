@@ -47,6 +47,7 @@ public class GameScoreKeeper : MonoBehaviour
     {
         gameOver = false;
         totalItemsInLevel = 0;
+        elapsedTime = 0;
         totalScore = 0;
         // Find all GameObjects with the 'Target' tag
         Item[] targets = GameManager.Instance.root.GetComponentsInChildren<Item>();// FindObjectsOfType<Target>();

@@ -6,9 +6,20 @@ public class ShowScore : MonoBehaviour
     public TextMeshProUGUI scoreText; // Reference to the TextMeshPro UI element for score
     public TextMeshProUGUI timeText; // Reference to the TextMeshPro UI element for time
     public bool addText = false;
+    public CanvasGroup canvasGroup;
+    float counter = 0;
+    public float canvasFadeTime;
 
+    void OnEnable(){
+        counter = 0;
+    }
     void Update()
     {
+        if(counter<1){
+            counter+=Time.deltaTime/canvasFadeTime;
+        }
+        if(canvasGroup!=null)
+            canvasGroup.alpha = counter;
         // Update the score text
         if(scoreText!=null)
             scoreText.text = (addText?"Score: ":"") + GameManager.Instance.gameScoreKeeper.totalScore.ToString();

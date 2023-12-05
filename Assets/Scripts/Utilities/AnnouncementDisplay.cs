@@ -52,7 +52,7 @@ public class AnnouncementDisplay : MonoBehaviour
             float scale = Mathf.Lerp(minScale, maxScale, timer / duration);
             announcementText.transform.localScale = new Vector3(scale, scale, scale);
 
-            announcementText.color = new Color(announcementText.color.r, announcementText.color.g, announcementText.color.b, 1 - (timer / duration));
+            announcementText.color = new Color(announcementText.color.r, announcementText.color.g, announcementText.color.b, (1 - (timer / duration))*2);
 
             timer += Time.deltaTime;
             yield return null;
