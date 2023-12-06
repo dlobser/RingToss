@@ -498,6 +498,7 @@ MonoBehaviour:
   colliderSizeNudge: 0
   hideColliderOnItemEmpty: 1
   bonusItemOdds: 5
+  hide: {fileID: 3592241300482922177}
 --- !u!1 &2149269425734852503
 GameObject:
   m_ObjectHideFlags: 0

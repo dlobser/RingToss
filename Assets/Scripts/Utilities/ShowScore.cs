@@ -30,8 +30,10 @@ public class ShowScore : MonoBehaviour
             canvasGroup.alpha = counter;
 
         // Update the score text
-        if (scoreText != null)
-            scoreText.text = (addText ? "Score: " : "") + GameManager.Instance.gameScoreKeeper.totalScore.ToString();
+        if (scoreText != null){
+            int finalScore = GameManager.Instance.gameScoreKeeper.totalScore;
+            scoreText.text = (addText ? "Score: " : "") + finalScore.ToString();
+        }
 
         // Update the high score text
         if (highScoreText != null)

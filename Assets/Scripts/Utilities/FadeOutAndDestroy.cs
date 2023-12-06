@@ -3,7 +3,7 @@ using UnityEngine;
 public class FadeOutAndDestroy : MonoBehaviour
 {
     private SpriteRenderer[] spriteRenderers;
-    private float fadeDuration = 10f;
+    public float fadeDuration = 10f;
     private float timer;
 
     void Start()
@@ -20,7 +20,7 @@ public class FadeOutAndDestroy : MonoBehaviour
         timer += Time.deltaTime;
 
         // Calculate the new alpha value
-        float alpha = Mathf.Clamp01(1 - (timer / fadeDuration));
+        float alpha = Mathf.Pow(Mathf.Clamp01(1 - (timer / fadeDuration)),2);
 
         // Update the alpha of all SpriteRenderers
         foreach (var spriteRenderer in spriteRenderers)
