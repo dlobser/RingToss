@@ -22,6 +22,7 @@ public static class GlobalSettings
         public static int Title;
         public static int Projectile;
         public static int Font;
+        public static int Emitter = 0;
         public static string GetStyleString()
         {
             return Style.ToString("D4");

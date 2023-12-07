@@ -1,18 +1,5 @@
 [
     {
-        "Name": "Cosmic Clash",
-        "Seed": 1,
-        "ArtistName": "Vincent van Gogh",
-        "BackgroundPrompt": "A mesmerizing canvas capturing Vincent van Gogh's iconic Starry Night, where swirling vortexes of luminous stars and a bright crescent moon dominate a vibrant neon sky, juxtaposed with the tranquility of a sleepy village below.",
-        "PlatformPrompt": "Multi-tiered platforms, painted with van Gogh's unmistakable thick and swirling brush strokes, bathed in neon light, mirroring the effervescent glow of the night sky.",
-        "ItemPrompt": "A radiant sunflower, painted with van Gogh's distinctive impasto technique, its golden petals glowing as they pulse rhythmically with the beat of 80s electronic music.",
-        "BonusItemPrompt": "A delicate, glowing neon representation of van Gogh's severed ear, granting the player enhanced auditory senses to decipher hidden musical clues.",
-        "WallsPrompt": "Majestic walls painted with segments from van Gogh's Starry Night, interspersed with neon grid patterns, challenging players to decipher the boundary between reality and the virtual realm.",
-        "TitlePrompt": "'Cosmic Clash' beautifully inscribed against the night sky, the letters rendered in Vincent van Gogh's swirling and tumultuous style, bordered by neon highlights.",
-        "EmitterPrompt": "A portal inspired by van Gogh's Cafe Terrace at Night, surrounded by neon lights, where challenges painted with emotional intensity emerge to test the player.",
-        "ProjectilePrompt": "Vibrant neon discs, enveloped in van Gogh's turbulent brushwork, zooming across the screen, challenging the player's reflexes with their unpredictable trajectories."
-    },
-    {
         "Name": "Nebula Nexus",
         "Seed": 2,
         "ArtistName": "Leonardo da Vinci",
@@ -24,19 +11,6 @@
         "TitlePrompt": "The inscription 'Nebula Nexus' emerges, rendered in an intricate font resembling da Vinci's mirror writing, with letters that shimmer and twinkle against the vast cosmic backdrop.",
         "EmitterPrompt": "Bursting supernovas, sketched with Renaissance precision by da Vinci, releasing challenges that meld art, science, and invention.",
         "ProjectilePrompt": "Meteoric shooting stars, designed with the intricate detail characteristic of da Vinci's sketches, blazing across the screen, leaving behind trails of Renaissance wisdom."
-    },
-    {
-        "Name": "Pixel Pursuit",
-        "Seed": 3,
-        "ArtistName": "Pablo Picasso",
-        "BackgroundPrompt": "A digital canvas transforming Pablo Picasso's abstract cubist world into a mesmerizing array of colorful mosaic patterns, where every pixel tells a story of fragmented reality.",
-        "PlatformPrompt": "Platforms resembling fragmented, cubist landscapes, where each blocky terrain offers unpredictable challenges, forcing players to strategize their next move in this pixelated Picasso world.",
-        "ItemPrompt": "An alluring, geometrically abstracted apple, fragmented into pixelated cubist facets, awaiting collection to grant players insight into the world of abstract art.",
-        "BonusItemPrompt": "A golden guitar token, pixelated yet capturing the essence of Picasso's artwork, providing players with harmonious rhythms and a significant score boost.",
-        "WallsPrompt": "Boundaries inspired by Picasso's Blue and Rose periods, where tightly packed pixels form intricate designs and patterns, reflecting the artist's emotional evolution.",
-        "TitlePrompt": "The title 'Pixel Pursuit' dynamically shifts, rendered in fragmented, colorful pixels, epitomizing Picasso's revolutionary approach to traditional artistic norms.",
-        "EmitterPrompt": "A cascading waterfall of pixels, painted in a palette reminiscent of Picasso's Rose period, unleashing a torrent of challenges and rewards for the player.",
-        "ProjectilePrompt": "Rapidly darting obstacles, colored with Picasso's bold reds, blues, and yellows, adding layers of complexity and testing the player's agility and timing."
     },
     {
         "Name": "Gothic Gallantry",
@@ -52,17 +26,17 @@
         "ProjectilePrompt": "Bizarre winged creatures, straight out of Bosch's vivid nightmares, that swoop and dive, creating obstacles for the player."
     },
     {
-        "Name": "Impressionist Insight",
+        "Name": "Renaissance Rhapsody",
         "Seed": 5,
-        "ArtistName": "Claude Monet",
-        "BackgroundPrompt": "A serene impressionist landscape, bathed in Monet's dappled sunlight, where water lilies float lazily atop reflective ponds and vibrant gardens burst with color.",
-        "PlatformPrompt": "Platforms resembling Monet's Japanese bridge, overlaid with his signature short brush strokes, immersing players in a Giverny garden.",
-        "ItemPrompt": "A beautifully rendered water lily, each petal a stroke of Monet's brush, which upon collection adds a layer of serene ambiance.",
-        "BonusItemPrompt": "A radiant sun, inspired by Monet's 'Impression, Sunrise', providing players with temporary invincibility against obstacles.",
-        "WallsPrompt": "Boundaries painted with Monet's iconic haystacks, their muted hues and shifting shadows creating a sense of time's passage.",
-        "TitlePrompt": "The words 'Impressionist Insight' shimmer in the style of Monet's 'Water Lilies', their colors flowing and blending with the background.",
-        "EmitterPrompt": "A serene pond reflecting the sky, reminiscent of Monet's water scenes, from which challenges and items gracefully emerge.",
-        "ProjectilePrompt": "Swift dragonflies, painted with Monet's light-infused palette, darting across the screen and adding dynamic motion."
+        "ArtistName": "Michelangelo",
+        "BackgroundPrompt": "A Renaissance landscape inspired by Michelangelo's 'The Creation of Adam', where the hand of God reaches out to touch the hand of Adam, surrounded by a swirling vortex of clouds and cherubs.",
+        "PlatformPrompt": "Platforms painted with Michelangelo's distinctive brush strokes, bathed in a heavenly glow, mirroring the effervescent light of the Sistine Chapel.",
+        "ItemPrompt": "A radiant sun, painted with Michelangelo's distinctive chiaroscuro technique, its golden rays glowing as they pulse rhythmically with the beat of 80s electronic music.",
+        "BonusItemPrompt": "A delicate, glowing neon representation of Michelangelo's David, granting the player enhanced strength and agility to overcome obstacles.",
+        "WallsPrompt": "Majestic walls painted with segments from Michelangelo's The Creation of Adam, interspersed with neon grid patterns, challenging players to decipher the boundary between reality and the virtual realm.",
+        "TitlePrompt": "'Renaissance Rhapsody' beautifully inscribed against the clouds, the letters rendered in Michelangelo's swirling and tumultuous style, bordered by neon highlights.",
+        "EmitterPrompt": "A portal inspired by Michelangelo's The Last Judgement, surrounded by neon lights, where challenges painted with emotional intensity emerge to test the player.",
+        "ProjectilePrompt": "Vibrant neon discs, enveloped in Michelangelo's turbulent brushwork, zooming across the screen, challenging the player's reflexes with their unpredictable trajectories."
     },
     {
         "Name": "Surreal Steps",
@@ -76,31 +50,5 @@
         "TitlePrompt": "The words 'Surreal Steps' materialize in a dreamy, liquid font, drawing inspiration from Dalí's fluid worlds.",
         "EmitterPrompt": "An oversized egg, commonly found in Dalí's works, which cracks open to reveal a torrent of challenges and mysteries.",
         "ProjectilePrompt": "Whiskered ants, like those in Dalí's 'The Elephants', scurrying rapidly, serving as unpredictable obstacles."
-    },
-    {
-        "Name": "Pop Pizzazz",
-        "Seed": 7,
-        "ArtistName": "Andy Warhol",
-        "BackgroundPrompt": "A vibrant canvas echoing Warhol's pop art sensibilities, where iconic celebrity portraits meet commercial imagery in a colorful, repetitive collage.",
-        "PlatformPrompt": "Platforms formed from Warhol's Brillo Boxes or Campbell's Soup Cans, representing the intersection of commercialism and art.",
-        "ItemPrompt": "A tin of Campbell's soup, rendered in Warhol's iconic style, offering players a boost of energy and points upon collection.",
-        "BonusItemPrompt": "A vinyl record inspired by Warhol's artwork for The Velvet Underground, granting players a rhythmic advantage.",
-        "WallsPrompt": "Boundaries adorned with Warhol's Marilyn Monroe portraits in varying colors, each expression offering a hint or clue.",
-        "TitlePrompt": "'Pop Pizzazz' pulsates in bold pop-art colors, reminiscent of Warhol's screen printing technique.",
-        "EmitterPrompt": "A vintage Coca-Cola bottle in Warhol's style, effervescing challenges and items for the player's consumption.",
-        "ProjectilePrompt": "Flashy dollar signs, representing Warhol's fascination with wealth and celebrity, zoom across the screen, challenging players' priorities."
-    },
-    {
-        "Name": "Abstract Ambition",
-        "Seed": 8,
-        "ArtistName": "Wassily Kandinsky",
-        "BackgroundPrompt": "A dynamic canvas capturing Kandinsky's pioneering abstract work, where geometric shapes and bold colors dance in harmonious chaos.",
-        "PlatformPrompt": "Platforms painted with Kandinsky's non-objective forms, encouraging players to find balance amidst abstraction.",
-        "ItemPrompt": "A vibrant, spinning triangle, reminiscent of Kandinsky's geometric compositions, which upon collection spirals the player into deeper levels of the abstract.",
-        "BonusItemPrompt": "A swirling blue circle, channeling Kandinsky's belief in the spiritual purity of the shape, cleansing the player of obstacles.",
-        "WallsPrompt": "Boundaries painted with Kandinsky's abstract motifs, where colors and shapes convey emotions and musical tones.",
-        "TitlePrompt": "The words 'Abstract Ambition' emerge as a blend of geometric forms and colors, drawing inspiration from Kandinsky's 'Composition VII'.",
-        "EmitterPrompt": "A dynamic abstract vortex inspired by Kandinsky's 'Several Circles', producing challenges and items in a symphony of shapes and colors.",
-        "ProjectilePrompt": "Lines and shapes in Kandinsky's style dart and weave, embodying the artist's belief in the synesthetic relationship between visuals and music."
     }
 ]

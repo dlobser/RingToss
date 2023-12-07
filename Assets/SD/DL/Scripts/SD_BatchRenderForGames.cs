@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Text.RegularExpressions;
+using TMPro;
 
 [Serializable]
 public class ArtDescription
@@ -33,7 +34,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
     // TextAsset jsonData = Resources.Load<TextAsset>("artDescriptions");
     // string jsonString = jsonData.text;
     ArtDescription[] artDescriptions;// = JsonUtility.FromJson<List<ArtDescription>>(jsonString);
-    public TextMesh textMesh; // Assign this via the Inspector or some other method
+    public TextMeshProUGUI textMesh; // Assign this via the Inspector or some other method
     public Dictionary<string, SDRenderChainLinkPrompt> promptLinks;
     public SDRenderChainLinkRenderDepth textRenderer;
     public SDRenderChainLink startingLink;
@@ -85,6 +86,7 @@ public class SD_BatchRenderForGames : SDRenderChainLink
         // artDescriptions = JsonUtility.FromJson<List<ArtDescription>>(jsonString);
 
         seed = seedStart;
+        UpdatePrompts();
         RunUnityFunction("");
 
     }
@@ -142,6 +144,19 @@ public class SD_BatchRenderForGames : SDRenderChainLink
         }
     }
 
+    public void ApplySelectedFont(TextMeshProUGUI textMeshPro, string resourcePath, int fontIndex)
+    {
+        TMP_FontAsset[] fonts = Resources.LoadAll<TMP_FontAsset>(resourcePath);
+        if (fonts.Length > fontIndex && fontIndex >= 0)
+        {
+            textMeshPro.font = fonts[fontIndex];
+        }
+        else
+        {
+            Debug.LogError("Invalid font index or TMP font not found.");
+        }
+    }
+
     public void UpdatePrompts()
     {
         // print("art descriptions length: " + artDescriptions.Length);
@@ -149,9 +164,10 @@ public class SD_BatchRenderForGames : SDRenderChainLink
         {
             var art = artDescriptions[artDescriptionIndex];
 
+            int fontsAmount = Resources.LoadAll<TMP_FontAsset>("Fonts").Length;
             if(fonts.Length>0){
-                textMesh.font = fonts[UnityEngine.Random.Range(0, fonts.Length)];
-                textMesh.GetComponent<MeshRenderer>().sharedMaterial = textMesh.font.material;
+                ApplySelectedFont(textMesh,"Fonts",artDescriptionIndexCounter % fontsAmount);
+                // textMesh.GetComponent<MeshRenderer>().sharedMaterial = textMesh.font.material;
             }
 
             if(textMesh.GetComponent<SetTextMeshWidth>()!=null){

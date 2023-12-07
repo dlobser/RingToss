@@ -25,6 +25,7 @@ public class WinOrLose : MonoBehaviour
             if(thisSprite==null){
                 GameObject g = Instantiate(sprite, GameManager.Instance.rootParent.transform);
                 thisSprite = g.GetComponent<SpriteRenderer>();
+                thisSprite.sprite = ImageLoader.Instance.GetSpriteWithIndex("Platform", GlobalSettings.ImageIndeces.Platform);
                 spriteColor = thisSprite.color;
                 thisSprite.color = new Color(spriteColor.r,spriteColor.g,spriteColor.b,0);
             }

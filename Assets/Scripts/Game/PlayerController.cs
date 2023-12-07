@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     Vector3 dragDirection;
     float dragDistance;
 
+    public SpriteRenderer emitterSprite;
+
     public GameObject indicatorSprite;
     GameObject indicator;
 
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
         if(FindObjectOfType<GameScoreKeeperLimitedProjectiles>()!=null)
             scoreKeeper = FindObjectOfType<GameScoreKeeperLimitedProjectiles>();
         projectileParent.transform.parent = GameManager.Instance.root.transform;
+        ImageLoader.Instance.SetSprite(emitterSprite, "Emitter", GlobalSettings.ImageIndeces.Emitter);
         GameManager.Instance.playerController = this;
     }
 
@@ -125,6 +128,7 @@ public class PlayerController : MonoBehaviour
             Vector3 position = new Vector3(col * spacing, -row * spacing, 0) + projectileParent.transform.position;
 
             GameObject g = Instantiate(projectileDisplay, position, Quaternion.identity, projectileParent.transform);
+            projectileDisplay.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = ImageLoader.Instance.GetSpriteWithIndex("Projectile", GlobalSettings.ImageIndeces.Projectile);
             g.transform.localPosition = position - projectileParent.transform.position; // Adjust local position relative to the parent
             g.transform.localScale = Vector3.one * 1f/(float)itemsPerRow; // Adjust scale as needed
         }
@@ -151,7 +155,12 @@ public class PlayerController : MonoBehaviour
         {
 
             Vector2 mousePos = Input.mousePosition;
-            dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+           dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+
+            // Quantize the world position to the nearest 10 unit grid
+            dragEndPos.x = QuantizeValue(dragEndPos.x, .1f);
+            dragEndPos.y = QuantizeValue(dragEndPos.y, .1f);
+
             indicator.transform.position = dragEndPos;
             // anchorSprite.LookAt(dragEndPos);
             dragEndPos.z = 0;
@@ -168,6 +177,14 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+
+
+    private float QuantizeValue(float value, float gridUnit)
+    {
+        return Mathf.Round(value / gridUnit) * gridUnit;
+    }
+
 
     private void OnMouseUp()
     {
@@ -193,7 +210,7 @@ public class PlayerController : MonoBehaviour
             if (currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>() != null)
             {
                 // imageLoader.AssignRandomImage(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Projectile");
-                // ImageLoader.Instance.SetSprite(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Item", GlobalSettings.ImageIndeces.Projectile);
+                ImageLoader.Instance.SetSprite(currentRing.transform.GetChild(0).GetComponent<SpriteRenderer>(), "Item", GlobalSettings.ImageIndeces.Projectile);
             }
 
             Rigidbody2D rb = currentRing.GetComponent<Rigidbody2D>();

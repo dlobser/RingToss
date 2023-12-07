@@ -632,9 +632,10 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
     {
         GlobalSettings.ImageIndeces.Style = int.Parse(ImageLoader.Instance.styleNum);
         GlobalSettings.ImageIndeces.BG = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Background");
-        // GlobalSettings.ImageIndeces.Platform = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Platform");
+        GlobalSettings.ImageIndeces.Platform = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Platform");
         GlobalSettings.ImageIndeces.Title = FindObjectOfType<ImageLoader>().GetRandomStyleNum("Title");
         GlobalSettings.ImageIndeces.Font = FindObjectOfType<ImageLoader>().GetRandomFontIndex("Fonts");
+        GlobalSettings.ImageIndeces.Emitter = FindObjectOfType<ImageLoader>().GetRandomFontIndex("Emitter");
     }
 
 }

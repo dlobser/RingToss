@@ -3,7 +3,7 @@ using UnityEngine;
 public class FadeOutAndDestroy : MonoBehaviour
 {
     private SpriteRenderer[] spriteRenderers;
-    private float fadeDuration = 10f;
+    public float fadeDuration = 10f;
     private float timer;
 
     void Start()
