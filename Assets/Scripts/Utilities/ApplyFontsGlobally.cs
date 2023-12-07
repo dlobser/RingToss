@@ -34,16 +34,16 @@ public class ApplyFontsGlobally : MonoBehaviour
         }
     }
 
-    public void ApplySelectedFont(TextMeshProUGUI textMeshPro, string resourcePath, int fontIndex)
-    {
-        TMP_FontAsset[] fonts = Resources.LoadAll<TMP_FontAsset>(resourcePath);
-        if (fonts.Length > fontIndex && fontIndex >= 0)
-        {
-            textMeshPro.font = fonts[fontIndex];
-        }
-        else
-        {
-            Debug.LogError("Invalid font index or TMP font not found.");
-        }
-    }
+    // public void ApplySelectedFont(TextMeshProUGUI textMeshPro, string resourcePath, int fontIndex)
+    // {
+    //     TMP_FontAsset[] fonts = Resources.LoadAll<TMP_FontAsset>(resourcePath);
+    //     if (fonts.Length > fontIndex && fontIndex >= 0)
+    //     {
+    //         textMeshPro.font = fonts[fontIndex];
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Invalid font index or TMP font not found.");
+    //     }
+    // }
 }

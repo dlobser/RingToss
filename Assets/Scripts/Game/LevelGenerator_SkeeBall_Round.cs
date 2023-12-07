@@ -84,7 +84,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
 
     void Update()
     {
-        MyDebug.Print("Platforms: " + allPlatforms.Count);
+        // MyDebug.Print("Platforms: " + allPlatforms.Count);
         if (reload)
         {
             GenerateLevel();
@@ -95,7 +95,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
     public override GameObject GeneratePlatformPositions()
     {
 
-        print("Random Seed For Platforms: " + GlobalSettings.randomSeed);
+        // MyDebug.Instance.Log("Random Seed For Platforms: " + GlobalSettings.randomSeed);
         Random.InitState(GlobalSettings.randomSeed);
         GameObject platforms = new GameObject("Platforms");
         allPlatforms = new List<Platform>();
@@ -128,7 +128,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         //     levelItems.platformPositionBounds.y,
         //     initCircles);
 
-        print(circles.Count);
+        // print(circles.Count);
         circles = ProcessCircles(circles);
         // circles = MoveCirclesCloser(circles);
 
@@ -191,7 +191,7 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
             count++;
             if (count > overFlow - 1)
             {
-                print("Overflow");
+                // print("Overflow");
                 for (int i = 0; i < circles.Count; i++)
                 {
                     for (int j = 1; j < circles.Count; j++)
@@ -591,11 +591,12 @@ public class LevelGenerator_SkeeBall_Round : LevelGenerator
         menuManager.ModifyMenu("Title", (menu) =>
         {
             menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndex("Title", GlobalSettings.ImageIndeces.Style);
+            menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.material.SetTexture("_GlowTex",ImageLoader.Instance.GetImageWithIndex("IntroTextAlpha", GlobalSettings.ImageIndeces.Style));
         });
 
         menuManager.ModifyMenu("Game", (menu) =>
         {
-            menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndexSeed("Background", -1, GlobalSettings.randomSeed);
+            menu.menuObject.GetComponent<GameScreenWithSimpleSprite>().spriteRenderer.sprite = ImageLoader.Instance.GetSpriteWithIndex("Background", GlobalSettings.ImageIndeces.BG);// GlobalSettings.randomSeed);
         });
 
         GeneratePlatforms();

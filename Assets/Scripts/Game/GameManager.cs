@@ -17,11 +17,11 @@ public static class GlobalSettings
     public static class ImageIndeces
     {
         public static int Style = 0;
-        public static int BG;
-        public static int Platform;
-        public static int Title;
-        public static int Projectile;
-        public static int Font;
+        public static int BG = 0;
+        public static int Platform = 0;
+        public static int Title = 0;
+        public static int Projectile = 0;
+        public static int Font = 0;
         public static int Emitter = 0;
         public static string GetStyleString()
         {

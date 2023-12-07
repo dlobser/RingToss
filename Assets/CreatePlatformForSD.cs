@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CreatePlatformForSD : MonoBehaviour
@@ -20,6 +21,12 @@ public class CreatePlatformForSD : MonoBehaviour
 
     public void GenerateAndManagePlatform()
     {
+
+        StartCoroutine(GenerateAndManagePlatformRoutine());
+    }
+
+    IEnumerator GenerateAndManagePlatformRoutine()
+    {
         // Clear existing children
         foreach (Transform child in root.transform)
         {
@@ -28,7 +35,6 @@ public class CreatePlatformForSD : MonoBehaviour
 
         // Generate new platform
         GameObject newPlatform = levelGenerator.GeneratePlatformPositions();
-        print("Made Platform" + newPlatform.name);
         if (newPlatform != null)
         {
             newPlatform.transform.SetParent(root.transform, false);
@@ -36,6 +42,8 @@ public class CreatePlatformForSD : MonoBehaviour
             // Set the layer of the new platform and its children
             SetLayerRecursively(newPlatform, LayerMask.NameToLayer("BG"));
         }
+
+        yield return null;
     }
 
     private void SetLayerRecursively(GameObject obj, int newLayer)

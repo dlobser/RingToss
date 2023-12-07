@@ -83,7 +83,7 @@ public class Request : MonoBehaviour
         alwaysonScripts.Asymmetric_tiling.args = new List<object>() { true, true, true, 0, -1 };
 
 
-        print("always on: " + alwaysonScripts);
+        // print("always on: " + alwaysonScripts);
 
         if (ExtraValuesForTxt2Image.useControlNet || ExtraValuesForTxt2Image.tileX || ExtraValuesForTxt2Image.tileY)
         {

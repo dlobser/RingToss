@@ -134,36 +134,68 @@ public class ImageLoader : MonoBehaviour
     //     return textures[index];
     // }
 
+    // public int GetRandomStyleNum(string imageType)
+    // {
+    //     // Assuming `GetFilenames` retrieves all filenames from the specified directory
+    //     string[] allFilenames = GetFilenames(directory);
+    //     // Adjust the pattern to match "Abstract_Background_0007_42" format
+    //     string pattern = $"{imageType}_([0-9]{{4}})_";
+
+    //     List<int> foundStyleNums = new List<int>();
+
+    //     foreach (var filename in allFilenames)
+    //     {
+    //         Match match = Regex.Match(filename, pattern);
+    //         if (match.Success)
+    //         {
+    //             if (int.TryParse(match.Groups[1].Value, out int styleNum))
+    //             {
+    //                 foundStyleNums.Add(styleNum);
+    //             }
+    //         }
+    //     }
+
+    //     if (foundStyleNums.Count == 0)
+    //     {
+    //         Debug.LogError("No matching style numbers found.");
+    //         return -1; // Or handle this case as you see fit
+    //     }
+
+    //     int randomIndex = UnityEngine.Random.Range(0, foundStyleNums.Count);
+    //     return foundStyleNums[randomIndex];
+    // }
     public int GetRandomStyleNum(string imageType)
     {
         // Assuming `GetFilenames` retrieves all filenames from the specified directory
-        string[] allFilenames = GetFilenames(directory);
-        // Adjust the pattern to match "Abstract_Background_0007_42" format
-        string pattern = $"{imageType}_([0-9]{{4}})_";
+        // string[] allFilenames = GetFilenames(directory);
 
-        List<int> foundStyleNums = new List<int>();
+        // // Adjust the pattern to match "imageType_0001_2_0.png" format, where the last number should match GlobalSettings.randSeed
+        // string pattern = $".*_{imageType}_([0-9]{{4}})_([0-9]+)_" + GlobalSettings.randomSeed + "\\.png$";
 
-        foreach (var filename in allFilenames)
-        {
-            Match match = Regex.Match(filename, pattern);
-            if (match.Success)
-            {
-                if (int.TryParse(match.Groups[1].Value, out int styleNum))
-                {
-                    foundStyleNums.Add(styleNum);
-                }
-            }
-        }
+        // List<int> foundStyleNums = new List<int>();
 
-        if (foundStyleNums.Count == 0)
-        {
-            Debug.LogError("No matching style numbers found.");
-            return -1; // Or handle this case as you see fit
-        }
+        // foreach (var filename in allFilenames)
+        // {
+        //     Match match = Regex.Match(filename, pattern);
+        //     if (match.Success)
+        //     {
+        //         if (int.TryParse(match.Groups[1].Value, out int styleNum))
+        //         {
+        //             foundStyleNums.Add(styleNum);
+        //         }
+        //     }
+        // }
 
-        int randomIndex = UnityEngine.Random.Range(0, foundStyleNums.Count);
-        return foundStyleNums[randomIndex];
+        // if (foundStyleNums.Count == 0)
+        // {
+        //     Debug.LogError("No matching style numbers found."+"Image Type: " + imageType + " Random Seed: " + GlobalSettings.randomSeed);
+        //     return -1; // Or handle this case as you see fit
+        // }
+
+        // int randomIndex = UnityEngine.Random.Range(0, foundStyleNums.Count);
+        return 0;//foundStyleNums[randomIndex];
     }
+
 
     private string[] GetFilenames(string resourceFolder)
     {
@@ -192,50 +224,88 @@ public class ImageLoader : MonoBehaviour
         return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.one * .5f);
     }
 
+    // public Texture2D GetImageWithIndex(string imageType, int index = -1)
+    // {
+    //     // Format styleNum with padding, assuming it needs to be 4 digits long
+    //     string styleNumFormatted = styleNum;
 
+    //     // Construct the partial filename with styleNum
+    //     string partialFileName = $"_{styleNumFormatted}_";
 
-    public Texture2D GetImageWithIndex(string imageType, int index = -1)
+    //     // print(directory + " " + " " + styleNum + " " + partialFileName + " " + imageType);
+
+    //     // Get all files in the directory
+    //     Texture2D[] textures = Resources.LoadAll<Texture2D>(directory)
+    //         .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType)).ToArray();
+        
+    //     // Log how many textures were found
+    //     // Debug.Log("Number of textures found: " + textures.Length + " index: " + index);
+
+    //     // If there are no textures, return null
+    //     if (textures.Length == 0)
+    //     {
+    //         Debug.LogWarning("No textures found with the given criteria.");
+    //         return null;
+    //     }
+
+    //     // Choose a random texture if index is -1 or if it is out of bounds
+    //     if (index == -1 || index >= textures.Length)
+    //     {
+    //         index = Random.Range(0, textures.Length);
+    //     }
+
+    //     // Return the selected texture
+    //     // Check if tex is null
+    //     if (textures[index] == null)
+    //     {
+    //         // Create a 1x1 white texture
+    //         Texture2D tex = new Texture2D(1, 1);
+    //         tex.SetPixel(0, 0, Color.white);
+    //         tex.Apply();
+    //         return tex;
+    //     }
+    //     else
+    //         return textures[index];
+    // }
+    public Texture2D GetImageWithIndex(string imageType, int index =0)
     {
-        // Format styleNum with padding, assuming it needs to be 4 digits long
-        string styleNumFormatted = styleNum;
+        // The directory in the Resources folder to search
+        // string directory = "Images";
+        
+        // Load all textures from the specified directory
+        Texture2D[] allTextures = Resources.LoadAll<Texture2D>(directory);
 
-        // Construct the partial filename with styleNum
-        string partialFileName = $"_{styleNumFormatted}_";
+        // Filter textures based on the naming pattern and GlobalSettings.randomSeed
+        var matchingTextures = allTextures.Where(texture => {
+            // Split the texture name into parts
+            string[] parts = texture.name.Split('_');
 
-        // print(directory + " " + " " + styleNum + " " + partialFileName + " " + imageType);
+            // Check if the texture name has enough parts and matches the specified imageType
+            if (parts.Length >= 3 && parts[1].Equals(imageType, System.StringComparison.OrdinalIgnoreCase))
+            {
+                // Check if the last part before the file extension matches GlobalSettings.randomSeed
+                if (int.TryParse(parts[parts.Length - 1], out int lastNumber) && lastNumber == GlobalSettings.randomSeed)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }).ToArray();
 
-        // Get all files in the directory
-        Texture2D[] textures = Resources.LoadAll<Texture2D>(directory)
-            .Where(t => t.name.Contains(styleNum) && t.name.Contains(imageType)).ToArray();
-
-        // Log how many textures were found
-        // Debug.Log("Number of textures found: " + textures.Length + " index: " + index);
-
-        // If there are no textures, return null
-        if (textures.Length == 0)
+        // Return a random texture from the matching ones, or null if there are none
+        if (matchingTextures.Length > 0)
         {
-            Debug.LogWarning("No textures found with the given criteria.");
-            return null;
+            int randomIndex = UnityEngine.Random.Range(0, matchingTextures.Length);
+            return matchingTextures[randomIndex];
         }
-
-        // Choose a random texture if index is -1 or if it is out of bounds
-        if (index == -1 || index >= textures.Length)
+        else
         {
-            index = Random.Range(0, textures.Length);
-        }
-
-        // Return the selected texture
-        // Check if tex is null
-        if (textures[index] == null)
-        {
-            // Create a 1x1 white texture
-            Texture2D tex = new Texture2D(1, 1);
+            Debug.LogWarning("No matching textures found.");
+            Texture2D tex = new Texture2D(1,1);
             tex.SetPixel(0, 0, Color.white);
             tex.Apply();
             return tex;
         }
-        else
-            return textures[index];
     }
 
     public Sprite GetSpriteWithIndexSeed(string imageType, int index = -1, int globalSeed = -1)

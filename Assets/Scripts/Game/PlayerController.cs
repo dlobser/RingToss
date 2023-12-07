@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
         if(FindObjectOfType<GameScoreKeeperLimitedProjectiles>()!=null)
             scoreKeeper = FindObjectOfType<GameScoreKeeperLimitedProjectiles>();
         projectileParent.transform.parent = GameManager.Instance.root.transform;
+        print(emitterSprite);
+        print(ImageLoader.Instance);
+        print(GlobalSettings.ImageIndeces.Emitter);
         ImageLoader.Instance.SetSprite(emitterSprite, "Emitter", GlobalSettings.ImageIndeces.Emitter);
         GameManager.Instance.playerController = this;
     }
@@ -134,8 +137,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     private void OnMouseDown()
     {
         Vector2 mousePos = Input.mousePosition;
@@ -178,8 +179,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     private float QuantizeValue(float value, float gridUnit)
     {
         return Mathf.Round(value / gridUnit) * gridUnit;
@@ -193,7 +192,11 @@ public class PlayerController : MonoBehaviour
             Vector2 mousePos = Input.mousePosition;
             dragEndPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
             
-
+            if(Vector2.Distance(dragEndPos,ringSpawnPoint.position ) < 1 || dragEndPos.y<ringSpawnPoint.position.y){
+                canToss = false;
+                Destroy(indicator);
+                return;
+            }
             tossForceMultiply = GlobalSettings.Physics.ballSpeed;
 
             if (displayRing != null)
