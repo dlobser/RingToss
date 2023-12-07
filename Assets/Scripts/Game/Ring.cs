@@ -101,7 +101,7 @@ public class Ring : MonoBehaviour
 
                 case CustomTag.PlatformBouncy:
                     // instantiate a bounce effect
-                    this.transform.localScale *= .9f;
+                    this.transform.localScale *= .98f;
                     if (bounceEffect != null)
                     {
                         GameObject bounce = Instantiate(bounceEffect,GameManager.Instance.root.transform);
@@ -111,7 +111,7 @@ public class Ring : MonoBehaviour
 
                 case CustomTag.Platform:
                     // instantiate a bounce effect
-                    this.transform.localScale *= .9f;
+                    this.transform.localScale *= .98f;
                     if (bounceEffect != null)
                     {
                         GameObject bounce = Instantiate(bounceEffect);
@@ -157,7 +157,7 @@ public class Ring : MonoBehaviour
             if (rb != null)
             {
                 Vector2 directionOutward = (Random.insideUnitSphere + Vector3.up).normalized;
-                rb.AddForce(directionOutward * 4 + new Vector2(velocity.x, velocity.y), ForceMode2D.Impulse);
+                rb.AddForce(directionOutward * 4 + new Vector2(velocity.x*2, velocity.y*2), ForceMode2D.Impulse);
             }
             else
             {

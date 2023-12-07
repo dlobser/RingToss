@@ -59,6 +59,7 @@ public class GameScoreKeeperLimitedProjectiles : GameScoreKeeper
             scoreUI.text = items + " / " + totalItemsInLevel;
         base.CheckLevelFinished();
         if(usedProjectiles>=totalProjectiles){
+            totalScore+=totalProjectiles-usedProjectiles;
             GameManager.Instance.GameOver();
         }
         

@@ -14,6 +14,7 @@ public class GameScoreKeeper : MonoBehaviour
     public int totalItemsInLevel;
     public bool win;
     public GameManager gameManager;
+    
 
     void Awake()
     {
