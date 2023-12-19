@@ -40,6 +40,6 @@ Material:
     m_Colors:
     - _CamPos: {r: 1.87, g: 0, b: 0, a: 0}
     - _Data: {r: 1.45, g: 0.34, b: 2.39, a: 1.27}
-    - _NoiseData: {r: 135.1, g: 1, b: 0.2, a: 0.01}
+    - _NoiseData: {r: 135.1, g: 1, b: 0.1, a: 0}
     - _NoiseDropoff: {r: 9, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []

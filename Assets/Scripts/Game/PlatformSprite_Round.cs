@@ -143,7 +143,7 @@ public class PlatformSprite_Round : Platform
 
     public override void PopulatePlatformWithItems(PlatformItemArguments itemArguments)
     {
-
+        print("populate: " + itemArguments.amount);
         if (itemArguments.amount > 0)
         {
 

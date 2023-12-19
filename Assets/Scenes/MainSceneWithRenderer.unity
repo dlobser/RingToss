@@ -5061,7 +5061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &193355203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8548,6 +8548,7 @@ Transform:
   m_Children:
   - {fileID: 193355204}
   - {fileID: 1987015182}
+  - {fileID: 1803009856}
   m_Father: {fileID: 1074671792}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8564,7 +8565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelGenerators:
-  - {fileID: 193355205}
+  - {fileID: 1803009861}
 --- !u!1 &319643062
 GameObject:
   m_ObjectHideFlags: 0
@@ -52777,6 +52778,211 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1803009855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803009856}
+  - component: {fileID: 1803009861}
+  - component: {fileID: 1803009860}
+  - component: {fileID: 1803009859}
+  - component: {fileID: 1803009858}
+  - component: {fileID: 1803009857}
+  m_Layer: 0
+  m_Name: LevelSkeeBall (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803009856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803009855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.19, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 318463593}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1803009857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803009855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b954cc066cc557340bd68cab57af6961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAnimationComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1803009858}
+        m_TargetAssemblyTypeName: MenuManager_ShowMenu, Assembly-CSharp
+        m_MethodName: TriggerShowMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1803009860}
+        m_TargetAssemblyTypeName: GameScoreKeeper, Assembly-CSharp
+        m_MethodName: OnLevelEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  animationTime: 2
+  sprite: {fileID: 5753034017887162092, guid: 40c58e20ddb96ee40971ad61e0fbbdcd, type: 3}
+--- !u!114 &1803009858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803009855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d7ce8ba01a2d4459b7fbf723c89efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuName: End
+--- !u!114 &1803009859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803009855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80607736c1051fe47b3dd7fc7400fb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGameStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onGameEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1803009857}
+        m_TargetAssemblyTypeName: WinOrLose, Assembly-CSharp
+        m_MethodName: StartAnimating
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1803009860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803009855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a960acba3ea7722469ca62120bed7ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalScore: 0
+  elapsedTime: 0
+  items: 0
+  totalItemsInLevel: 2
+  win: 0
+  gameManager: {fileID: 1074671791}
+  totalProjectiles: 15
+  usedProjectiles: 0
+  scoreUI: {fileID: 436453665}
+  projectilesUI: {fileID: 1630414811}
+--- !u!114 &1803009861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803009855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2610969276d3a434e9626198e136e64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 0}
+  levelSettings:
+    scoreKeeper: {fileID: 1803009860}
+    playerController: {fileID: 5175111842008739564, guid: d694b628166ffc1489b630a4d0a583de, type: 3}
+    gameManager: {fileID: 1074671791}
+    menuManager: {fileID: 4328894844798248831, guid: aafc6335b017c434f8e9cc71a2d0a2fe, type: 3}
+  menuManager: {fileID: 0}
+  levelItems:
+    platformWithItemPrefab:
+    - {fileID: 7906126835272206479, guid: 1cd79eb02d3bee14abce45ba29a6f488, type: 3}
+    - {fileID: 7906126835272206479, guid: 7e519c6a52ed34045bf6bfa7e21fa42b, type: 3}
+    - {fileID: 7906126835272206479, guid: 2562a63d8ab90ec48973ad976433f12f, type: 3}
+    - {fileID: 7906126835272206479, guid: ab292f30525cca64c95bf5b443997ffc, type: 3}
+    platformForcePrefab:
+    - {fileID: 6441241457197365887, guid: 0361f39420019e14fa4040cde4da7e23, type: 3}
+    - {fileID: 4476555086493500343, guid: e75dbd20c7b0af4469f6f8cbe0242be9, type: 3}
+    - {fileID: 6441241457197365887, guid: 0d706b827ad4f0140a460057db8cb633, type: 3}
+    - {fileID: 1725934557042584083, guid: 6e8a75f6d87dbdd42b7f2378d8a0a510, type: 3}
+    - {fileID: 2408815112988413092, guid: be4e9b3e71d10064191202879d16c18c, type: 3}
+    - {fileID: 4476555086493500343, guid: 0733c0d87fddb804f907a09c224d72fd, type: 3}
+    - {fileID: 6441241457197365887, guid: 387e3040c9a39ca47952ba4d87cf294a, type: 3}
+    platformTinyPrefab:
+    - {fileID: 1425425080666822596, guid: e0fbb336cf8c2dd4caf415682c91d836, type: 3}
+    displayPlatformWithItemPrefab: {fileID: 7773271479932877950, guid: 71dd3d99a5583e9468873804781ae055, type: 3}
+    displayPlatformForcePrefab: {fileID: 7773271479932877950, guid: 1444816008a4f824fb21bab83f1aa206, type: 3}
+    displayPlatformTinyPrefab: {fileID: 7773271479932877950, guid: 41a49ad608dba5b4ab2055b1d47ee565, type: 3}
+    platformMaterial: {fileID: 2100000, guid: dad7673b8e227494893098489b55e7d3, type: 2}
+    minMaxPlatformWithItemsAmount: {x: 2, y: 4}
+    minMaxPlatformForceAmount: {x: 8, y: 12}
+    minMaxPlatformTinyAmount: {x: 5, y: 8}
+    platformPositionBounds: {x: 2.3, y: 2.7}
+    platformWithItemsSizeBounds: {x: 0.8, y: 1.2}
+    platformForceSizeBounds: {x: 0.4, y: 1}
+    platformTinySizeBounds: {x: 0.1, y: 0.2}
+    platformPositionYOffset: 0.6
+    itemSize: 0.2
+    instantiatedMaterials: []
+    minMaxPlatformAnimateBounds: {x: -3, y: 3}
+    minMaxPlatformAnimateSpeed: {x: 0.1, y: 1}
+    minMaxProjectileSpeed: {x: 0.8, y: 3}
+    minMaxProjectileGravity: {x: 0.001, y: 0.07}
+    target: {fileID: 1237950798981719944, guid: e49233c602649e44484ad1accbaaabe9, type: 3}
+    bonusTarget: {fileID: 1237950798981719944, guid: e49233c602649e44484ad1accbaaabe9, type: 3}
+    ballSize: 0.3
+  reload: 0
+  randomSeed: 307
+  randomizeSeed: 0
+  platformColorA: {r: 0, g: 0, b: 0, a: 0}
+  platformColorB: {r: 0, g: 0, b: 0, a: 0}
+  platformColorC: {r: 0, g: 0, b: 0, a: 0}
+  averageColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1805469168
 GameObject:
   m_ObjectHideFlags: 0
@@ -52969,7 +53175,7 @@ MonoBehaviour:
   - {fileID: 1615538577}
   root: {fileID: 290421205}
   layerName: BG
-  levelGenerator: {fileID: 193355205}
+  levelGenerator: {fileID: 1803009861}
 --- !u!1 &1806990397
 GameObject:
   m_ObjectHideFlags: 0

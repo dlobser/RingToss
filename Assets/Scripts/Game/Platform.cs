@@ -56,9 +56,35 @@ public class Platform : MonoBehaviour
         // renderer.material = mat;
     }
 
-    public virtual void SetColor(Color color)
+   public virtual void SetColor(Color color)
     {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer is SpriteRenderer spriteRenderer)
+            {
+                // spriteRenderer.color = color;
+                spriteRenderer.material.SetColor("_Color", color);
+            }
+            else if (renderer is LineRenderer lineRenderer)
+            {
+                // lineRenderer.startColor = color;
+                // lineRenderer.endColor = color;
+                lineRenderer.material.SetColor("_Color", color);
+            }
+            else
+            {
+                renderer.material.SetColor("_Color", color);
+            }
+
+            Debug.Log("Setting color: " + renderer.gameObject.name + " " + color);
+        }
+
+        if (renderers.Length == 0)
+        {
+            Debug.Log("No renderer found");
+        }
     }
 
     public virtual Color GetColor()

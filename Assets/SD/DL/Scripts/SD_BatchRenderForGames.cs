@@ -221,17 +221,17 @@ public class SD_BatchRenderForGames : SDRenderChainLink
         {
             imageSeed += seedIterate;
 
-            SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
-            foreach(SDRenderChainLink link in links){
-                if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
-                {
-                    img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-                }
-                else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
-                {
-                    txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-                }
-            }
+            // SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
+            // foreach(SDRenderChainLink link in links){
+            //     if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
+            //     {
+            //         img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
+            //     }
+            //     else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
+            //     {
+            //         txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
+            //     }
+            // }
 
             print("ImageSeed after else: " + imageSeed + " - " + gameRandomSeed);
             seedIterationCounter=0;
@@ -244,6 +244,19 @@ public class SD_BatchRenderForGames : SDRenderChainLink
             GlobalSettings.randomSeed = gameRandomSeed;
             UnityEngine.Random.InitState(gameRandomSeed);
             CreateSDRenderChainLinkSaveForChildren();
+
+            SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
+            foreach(SDRenderChainLink link in links){
+                if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
+                {
+                    img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
+                }
+                else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
+                {
+                    txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
+                }
+            }
+
             startingLink.RunUnityFunction("");
         }
     }

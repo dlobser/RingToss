@@ -5,6 +5,7 @@ public class Ring : MonoBehaviour
 
     bool emitted = false;
     public GameObject burster;
+    public GameObject bursterTiny;
     public GameObject bounceEffect;
     public int destroyOnBounces = 1;
     int bounces = 0;
@@ -19,6 +20,28 @@ public class Ring : MonoBehaviour
     {
         initScale = this.transform.localScale.x;
         initLineTime = this.trailRenderer.time;
+    }
+    private void OnTriggerEnter2D(Collider2D other){
+        Item target = null;
+
+        if (other.gameObject.GetComponent<Item>() != null)
+            target = other.gameObject.GetComponent<Item>();
+
+        if (target != null){
+            if(target.customTag == CustomTag.ItemSpecial){
+                if (GameManager.Instance.gameScoreKeeper != null){
+                    GameManager.Instance.gameScoreKeeper.IncrementScore(target.scoreValue);
+                }
+                if (burster != null)
+                {
+                    GameObject burst = Instantiate(bursterTiny,GameManager.Instance.root.transform);
+                    burst.transform.position = this.transform.position;
+                    // Destroy(burst.gameObject, 5);
+                }
+                Destroy(target.gameObject);
+                return;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

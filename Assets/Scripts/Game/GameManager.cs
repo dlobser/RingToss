@@ -5,9 +5,12 @@ public enum CustomTag
 {
     Boundary,
     Item,
+    ItemSpecial,
     Projectile,
     Platform,
     PlatformBouncy,
+    PlatformWithItem,
+    PlatformWithForce,
     BonusItem
 }
 

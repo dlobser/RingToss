@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burster: {fileID: 6675763753893421309, guid: 7b6af216c13957e4eb81b9d36b49319c, type: 3}
+  bursterTiny: {fileID: 6675763753893421309, guid: 31fc9bf3c91355d44bc4d93b61de112a, type: 3}
   bounceEffect: {fileID: 6128824119604436990, guid: 1316213b0411fca43b161e2855bc93db, type: 3}
   destroyOnBounces: 15
   trailRenderer: {fileID: -6476600750061392165}
@@ -487,4 +488,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544b65343452df042a5af3ed40d4e232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 0.05
+  speedMultiplier: 0.15

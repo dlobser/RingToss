@@ -8,7 +8,7 @@ public class SDRenderChainLinkBuildPlatform : SDRenderChainLink
 
     public GameObject root;
     public string layerName = "BG";
-    public LevelGenerator_SkeeBall_Round levelGenerator;
+    public LevelGenerator_SkeeBall_Complex levelGenerator;
 
     void Start()
     {
