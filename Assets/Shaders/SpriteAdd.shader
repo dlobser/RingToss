@@ -74,13 +74,14 @@ Shader "Custom/SpriteGlow"
             {
                 half4 col = tex2D(_MainTex, i.uv);
                 half4 glow = tex2D(_GlowTex, i.uv);
-                float s = sin(i.uv.x*.5+i.uv.y*5+_Time.y*3)*.5+.5;
+                float s = abs(sin(sin(i.uv.x*10)+i.uv.x*.5+i.uv.y*10+_Time.y*1));
                 // glow*=((s+.5)*.5);
                 // col *= _Color;
                 // col+=glow*col.a;
 
-                
-                return col+saturate(i.col*(glow.r)*saturate(s)*1-col);//col * i.col;
+                float p = lerp(0,(s)*1-col,saturate(glow*4-3));
+                float4 pp = float4(p,p,p,0);//*(1-col);
+                return saturate(pp)+col;//col+saturate(i.col*(glow.r)*(s)*1-col);//col * i.col;
             }
 
             #endif // UNITY_SPRITES_INCLUDED

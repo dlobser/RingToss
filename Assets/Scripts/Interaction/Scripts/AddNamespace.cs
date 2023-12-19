@@ -2,79 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Text.RegularExpressions;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+[ExecuteInEditMode]
 public class AddNamespace : MonoBehaviour
 {
 #if UNITY_EDITOR
-    public TextAsset[] texts;
+    public string folderPath;
     public bool doit;
-
-    void Start()
-    {
-
-        //string[] tee = AssetDatabase.FindAssets("*.cs");
-        //texts = new TextAsset[tee.Length];
-        //for (int i = 0; i < tee.Length; i++)
-        //{
-        //    texts[i] = AssetDatabase.LoadAssetAtPath(tee[i]);
-        //}
-    }
 
     void Update()
     {
         if (doit)
         {
-            for (int i = 0; i < texts.Length; i++)
-            {
-                DOIT(texts[i]);
-            }
-
+            ProcessScriptsInFolder(folderPath);
             doit = false;
         }
     }
-    void DOIT(TextAsset text)
+
+    void ProcessScriptsInFolder(string path)
     {
+        var fullPath = Path.Combine(Application.dataPath, path);
+        var files = Directory.GetFiles(fullPath, "*.cs", SearchOption.TopDirectoryOnly);
 
-        string s = text.text;
-        string[] ss = s.Split(new char[] { '\n' });
-        string o = "";
-        bool didName = false;
-
-        bool dontName = false;
-        for (int i = 0; i < ss.Length; i++)
+        foreach (var file in files)
         {
-            if (ss[i].Contains("namespace"))
-            {
-                dontName = true;
-            }
-
-
+            AddNamespaceToFile(file);
         }
-        if (!dontName)
+    }
+
+    void AddNamespaceToFile(string filePath)
+    {
+        string content = File.ReadAllText(filePath);
+        if (!content.Contains("namespace"))
         {
-            for (int i = 0; i < ss.Length; i++)
-            {
-                if (!didName && !ss[i].Contains("using"))
-                {
+            // Find the position after the last 'using' statement
+            int insertionIndex = FindInsertionIndex(content);
 
-                    o += "\n";
-                    o += "namespace ON.interaction{\n";
-                    didName = true;
-                }
+            // Insert the namespace declaration at the found position
+            string namespaceLine = "namespace ON.interaction\n{\n";
+            string newContent = content.Insert(insertionIndex, namespaceLine) + "\n}";
 
-                o += ss[i] + "\n";
-            }
-            o += "\n}";
-
-            File.WriteAllText(AssetDatabase.GetAssetPath(text), o);
-            EditorUtility.SetDirty(text);
+            File.WriteAllText(filePath, newContent);
+            Debug.Log($"Namespace added to {filePath}");
         }
         else
         {
-            print(text.name + " Didn't write, namespace exists");
+            Debug.Log($"{filePath} already has a namespace.");
         }
+    }
+
+    int FindInsertionIndex(string content)
+    {
+        // Find the last 'using' statement or the start of the file content
+        MatchCollection matches = Regex.Matches(content, @"^using [^;]+;", RegexOptions.Multiline);
+        int lastIndex = matches.Count > 0 ? matches[matches.Count - 1].Index + matches[matches.Count - 1].Length : 0;
+
+        // Find the first class/interface/enum/struct declaration
+        Match match = Regex.Match(content, @"(class|interface|enum|struct) [^{]+{", RegexOptions.Multiline);
+        int classIndex = match.Success ? match.Index : content.Length;
+
+        // Return the position after the last 'using' statement but before the first type declaration
+        return lastIndex > classIndex ? classIndex : lastIndex;
     }
 #endif
 }
