@@ -27,7 +27,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _HueShift: 0.3
-    - _MasterHueShift: 0.1
+    - _MasterHueShift: 0
     - _Square: 0
     m_Colors:
     - _Color: {r: 0.899, g: 0.59850454, b: 0, a: 0.050980393}

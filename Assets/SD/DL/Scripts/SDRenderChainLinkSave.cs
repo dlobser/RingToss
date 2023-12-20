@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using UnityEngine.Networking;
+using Unity.VisualScripting;
 
 public class SDRenderChainLinkSave : SDRenderChainLink
 {
@@ -27,6 +28,11 @@ public class SDRenderChainLinkSave : SDRenderChainLink
 
     public override void RunUnityFunction(string image)
     {
+        StartCoroutine(RunUnityFunctionRoutine(image));
+    }
+
+    IEnumerator RunUnityFunctionRoutine(string image)
+    {
         sdImage = image;
         // Extract the directory path from the location parameter
         string directory = Path.GetDirectoryName(location);
@@ -36,6 +42,8 @@ public class SDRenderChainLinkSave : SDRenderChainLink
         {
             Directory.CreateDirectory(directory);
         }
+
+        yield return null;
 
         if (makeMatte)
         {
@@ -75,12 +83,15 @@ public class SDRenderChainLinkSave : SDRenderChainLink
 
             }
             SDRenderUtils.SaveImage(tex, location, width, height);
+            yield return null;
         }
         else if(useMatte){
             LoadTexture(matteLocation, SetMatteOnTexture);
+            yield return null;
         }
         else
             SDRenderUtils.SaveImage(image, location, width, height);
+        yield return null;
 
         foreach (SDRenderChainLink l in link)
         {

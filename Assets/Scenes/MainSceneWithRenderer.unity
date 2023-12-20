@@ -5287,7 +5287,7 @@ MonoBehaviour:
   - {fileID: 939526764}
   seedStart: 0
   seedIterate: 1
-  seedIterationsPerSet: 1
+  seedIterationsPerSet: 0
   imageSeed: 0
   saveLinks: []
   saveNames: []
@@ -10499,13 +10499,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 7.5
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 512
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: intricate, detailed, ornate, elaborate, face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -10513,7 +10513,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 1
   controlnet_guidance_end: 1
   tileX: 0
@@ -20546,13 +20546,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 7.5
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 1024
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -20560,7 +20560,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 1.5
   controlnet_guidance_end: 1
   tileX: 0
@@ -25279,7 +25279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &906950109
 Transform:
   m_ObjectHideFlags: 0
@@ -25712,13 +25712,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 6
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 512
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -25726,7 +25726,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 0
   controlnet_guidance_end: 0
   tileX: 1
@@ -30604,13 +30604,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 6
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 1024
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -30618,7 +30618,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 1
   controlnet_guidance_end: 1
   tileX: 0
@@ -31752,7 +31752,7 @@ Transform:
   m_GameObject: {fileID: 1116245183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.022}
-  m_LocalScale: {x: 1.5084041, y: 1.5084041, z: 1.5084041}
+  m_LocalScale: {x: 3.8283298, y: 3.8283298, z: 3.8283298}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 796368936}
@@ -31792,7 +31792,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ee4905bca87e8c043b7f39ad1c30f58d, type: 2}
+  - {fileID: 2100000, guid: 95091ebf29d9e3e478d0369b8e64050a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32520,7 +32520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1154026183
 Transform:
   m_ObjectHideFlags: 0
@@ -44112,13 +44112,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 7.5
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 1024
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: intricate, detailed, ornate, elaborate, face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -44126,7 +44126,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 1.5
   controlnet_guidance_end: 1
   tileX: 0
@@ -46198,13 +46198,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 7.5
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 512
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: intricate, detailed, ornate, elaborate, face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -46212,7 +46212,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 1
   controlnet_guidance_end: 1
   tileX: 0
@@ -49674,8 +49674,7 @@ MonoBehaviour:
   extraValuesImg2Img: {fileID: 1473131712}
   extraValuesTxt2Img: {fileID: 1539870912}
   useVariations: 0
-  prePrompt: 'a beautifully lit and rendered sculpture, detailed and intricate, beautiful
-    lighting '
+  prePrompt: 
   postPrompt: 
 --- !u!1 &1697312219
 GameObject:
@@ -49919,7 +49918,7 @@ MonoBehaviour:
   extraValuesImg2Img: {fileID: 1473131712}
   extraValuesTxt2Img: {fileID: 721020578}
   useVariations: 0
-  prePrompt: 'a beautiful and intricately detailed poster with abstract elements '
+  prePrompt: 
   postPrompt: 
 --- !u!1 &1719714292
 GameObject:
@@ -50437,7 +50436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1733402738
 Transform:
   m_ObjectHideFlags: 0
@@ -54285,13 +54284,13 @@ MonoBehaviour:
   seed_resize_from_w: -1
   batch_size: 1
   n_iter: 1
-  steps: 25
-  cfg_scale: 7.5
+  steps: 20
+  cfg_scale: 7
   width: 512
   height: 512
   restore_faces: 0
   tiling: 0
-  negative_prompt: land, mountains, ocean, water, bulidings, trees, rocks, earth
+  negative_prompt: intricate, detailed, ornate, elaborate, face, person, body
   eta: 0
   s_churn: 0
   s_tmax: 0
@@ -54299,7 +54298,7 @@ MonoBehaviour:
   s_noise: 1
   sampler_index: 
   prompt: a brick room with a giant blue ball
-  sampler_name: Euler
+  sampler_name: Euler a
   controlnet_weight: 1
   controlnet_guidance_end: 1
   tileX: 0

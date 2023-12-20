@@ -12,6 +12,7 @@ public class ArtDescription
     public string Name;
     public int Seed;
     public string ArtistName;
+    public string PrePrompt;
     public string BackgroundPrompt;
     public string PlatformPrompt;
     public string ItemPrompt;
@@ -150,90 +151,24 @@ public class SD_BatchRenderForGames : SDRenderChainLink
             else
                 textMesh.text = art.Name;
 
-            SetPromptValue("BackgroundPrompt", art.BackgroundPrompt + " by " + art.ArtistName);
-            SetPromptValue("PlatformPrompt", art.PlatformPrompt + " by " + art.ArtistName);
-            SetPromptValue("ItemPrompt", art.ItemPrompt + " by " + art.ArtistName);
-            SetPromptValue("BonusItemPrompt", art.BonusItemPrompt + " by " + art.ArtistName);
-            SetPromptValue("WallsPrompt", art.WallsPrompt + " by " + art.ArtistName);
-            SetPromptValue("TitlePrompt", art.TitlePrompt + " by " + art.ArtistName);
-            SetPromptValue("EmitterPrompt", art.EmitterPrompt + " by " + art.ArtistName);
-            SetPromptValue("ProjectilePrompt", art.ProjectilePrompt + " by " + art.ArtistName);
+            SetPromptValue("BackgroundPrompt", art.PrePrompt + " " + art.BackgroundPrompt + " by " + art.ArtistName);
+            SetPromptValue("PlatformPrompt", art.PrePrompt + " " + art.PlatformPrompt + " by " + art.ArtistName);
+            SetPromptValue("ItemPrompt", art.PrePrompt + " " + art.ItemPrompt + " by " + art.ArtistName);
+            SetPromptValue("BonusItemPrompt", art.PrePrompt + " " + art.BonusItemPrompt + " by " + art.ArtistName);
+            SetPromptValue("WallsPrompt", art.PrePrompt + " " + art.WallsPrompt + " by " + art.ArtistName);
+            SetPromptValue("TitlePrompt", art.PrePrompt + " " + art.TitlePrompt + " by " + art.ArtistName);
+            SetPromptValue("EmitterPrompt", art.PrePrompt + " " + art.EmitterPrompt + " by " + art.ArtistName);
+            SetPromptValue("ProjectilePrompt", art.PrePrompt + " " + art.ProjectilePrompt + " by " + art.ArtistName);
         }
     }
 
     IEnumerator RunUnityFunctionCoroutine(){
         if (render && seedIterationCounter < seedIterationsPerSet)//artDescriptionIndex < artDescriptions.Length)
         {
-
-            UpdatePrompts();
-            print("ImageSeed before yield: " + imageSeed + " - " + gameRandomSeed);
-            yield return null;
-            CreateSDRenderChainLinkSaveForChildren();
-
-            SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
-            foreach(SDRenderChainLink link in links){
-                if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
-                {
-                    img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-                }
-                else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
-                {
-                    txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-                }
-            }
-
-            // if (extraValuesImg2Img != null )
-            // {
-            //     foreach (ExtraValuesForImg2Img v in extraValuesImg2Img){
-            //         v.seed =  imageSeed;//artDescriptions[artDescriptionIndex].Seed + seedIterationCounter;
-            //     }
-            // }
-            // if (extraValuesTxt2Img != null)
-            // {
-            //     foreach (ExtraValuesForTxt2Image v in extraValuesTxt2Img)
-            //         v.seed = imageSeed;//artDescriptions[artDescriptionIndex].Seed + seedIterationCounter;
-            // }
-            
-            print("ImageSeed after yield: " + imageSeed + " - " + gameRandomSeed);
-            if(textRenderer!=null)
-                textRenderer.saveDepthImageLocation = rootDirectory + "/" + artDescriptions[artDescriptionIndex].Name.Split(' ')[0] + "_IntroTextAlpha" + "_" + 
-                artDescriptionIndex.ToString("0000") + "_" + imageSeed.ToString() + "_" + gameRandomSeed + ".png";
-
-            imageSeed += seedIterate;
-
-            GlobalSettings.randomSeed = gameRandomSeed;
-            UnityEngine.Random.InitState(gameRandomSeed);
-
-            // ID++;
-
-            // if(seedIterationCounter < seedIterationsPerSet){
-                seedIterationCounter ++;
-            // }
-            // else{
-            //     seedIterationCounter=0;
-            //     artDescriptionIndex++;
-            // }
-            
-            startingLink.RunUnityFunction("");
-            
+            seedIterationCounter ++;
         }
         else
         {
-            imageSeed += seedIterate;
-
-            // SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
-            // foreach(SDRenderChainLink link in links){
-            //     if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
-            //     {
-            //         img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-            //     }
-            //     else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
-            //     {
-            //         txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-            //     }
-            // }
-
-            print("ImageSeed after else: " + imageSeed + " - " + gameRandomSeed);
             seedIterationCounter=0;
             artDescriptionIndex ++;
             if(artDescriptionIndex >= artDescriptions.Length){
@@ -241,24 +176,43 @@ public class SD_BatchRenderForGames : SDRenderChainLink
                 artDescriptionIndex=0;
             }
             gameRandomSeed++;
-            GlobalSettings.randomSeed = gameRandomSeed;
-            UnityEngine.Random.InitState(gameRandomSeed);
-            CreateSDRenderChainLinkSaveForChildren();
-
-            SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
-            foreach(SDRenderChainLink link in links){
-                if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
-                {
-                    img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-                }
-                else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
-                {
-                    txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
-                }
-            }
-
-            startingLink.RunUnityFunction("");
         }
+
+        imageSeed += seedIterate;
+
+        UpdatePrompts();
+        print("ImageSeed before yield: " + imageSeed + " - " + gameRandomSeed);
+        yield return null;
+        
+        CreateSDRenderChainLinkSaveForChildren();
+
+        SDRenderChainLink[] links = GetComponentsInChildren<SDRenderChainLink>();
+        foreach(SDRenderChainLink link in links){
+            if (link.extraValues is ExtraValuesForImg2Img img2ImgValues)
+            {
+                img2ImgValues.seed = imageSeed; // Or any other logic to set the seed
+            }
+            else if (link.extraValues is ExtraValuesForTxt2Image txt2ImgValues)
+            {
+                txt2ImgValues.seed = imageSeed; // Or any other logic to set the seed
+            }
+        }
+        yield return null;
+
+        if(textRenderer!=null)
+            textRenderer.saveDepthImageLocation = rootDirectory + "/" + artDescriptions[artDescriptionIndex].Name.Split(' ')[0] + "_IntroTextAlpha" + "_" + 
+            artDescriptionIndex.ToString("0000") + "_" + imageSeed.ToString() + "_" + gameRandomSeed + ".png";
+
+        yield return null;
+
+        GlobalSettings.randomSeed = gameRandomSeed;
+        UnityEngine.Random.InitState(gameRandomSeed);
+
+        yield return null;
+
+        startingLink.RunUnityFunction("");
+            
+
     }
 
     public override void RunUnityFunction(string image)

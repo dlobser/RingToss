@@ -7,6 +7,7 @@ public class CollisionScaleEffect : MonoBehaviour
     private Vector3 originalScale;
     private bool isScaling = false; // To prevent concurrent scaling coroutines
     Collider2D collider;
+    public GameObject particleSystem;
 
     void Start()
     {
@@ -32,9 +33,12 @@ public class CollisionScaleEffect : MonoBehaviour
             collider = GetComponent<Collider2D>();
         if(collider!=null)
             collider.enabled = false;
+
+        
         // Animate scale down to zero over one second
         yield return StartCoroutine(AnimateScale(Vector3.zero, 1f));
-
+        if(particleSystem!=null)
+            particleSystem.SetActive(false);
         // Wait for the specified hold time
         yield return new WaitForSeconds(holdTime);
 
@@ -42,6 +46,8 @@ public class CollisionScaleEffect : MonoBehaviour
         yield return StartCoroutine(AnimateScale(originalScale, 1f));
         if(collider!=null)
             collider.enabled = true;
+        if(particleSystem!=null)
+            particleSystem.SetActive(true);
         isScaling = false;
     }
 

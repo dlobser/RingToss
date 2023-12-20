@@ -17,9 +17,13 @@ public class EmitParticlesOnTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // Emit particles when a collider enters the trigger
-        if (particleSystem != null)
-        {
-            particleSystem.Emit(emitCount);
+        if(other.GetComponent<Ring>()!=null){
+            // if(other.GetComponent<Item>().customTag==CustomTag.Projectile){
+                if (particleSystem != null)
+                {
+                    particleSystem.Emit(emitCount);
+                }
+            // }
         }
     }
 }
