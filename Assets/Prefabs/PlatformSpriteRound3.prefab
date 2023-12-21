@@ -208,6 +208,9 @@ MonoBehaviour:
   audioSource: {fileID: 8742289840221327529}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &8742289840221327529
 AudioSource:
   m_ObjectHideFlags: 0
@@ -618,6 +621,9 @@ MonoBehaviour:
   audioSource: {fileID: 2804642038967103191}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &2804642038967103191
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1021,6 +1027,9 @@ MonoBehaviour:
   audioSource: {fileID: 4106619096252774598}
   audioPitchRange: {x: 0.7, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2283425944674544037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1211,7 @@ GameObject:
   - component: {fileID: 1452650186427108802}
   - component: {fileID: 9167197824196787413}
   - component: {fileID: 1446239195398499169}
+  - component: {fileID: 2025672062966701774}
   m_Layer: 0
   m_Name: CircleCollider
   m_TagString: Untagged
@@ -1386,6 +1396,21 @@ MonoBehaviour:
   audioSource: {fileID: 1446239195398499169}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2025672062966701774}
+        m_TargetAssemblyTypeName: ShaderFloatAnimator, Assembly-CSharp
+        m_MethodName: Animate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &1446239195398499169
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1482,6 +1507,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2025672062966701774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592241300482922177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ef3992ba6b0d04487cd7f66a209856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 3592241300482922177}
+  shaderVariable: _MasterHueShift
+  duration: 0.5
+  min: 0
+  max: 0.3
+  useInitialValue: 1
+  reverseTime: 1
 --- !u!1 &3636200107346271193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,6 +1734,9 @@ MonoBehaviour:
   audioSource: {fileID: 4771078399730101093}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &4771078399730101093
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1985,6 +2032,9 @@ MonoBehaviour:
   audioSource: {fileID: 4579825216267909711}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &4579825216267909711
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2280,6 +2330,9 @@ MonoBehaviour:
   audioSource: {fileID: 2460652458611018114}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &2460652458611018114
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2584,6 +2637,9 @@ MonoBehaviour:
   audioSource: {fileID: 1424955422824367633}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &1424955422824367633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2875,6 +2931,9 @@ MonoBehaviour:
   audioSource: {fileID: 4149848116199149729}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &4149848116199149729
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3166,6 +3225,9 @@ MonoBehaviour:
   audioSource: {fileID: 7713392983263992028}
   audioPitchRange: {x: 0.5, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &7713392983263992028
 AudioSource:
   m_ObjectHideFlags: 0

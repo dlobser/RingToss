@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Item : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Item : MonoBehaviour
     public AudioSource audioSource; // Public AudioSource to be set in the Unity Editor
     public Vector2 audioPitchRange = new Vector2(.7f, 1); // Range of possible pitches for the audio clip
     public Platform platform;
+    public UnityEvent onTriggerEnterAction;
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class Item : MonoBehaviour
             audioSource.pitch = Random.Range(audioPitchRange.x, audioPitchRange.y);
             audioSource.PlayOneShot(collisionSound);
         }
-
+        onTriggerEnterAction.Invoke();
         // Call the Hit method
         Hit();
     }
@@ -41,6 +43,7 @@ public class Item : MonoBehaviour
             audioSource.PlayOneShot(collisionSound);
         }
 
+        onTriggerEnterAction.Invoke();
         // Call the Hit method
         Hit();
     }

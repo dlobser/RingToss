@@ -22,11 +22,12 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AngleAmount: 0
+    - _AngleAmount: 1
     - _CircleRadius: 0.4
     - _LineFrequency: 0.2
     - _Speed: 12
     m_Colors:
     - _BackgroundColor: {r: 0.754717, g: 0.11747954, b: 0.11747954, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _LineColor: {r: 0.7421383, g: 0.95873356, b: 1, a: 1}
   m_BuildTextureStacks: []

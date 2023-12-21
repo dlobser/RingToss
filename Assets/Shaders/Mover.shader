@@ -7,6 +7,7 @@ Shader "Custom/MovingLinesCircleMask"
         _Speed("Speed", Float) = 1.0
         _LineFrequency("Line Frequency", Float) = 10.0
         _CircleRadius("Circle Radius", Float) = 0.5
+        _Fade ("Fade", float) = 0.0
     }
     SubShader
     {
@@ -39,6 +40,7 @@ Shader "Custom/MovingLinesCircleMask"
             float _Speed;
             float _LineFrequency;
             float _CircleRadius;
+            float _Fade;
 
             v2f vert (appdata v)
             {
@@ -127,7 +129,7 @@ Shader "Custom/MovingLinesCircleMask"
                 // float4 color = lerp(_BackgroundColor, _Color, step(0.0, lineValue) * circleMask);
                 float4 lerpy = lerp(cool,_Color*2,pow(lineValue,3));
                 
-                return float4(lerpy.xyz,circleMask);//*_Color;
+                return float4(lerpy.xyz,circleMask*saturate(_Fade));//*_Color;
             }
             ENDCG
         }

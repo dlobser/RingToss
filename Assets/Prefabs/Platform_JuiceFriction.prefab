@@ -562,6 +562,9 @@ MonoBehaviour:
   audioSource: {fileID: 2184333115427695106}
   audioPitchRange: {x: 0.7, y: 2}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &2184333115427695106
 AudioSource:
   m_ObjectHideFlags: 0
@@ -711,7 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 6701817609318664010}
-  emitCount: 20
+  emitCount: 5
 --- !u!1 &5280418232348074812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,8 +1194,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1360,7 +1363,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1736,7 +1739,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 17
+    type: 0
     angle: 6.5
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -2077,7 +2080,7 @@ ParticleSystem:
           outWeight: 0.07821769
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 1
           inSlope: -1.414012
           outSlope: -1.414012
           tangentMode: 0
@@ -2390,7 +2393,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0.5529412}
         key2: {r: 0, g: 0, b: 0, a: 0.21470588}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2406,7 +2409,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 8288
+        atime1: 8481
         atime2: 34502
         atime3: 65535
         atime4: 0
@@ -5845,7 +5848,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1d5f7d0b3476e649830c656be4ff96c, type: 2}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

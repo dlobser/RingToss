@@ -477,6 +477,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &45492282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1011,6 +1014,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &68169384
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1332,6 +1338,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &74909268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,6 +1921,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &78630894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2447,6 +2459,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &89946862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,6 +2613,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &89946866
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3111,6 +3129,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &98913205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4022,6 +4043,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &141149718
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4754,6 +4778,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &178244303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5389,6 +5416,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &208844412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5616,6 +5646,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &211439651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6066,6 +6099,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &232907126
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6398,6 +6434,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &249688210
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6855,6 +6894,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &266805325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7811,6 +7853,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &283532543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8151,6 +8196,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &297540344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9265,6 +9313,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &361984030
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9873,6 +9924,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &381656756
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10573,6 +10627,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &404895704
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11426,6 +11483,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &435620756
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11691,6 +11751,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &457360056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12062,6 +12125,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &465853554
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12755,6 +12821,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &485829363
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13295,6 +13364,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &495848624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14038,6 +14110,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &512722176
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14460,6 +14535,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &528667527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15350,6 +15428,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &543472394
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15608,6 +15689,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &552621888
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16089,6 +16173,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &577202811
 GameObject:
   m_ObjectHideFlags: 0
@@ -16732,6 +16819,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &598152840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16976,6 +17066,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &601675818
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17984,6 +18077,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &632342457
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18157,6 +18253,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &636092628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18399,6 +18498,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &642534363
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18809,6 +18911,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &656252098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19269,6 +19374,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &670066058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19475,6 +19583,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &689890572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20658,7 +20769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723759399}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 9.34, z: 0}
+  m_LocalPosition: {x: 0, y: 5.33, z: 0}
   m_LocalScale: {x: 0.43021002, y: 11.582999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20684,6 +20795,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &723759402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21520,6 +21634,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &751216598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22042,6 +22159,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &766442777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22778,6 +22898,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &781109466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23156,6 +23279,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &798484055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23557,6 +23683,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &812588789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24521,6 +24650,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &873042938
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24995,6 +25127,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &889289621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26136,6 +26271,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &943423612
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27350,6 +27488,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &986984038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27802,6 +27943,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &997594977
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29019,6 +29163,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1052431502
 GameObject:
   m_ObjectHideFlags: 0
@@ -29477,6 +29624,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1062634755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29831,6 +29981,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1064115136
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30058,6 +30211,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1065156708
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30188,6 +30344,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1067496005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30724,6 +30883,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1089631533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31292,6 +31454,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1105700868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32071,6 +32236,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1136817424
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32901,6 +33069,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1171840116
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33146,6 +33317,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1186966745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33620,6 +33794,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1210063614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33879,6 +34056,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1218353118
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34024,6 +34204,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1224453696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34225,6 +34408,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1235415190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34855,6 +35041,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1264979168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35113,6 +35302,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1270829147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35664,6 +35856,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1290613114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36023,6 +36218,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1303639962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36153,6 +36351,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1306867429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36427,6 +36628,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1315509921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37036,6 +37240,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1338450482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38496,6 +38703,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1408728993
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39410,6 +39620,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1431090630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39547,6 +39760,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1433161957
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39947,6 +40163,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1441872301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40903,6 +41122,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1465258317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42036,6 +42258,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1485867117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42475,6 +42700,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1490433096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43040,6 +43268,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1497973481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44930,6 +45161,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1586207949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45197,6 +45431,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1594583895
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45693,6 +45930,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1601135130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46065,6 +46305,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1612408732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46531,6 +46774,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1622572213
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46788,6 +47034,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1629363797
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48354,6 +48603,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1648516767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48891,6 +49143,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1662319562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49290,6 +49545,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1668491335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50344,6 +50602,9 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1732589836
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51867,6 +52128,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1760151731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52663,6 +52927,9 @@ MonoBehaviour:
   audioSource: {fileID: 1136817422}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1800174888
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54151,6 +54418,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1835469044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54448,6 +54718,9 @@ MonoBehaviour:
   audioSource: {fileID: 45492285}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1867718140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57628,6 +57901,9 @@ MonoBehaviour:
   audioSource: {fileID: 2043145417}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &2043145419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -58366,6 +58642,9 @@ MonoBehaviour:
   audioSource: {fileID: 1662319560}
   audioPitchRange: {x: 1, y: 1}
   platform: {fileID: 0}
+  onTriggerEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &2067529081
 BoxCollider2D:
   m_ObjectHideFlags: 0
