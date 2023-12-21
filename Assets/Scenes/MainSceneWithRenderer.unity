@@ -20788,7 +20788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d2163f8ced7954d8c0214058ab8a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customTag: 0
+  customTag: 4
   scoreValue: 10
   destroyOnHit: 0
   collisionSound: {fileID: 8300000, guid: 80aab408883b7ff49bdff5059cd7502f, type: 3}
