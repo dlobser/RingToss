@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Quilt{
+namespace Quilt
+{
 
     public class MenuManager : MonoBehaviour
     {
@@ -17,6 +18,7 @@ namespace Quilt{
         public int currentMenu;
         public float fadeSpeed;
         public GameMenu[] menus;
+        public GameObject menuRoot;
         public GameObject gameRoot;
 
         private Coroutine currentFadeCoroutine;
@@ -30,7 +32,7 @@ namespace Quilt{
             }
 
             currentFadeCoroutine = StartCoroutine(Fade(menus[currentMenu].menuObject, true));
-            
+
             for (int i = 0; i < menus.Length; i++)
             {
                 if (menus[i].name == menuName)
@@ -85,5 +87,5 @@ namespace Quilt{
         }
     }
 
-    
+
 }

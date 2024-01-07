@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Quilt{
-    
+namespace Quilt
+{
+
     public class PlatformItemArguments
     {
         public float amount = 0;
@@ -38,7 +39,7 @@ namespace Quilt{
 
         public virtual void SetPosition(Vector3 position)
         {
-            this.platformPosition = position;
+            platformPosition = position;
         }
 
         public virtual void SetPosition(Vector2 position)

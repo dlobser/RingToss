@@ -10,24 +10,29 @@ public class GameScreenManager : MonoBehaviour
 
     // Other variables and properties remain unchanged...
 
-    void Awake() {
+    void Awake()
+    {
         // Check if an instance already exists
-        if (Instance == null) {
+        if (Instance == null)
+        {
             // If not, set the instance to this
             Instance = this;
 
             // Optional: if you want the singleton to persist across scenes
-            DontDestroyOnLoad(gameObject);
-        } else {
+            // DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
             // If it already exists and it's not this instance, destroy this object
-            if (Instance != this) {
+            if (Instance != this)
+            {
                 Destroy(gameObject);
             }
         }
     }
 
     // The rest of your class implementation...
-    
+
     public enum Screen { Title, Tutorial, Game, End };
 
     public Screen screen = Screen.Title;
@@ -40,25 +45,25 @@ public class GameScreenManager : MonoBehaviour
     public void ShowScreen(Screen screenType)
     {
         // First, deactivate all screens if they are not null
-        if(Title != null) Title.Deactivate(); // Assuming Deactivate() is a method in GameScreen
-        if(Tutorial != null) Tutorial.Deactivate(); // Assuming Deactivate() is a method in GameScreen
-        if(Game != null) Game.Deactivate(); // Assuming Deactivate() is a method in GameScreen
-        if(End != null) End.Deactivate(); // Assuming Deactivate() is a method in GameScreen
+        if (Title != null) Title.Deactivate(); // Assuming Deactivate() is a method in GameScreen
+        if (Tutorial != null) Tutorial.Deactivate(); // Assuming Deactivate() is a method in GameScreen
+        if (Game != null) Game.Deactivate(); // Assuming Deactivate() is a method in GameScreen
+        if (End != null) End.Deactivate(); // Assuming Deactivate() is a method in GameScreen
 
         // Now, activate the requested screen
         switch (screenType)
         {
             case Screen.Title:
-                if(Title != null) Title.Activate(); // Assuming Activate() is a method in GameScreen
+                if (Title != null) Title.Activate(); // Assuming Activate() is a method in GameScreen
                 break;
             case Screen.Tutorial:
-                if(Tutorial != null) Tutorial.Activate(); // Assuming Activate() is a method in GameScreen
+                if (Tutorial != null) Tutorial.Activate(); // Assuming Activate() is a method in GameScreen
                 break;
             case Screen.Game:
-                if(Game != null) Game.Activate(); // Assuming Activate() is a method in GameScreen
+                if (Game != null) Game.Activate(); // Assuming Activate() is a method in GameScreen
                 break;
             case Screen.End:
-                if(End != null) End.Activate(); // Assuming Activate() is a method in GameScreen
+                if (End != null) End.Activate(); // Assuming Activate() is a method in GameScreen
                 break;
             default:
                 Debug.LogWarning("Unknown screen type: " + screenType);

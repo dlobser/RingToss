@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143edb9ee4d31f84192c2e63bfbc1111, type: 3}
+  m_Name: ManagerReferences
+  m_EditorClassIdentifier: 
+  gameManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  menuManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  scoreManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  interactionManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  fxManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  audioManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  eventManagerPrefab: {fileID: 7839002088498699385, guid: a2727010ff6b86c4291aa544bae8f7fb, type: 3}
+  creationSettings: {fileID: 11400000, guid: 701e8e827d1c3bc469dba807c6be0b83, type: 2}

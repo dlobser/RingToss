@@ -8,15 +8,17 @@ public class KeyboardInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)) 
+        if (Input.GetKeyUp(KeyCode.D))
             FindObjectOfType<GameGeneratorManager>().StopGame();
-        if(Input.GetKey(KeyCode.S)) 
-            FindObjectOfType<GameGeneratorManager>().StartGame();
+        if (Input.GetKeyUp(KeyCode.S))
+            Globals.GetEventManager().OnEndGame();
+
+
     }
 }

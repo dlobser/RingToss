@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Quilt{
+namespace Quilt
+{
     public class GameManager : MonoBehaviour
     {
-        public enum GameState {StartMenu, Start, Playing, Paused, GameOver }
+        public enum GameState { StartMenu, Start, Playing, Paused, GameOver }
         public GameState gameState = GameState.Start;
 
         private ScoreManager scoreManager;
@@ -14,9 +15,35 @@ namespace Quilt{
         public event Action GameOver;
         public bool win = false;
 
-        public void Start(){
+        public void Start()
+        {
             scoreManager = Globals.GlobalSettings.Managers.scoreManager;
             scoreManager.RegisterActions();
+
+            if (EventManager.Instance != null)
+            {
+                EventManager.Instance.StartGame += OnGameStart;
+                EventManager.Instance.EndGame += OnGameEnd;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (EventManager.Instance != null)
+            {
+                EventManager.Instance.StartGame -= OnGameStart;
+                EventManager.Instance.EndGame -= OnGameEnd;
+            }
+        }
+
+        private void OnGameStart()
+        {
+            StartGame();
+        }
+
+        private void OnGameEnd()
+        {
+            EndGame();
         }
 
         public void StartGame()
@@ -48,6 +75,7 @@ namespace Quilt{
         private void EndGame()
         {
             GameOver?.Invoke();
+            FindObjectOfType<GameGeneratorManager>().StartGame();
             // Additional logic for when the game is won
         }
 

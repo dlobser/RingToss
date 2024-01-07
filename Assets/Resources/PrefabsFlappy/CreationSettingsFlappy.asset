@@ -12,11 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc7023bd6e30ab43b26723465b32ba6, type: 3}
   m_Name: CreationSettingsFlappy
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 75966064942105338, guid: c1939a63db78a914785b2b7aa7a0bc73, type: 3}
-  platformPrefab: {fileID: 3669339226213283370, guid: c910f6d60540e794c9a3f6b5f1b8b9df, type: 3}
+  projectileConfig:
+    type: 2
+    name: Player
+    size: 0.5
+    gravity: 2
+    mass: 1
+    texturePath: Textures/Circle
+  platformConfig:
+    type: 1
+    name: platform
+    size: 1
+    pointCollisionSettings: {fileID: 11400000, guid: 6c9ce10341a7d9248adba679d961d76b, type: 2}
+    blockerCollisionSettings: {fileID: 11400000, guid: 14f8a53a170e6a54f9671f6f9d191421, type: 2}
+    texturePath: Textures/Circle
   minMaxPlatformHeight: {x: -2, y: 2}
-  minMaxProjectileForce: {x: 2, y: 3}
-  minMaxPlatformSize: {x: 1.5, y: 2}
+  minMaxProjectileForce: {x: 1, y: 4}
+  minMaxPlatformSize: {x: 1, y: 1}
   projectileDirection: {x: 0, y: 0}
   minMaxPlatformSeparation: {x: 3, y: 5}
   maxPlatforms: 100

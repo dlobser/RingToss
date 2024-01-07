@@ -20,7 +20,7 @@ public class MyDebug : MonoBehaviour
             if (_instance == null)
             {
                 _instance = this;
-                DontDestroyOnLoad(this.gameObject); // Optional: if you want it to persist between scenes
+                // DontDestroyOnLoad(this.gameObject); // Optional: if you want it to persist between scenes
             }
             else
             {

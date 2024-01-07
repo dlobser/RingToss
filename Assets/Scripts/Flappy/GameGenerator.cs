@@ -1,65 +1,21 @@
-using MM.Msg;
 using UnityEngine;
 
 namespace Quilt
 {
-    public abstract class GameGenerator : MonoBehaviour
+    public class GameGenerator : MonoBehaviour
     {
-        // Paths to prefabs in the Resources folder
-        public string gameManagerPrefabPath;
-        public string menuManagerPrefabPath;
-        public string scoreManagerPrefabPath;
-        public string interactionManagerPrefabPath;
-        public string fxManagerPrefabPath;
-        public string audioManagerPrefabPath;
-        // public string transitionManagerPrefabPath;
-        public string eventManagerPrefabPath;
-        public string creationSettingsPath;
+        public GameObject managersGameObject;
+        public GameObject _managersGameObject;
+        public CreationSettings creationSettings;
 
-        // Instances of the prefabs
-        protected GameObject gameManager;
-        protected GameObject menuManager;
-        protected GameObject scoreManager;
-        protected GameObject interactionManager;
-        protected GameObject fxManager;
-        protected GameObject audioManager;
-        // protected GameObject transitionManager;
-        protected GameObject eventManager;
-        protected CreationSettings creationSettings;
-
-        public GameObject root { get; set; }
-        public GameObject managersRoot { get; set; }
-        public GameObject menuRoot { get; set; }
+        public GameObject root { get; private set; }
+        public GameObject managersRoot { get; private set; }
+        public GameObject menuRoot { get; private set; }
 
         public virtual void InitializeGame()
         {
-            if (root != null)
-            {
-                Destroy(root);
-            }
-            if (root == null)
-            {
-                root = new GameObject("Root");
-                root.transform.SetParent(GameGeneratorManager.Instance.rootParent);
-                Globals.GlobalSettings.LevelGlobals.root = root.transform;
-
-                managersRoot = new GameObject("Managers Root");
-                managersRoot.transform.SetParent(root.transform);
-                Globals.GlobalSettings.LevelGlobals.managersRoot = managersRoot.transform;
-
-                menuRoot = new GameObject("Menu Root");
-                menuRoot.transform.SetParent(root.transform);
-                Globals.GlobalSettings.LevelGlobals.menuRoot = menuRoot.transform;
-            }
-            creationSettings = Resources.Load<CreationSettings>(creationSettingsPath);
-            if (creationSettings == null)
-            {
-                Debug.LogError($"CreationSettings not found at path: {creationSettingsPath}");
-            }
-
-            InstantiatePrefabs();
-
-            Globals.GlobalSettings.LevelGlobals.gameRoot = Globals.GetMenuManager().gameRoot.transform;
+            SetUpRootObjects();
+            AssignManagersFromGameObject();
         }
 
         public virtual void StartGame() { /* ... implementation ... */ }
@@ -72,44 +28,54 @@ namespace Quilt
             }
         }
 
-        protected virtual void InstantiatePrefabs()
+        protected void SetUpRootObjects()
         {
-            GameObject eventManagerObj = InstantiatePrefab(eventManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.eventManager = eventManagerObj.GetComponent<EventManager>();
-            print(Globals.GlobalSettings.Managers.eventManager);
+            if (root != null)
+                Destroy(root);
 
-            GameObject gameManagerObj = InstantiatePrefab(gameManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.gameManager = gameManagerObj.GetComponent<GameManager>();
+            root = new GameObject("Root");
+            root.transform.SetParent(Globals.GlobalSettings.LevelGlobals.rootParent);
+            Globals.GlobalSettings.LevelGlobals.root = root.transform;
 
-            GameObject menuManagerObj = InstantiatePrefab(menuManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.menuManager = menuManagerObj.GetComponent<MenuManager>();
+            managersRoot = new GameObject("Managers Root");
+            managersRoot.transform.SetParent(root.transform);
+            Globals.GlobalSettings.LevelGlobals.managersRoot = managersRoot.transform;
 
-            GameObject scoreManagerObj = InstantiatePrefab(scoreManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.scoreManager = scoreManagerObj.GetComponent<ScoreManager>();
+            menuRoot = new GameObject("Menu Root");
+            menuRoot.transform.SetParent(root.transform);
+            Globals.GlobalSettings.LevelGlobals.menuRoot = menuRoot.transform;
+        }
 
-            GameObject interactionManagerObj = InstantiatePrefab(interactionManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.interactionManager = interactionManagerObj.GetComponent<InteractionManager>();
-
-            GameObject fxManagerObj = InstantiatePrefab(fxManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.fxManager = fxManagerObj.GetComponent<FXManager>();
-
-            GameObject audioManagerObj = InstantiatePrefab(audioManagerPrefabPath, managersRoot.transform);
-            Globals.GlobalSettings.Managers.audioManager = audioManagerObj.GetComponent<AudioManager>();
+        void Update()
+        {
+            Debug.Log(_managersGameObject.name + " instantiated.");
 
         }
 
-        private GameObject InstantiatePrefab(string path, Transform parent)
+        protected void AssignManagersFromGameObject()
         {
-            GameObject prefab = Resources.Load<GameObject>(path);
-            if (prefab != null)
+            if (managersGameObject == null)
             {
-                return Instantiate(prefab, parent);
+                Debug.LogError("Managers GameObject not assigned.");
+                return;
             }
-            else
-            {
-                Debug.LogError($"Prefab not found at path: {path}");
-                return null;
-            }
+
+            if (_managersGameObject != null)
+                Destroy(_managersGameObject);
+
+            _managersGameObject = Instantiate(managersGameObject, managersRoot.transform);
+
+            Globals.GlobalSettings.Managers.eventManager = _managersGameObject.GetComponent<EventManager>();
+            Globals.GlobalSettings.Managers.gameManager = _managersGameObject.GetComponent<GameManager>();
+            Globals.GlobalSettings.Managers.menuManager = _managersGameObject.GetComponent<MenuManager>();
+            Globals.GlobalSettings.LevelGlobals.gameRoot = Globals.GetMenuManager().gameRoot.transform;
+            Globals.GetMenuManager().menuRoot.transform.SetParent(Globals.GlobalSettings.LevelGlobals.menuRoot);
+            Globals.GlobalSettings.Managers.scoreManager = _managersGameObject.GetComponent<ScoreManager>();
+            Globals.GlobalSettings.Managers.interactionManager = _managersGameObject.GetComponent<InteractionManager>();
+            Globals.GlobalSettings.Managers.fxManager = _managersGameObject.GetComponent<FXManager>();
+            Globals.GlobalSettings.Managers.audioManager = _managersGameObject.GetComponent<AudioManager>();
+
+            // Add other managers as needed
         }
     }
 }

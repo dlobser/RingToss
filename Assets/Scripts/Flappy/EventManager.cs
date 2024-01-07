@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace Quilt{
+namespace Quilt
+{
     public class EventManager : MonoBehaviour
     {
         public static EventManager Instance { get; private set; }
@@ -17,7 +18,7 @@ namespace Quilt{
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                // DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -47,6 +48,7 @@ namespace Quilt{
 
         public void OnEndGame()
         {
+            Debug.Log("End Game");
             EndGame?.Invoke();
         }
     }

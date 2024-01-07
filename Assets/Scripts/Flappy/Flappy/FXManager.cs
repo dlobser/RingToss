@@ -11,7 +11,7 @@ namespace Quilt.Flappy
         public ParticleSystem itemCollectedEffect;
         public ParticleSystem wallHitEffect;
 
-        private void OnEnable()
+        void Start()
         {
             Globals.GlobalSettings.Managers.eventManager.ItemCollected += PlayItemCollectedEffect;
             Globals.GlobalSettings.Managers.eventManager.Collision += PlayCollisionEffect;
@@ -33,6 +33,17 @@ namespace Quilt.Flappy
         {
             // Play wall hit effect
             wallHitEffect.Play();
+        }
+
+        public virtual void PlayEffectAtLocation(GameObject effect, Vector3 location,
+        float intensity = 1f, float scale = 1f, float duration = 1f)
+        {
+            // Instantiate effect at location
+            GameObject newEffect = Instantiate(effect, location, Quaternion.identity);
+            // Set effect scale
+            newEffect.transform.localScale = Vector3.one * scale;
+            // Destroy effect after duration
+            Destroy(newEffect, duration);
         }
     }
 }
