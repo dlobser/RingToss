@@ -148,6 +148,7 @@ namespace Quilt{
                 public static FXManager fxManager;
                 public static AudioManager audioManager;
                 public static EventManager eventManager;
+                public static UIManager uiManager;
             }
 
             public static int randomSeed;

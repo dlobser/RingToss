@@ -48,7 +48,7 @@ namespace Quilt
 
         void Update()
         {
-            Debug.Log(_managersGameObject.name + " instantiated.");
+            // Debug.Log(_managersGameObject.name + " instantiated.");
 
         }
 
@@ -74,6 +74,7 @@ namespace Quilt
             Globals.GlobalSettings.Managers.interactionManager = _managersGameObject.GetComponent<InteractionManager>();
             Globals.GlobalSettings.Managers.fxManager = _managersGameObject.GetComponent<FXManager>();
             Globals.GlobalSettings.Managers.audioManager = _managersGameObject.GetComponent<AudioManager>();
+            Globals.GlobalSettings.Managers.uiManager = _managersGameObject.GetComponent<UIManager>();
 
             // Add other managers as needed
         }

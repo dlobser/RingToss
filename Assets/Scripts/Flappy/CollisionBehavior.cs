@@ -29,10 +29,13 @@ namespace Quilt
 
             if (settings.playSound && settings.collisionSound != null)
             {
+                float velocity = collisionObject.GetComponent<Rigidbody2D>().velocity.magnitude/10;
+
                 Globals.GetAudioManager().PlayOneShotAtLocation(
                     settings.collisionSound,
                     colliderPosition,
-                    Random.Range(settings.audioVolumeRange.x, settings.audioVolumeRange.y));
+                    Random.Range(settings.audioVolumeRange.x, settings.audioVolumeRange.y) + 
+                    Mathf.LerpUnclamped(0f,velocity,settings.audioVelocityMultiplier));
             }
 
             if (settings.playEffect && settings.effectPrefab != null)
@@ -60,6 +63,12 @@ namespace Quilt
             if (settings.destroyColliderOnHit)
             {
                 Destroy(collisionObject);
+            }
+
+            if(settings.destroyObjectsOnhit){
+                foreach(GameObject obj in settings.objectsToDestroyOnHit){
+                    Destroy(obj);
+                }
             }
         }
     }

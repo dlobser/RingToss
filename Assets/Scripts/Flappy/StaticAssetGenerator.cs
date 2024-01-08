@@ -129,7 +129,7 @@ namespace Quilt
             GameObject scoringPoint = new GameObject("Scorer");//CreateChildWithSprite(root, texture, "ScoringPoint");
             scoringPoint.transform.parent = root.transform;
             scoringPoint.AddComponent<BoxCollider2D>();
-            scoringPoint.GetComponent<BoxCollider2D>().size = new Vector2(1, 0.2f);
+            scoringPoint.GetComponent<BoxCollider2D>().size = new Vector2(1, 0.05f);
             scoringPoint.GetComponent<BoxCollider2D>().isTrigger = true;
             scoringPoint.transform.localScale = Vector3.one;
             CollisionBehavior collision = scoringPoint.AddComponent<CollisionBehavior>();
@@ -150,7 +150,7 @@ namespace Quilt
             // Bottom box object
             GameObject bottomBox = new GameObject("BottomBox");
             bottomBox.transform.parent = root.transform;
-            bottomBox.transform.localPosition = new Vector3(0, -0.3f, 0);
+            bottomBox.transform.localPosition = new Vector3(0, -0.25f, 0);
             bottomBox.transform.localScale = Vector3.one;
             CollisionBehavior bottomCollision = bottomBox.AddComponent<CollisionBehavior>();
             bottomCollision.settings = config.blockerCollisionSettings;
@@ -213,6 +213,37 @@ namespace Quilt
             CircleCollider2D c = root.AddComponent<CircleCollider2D>();
 
             return root;
+        }
+
+        public static GameObject GenerateBoundary(string name, Vector3 position, Vector3 scale){
+            GameObject boundary = new GameObject(name);
+            boundary.transform.position = position;
+            boundary.transform.localScale = scale;
+            boundary.transform.SetParent(Globals.GetGameRoot());
+            boundary.AddComponent<BoxCollider2D>();
+            boundary.GetComponent<BoxCollider2D>().isTrigger = true;
+            boundary.AddComponent<CollisionBehavior>();
+            CollisionBehaviorSettings settings = new CollisionBehaviorSettings();
+            settings.endGame = true;
+            boundary.GetComponent<CollisionBehavior>().settings = settings;
+            return boundary;
+        } 
+        
+        public static GameObject GenerateSquare(string name, Vector3 position, Vector3 scale){
+            GameObject obj = new GameObject(name);
+            obj.transform.position = position;
+            obj.transform.localScale = scale;
+            obj.transform.SetParent(Globals.GetGameRoot());
+            obj.AddComponent<BoxCollider2D>();
+            SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
+            string texturePath = "Textures/Square";
+            Texture2D texture = Resources.Load<Texture2D>(texturePath);
+            if (texture != null)
+            {
+                Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.width);
+                sr.sprite = newSprite;
+            }
+            return obj;
         }
     }
 }

@@ -31,11 +31,11 @@ namespace Quilt
         public void Start()
         {
             Globals.GlobalSettings.LevelGlobals.rootParent = rootParent;
-            StartGame();
+            BuildGame();
         }
 
         // Method to start a game with a specific generator
-        public void StartGame()
+        public void BuildGame()
         {
             StartCoroutine(StartGameCoroutine());
         }
@@ -48,39 +48,42 @@ namespace Quilt
                 yield break;
             }
 
-            Debug.Log("current game generator: " + currentGameGenerator);
+            DestroyGame();
 
-            if (currentGameGenerator != null)
-            {
-                Destroy(currentGameGenerator);
-            }
+            // Debug.Log("current game generator: " + currentGameGenerator);
 
-            yield return null;
+            // if (currentGameGenerator != null)
+            // {
+            //     Destroy(currentGameGenerator);
+            // }
 
-            if (rootParent.transform.childCount > 0)
-            {
-                foreach (Transform child in rootParent.transform)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
+            // // yield return null;
 
-            yield return null;
+            // if (rootParent.transform.childCount > 0)
+            // {
+            //     foreach (Transform child in rootParent.transform)
+            //     {
+            //         Destroy(child.gameObject);
+            //     }
+            // }
+
+            // yield return null;
+            Debug.Log("GGG: " + currentGameGenerator);
 
             currentGameGenerator = Instantiate(gameGenerators[0], Globals.GetRootParent());
             yield return null;
             currentGameGenerator.InitializeGame();
-            yield return null;
+            // yield return null;
             currentGameGenerator.StartGame();
         }
 
         // Method to stop the current game
-        public void StopGame()
+        public void DestroyGame()
         {
             if (currentGameGenerator != null)
             {
                 currentGameGenerator.StopGame();
-                Destroy(currentGameGenerator);
+                Destroy(currentGameGenerator.gameObject);
                 currentGameGenerator = null;
             }
         }

@@ -11,7 +11,6 @@ public class GameScreen : MonoBehaviour
         root.SetActive(true);
     }
 
-
     public virtual void Deactivate()
     {
         root.SetActive(false);

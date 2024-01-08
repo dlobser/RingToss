@@ -75,7 +75,7 @@ namespace Quilt
         private void EndGame()
         {
             GameOver?.Invoke();
-            FindObjectOfType<GameGeneratorManager>().StartGame();
+            FindObjectOfType<GameGeneratorManager>().BuildGame();
             // Additional logic for when the game is won
         }
 

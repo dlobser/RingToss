@@ -15,9 +15,9 @@ public class KeyboardInput : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.D))
-            FindObjectOfType<GameGeneratorManager>().StopGame();
+            FindObjectOfType<GameGeneratorManager>().DestroyGame();
         if (Input.GetKeyUp(KeyCode.S))
-            Globals.GetEventManager().OnEndGame();
+            FindObjectOfType<GameGeneratorManager>().BuildGame();
 
 
     }

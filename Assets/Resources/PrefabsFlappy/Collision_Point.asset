@@ -14,18 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customTag: 3
   addToScore: 1
-  scoreValue: 10
+  scoreValue: 1
   destroyOnHit: 1
   destroyColliderOnHit: 0
+  destroyObjectsOnhit: 1
+  objectsToDestroyOnHit: []
   endGame: 0
   playSound: 1
-  collisionSound: {fileID: 8300000, guid: 80aab408883b7ff49bdff5059cd7502f, type: 3}
+  collisionSound: {fileID: 8300000, guid: 1c5f1449811c55341a48a8944dbf9344, type: 3}
   audioPitchRange: {x: 0.7, y: 1}
-  audioVolumeRange: {x: 0.7, y: 1}
+  audioVolumeRange: {x: 0.4, y: 0.4}
+  audioVelocityMultiplier: 0.2
   playEffect: 1
   effectPrefab: {fileID: 6675763753893421309, guid: 870b182496cae3544a7d763635a1c78f, type: 3}
   effectIntensityRange: {x: 0.7, y: 1}
-  effectScaleRange: {x: 0.7, y: 1}
+  effectScaleRange: {x: 0.2, y: 0.3}
   effectDurationRange: {x: 0.7, y: 1}
   onTriggerEnterAction:
     m_PersistentCalls:

@@ -7,6 +7,8 @@ namespace Quilt.Flappy
 {
     public class ScoreManager : Quilt.ScoreManager
     {
+
+        
         public override void OnUpdate()
         {
             base.OnUpdate();
