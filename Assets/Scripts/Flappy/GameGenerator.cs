@@ -32,6 +32,8 @@ namespace Quilt
         {
             if (root != null)
                 Destroy(root);
+            
+            Resources.UnloadUnusedAssets();
 
             root = new GameObject("Root");
             root.transform.SetParent(Globals.GlobalSettings.LevelGlobals.rootParent);

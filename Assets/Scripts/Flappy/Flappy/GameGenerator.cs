@@ -12,6 +12,7 @@ namespace Quilt.Flappy
 
         public GameObject[] platforms;
         int creationCount = 0;
+        
         public override void InitializeGame()
         {
             base.InitializeGame();
@@ -60,6 +61,8 @@ namespace Quilt.Flappy
                 g.transform.localScale = Vector3.one*1.15f;
                 platforms = new GameObject[platformCount];
 
+                bool madeWall = false;
+
                 for (int i = 1; i < platformCount; i++)
                 {
                     flappySettings.platformConfig.size = platformSize;
@@ -67,8 +70,6 @@ namespace Quilt.Flappy
                     platform.transform.position = new Vector3(i * separation, Random.Range(flappySettings.minMaxPlatformHeight.x, flappySettings.minMaxPlatformHeight.y), 0);
                     platform.transform.localScale = new Vector3(platformSize, platformSize, 1);
                     platform.transform.SetParent(Globals.GetGameRoot().transform);
-                    
-                    
 
                     float fraction = ((float)i/(float)platformCount);
                     bool odds = Random.value < fraction;
@@ -100,7 +101,22 @@ namespace Quilt.Flappy
                         platform.transform.position + new Vector3(platformSize *2 , 0, 0),
                         new Vector3(.1f, 100, 1));
 
-                    bool turnIntoWall = Random.value > .5f;
+                    bool turnIntoWall = Random.value > .7f;
+
+                    if(!madeWall && Random.value>.3f){
+                        GameObject fx = Instantiate(flappySettings.platforms[Random.Range(0,flappySettings.platforms.Length)],
+                        Globals.GetRoot());
+                        fx.transform.position = platform.transform.position + new Vector3(Random.Range(-1,1), Random.Range(2,2.5f), 0);
+                        fx.transform.localScale = Vector3.one*Random.Range(1f,2f);
+                        fx.AddComponent<TransformUniversal>().doTranslateOscillate = true;
+                        fx.GetComponent<TransformUniversal>().translateOscillateLowerBounds = new Vector3(0, 0, 0);
+                        fx.GetComponent<TransformUniversal>().translateOscillateUpperBounds = new Vector3(0, Random.Range(0,2f), 0);
+                        fx.GetComponent<TransformUniversal>().translateOscillateSpeed = new Vector3(Random.Range(.5f,1f), Random.Range(.5f,3f), 0);
+                        fx.GetComponent<TransformUniversal>().doRotateOscillate = true;
+                        fx.GetComponent<TransformUniversal>().rotateOscillateLowerBounds = new Vector3(0, 0, 0);
+                        fx.GetComponent<TransformUniversal>().rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(-180,180));
+                        fx.GetComponent<TransformUniversal>().rotateOscillateSpeed = new Vector3(Random.Range(.5f,1f), 0, Random.Range(-1,1f));
+                    }
 
                     if(turnIntoWall){
                         GameObject wall = StaticAssetGenerator.GenerateBoundary("Wall",
@@ -112,33 +128,12 @@ namespace Quilt.Flappy
                         (int)Random.Range(0,15));
                         tex.transform.parent = wall.transform;
                         tex.transform.ResetTransform();
-
                         wall.transform.localScale = new Vector3(1, 10, 1);
                         wall.transform.position = platform.transform.position + new Vector3(platformSize *2 , Random.Range(-4f,-6f), 0);
-                        // SpriteRenderer sr = wall.AddComponent<SpriteRenderer>();
-                        // string texturePath = "Textures/Square";
-                        // Texture2D texture = Resources.Load<Texture2D>(texturePath);
-
-                        // if (texture != null)
-                        // {
-                        //     Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.width);
-                        //     sr.sprite = newSprite;
-                        // }
-
+                        madeWall = true;
                     }
-                    if(Random.value>.5f){
-                        GameObject fx = Instantiate(flappySettings.platforms[Random.Range(0,flappySettings.platforms.Length)],
-                        Globals.GetRoot());
-                        fx.transform.position = platform.transform.position + new Vector3(Random.Range(-1,1), Random.Range(2,4), 0);
-                        fx.transform.localScale = Vector3.one*Random.Range(1f,2f);
-                        fx.AddComponent<TransformUniversal>().doTranslateOscillate = true;
-                        fx.GetComponent<TransformUniversal>().translateOscillateLowerBounds = new Vector3(0, 0, 0);
-                        fx.GetComponent<TransformUniversal>().translateOscillateUpperBounds = new Vector3(0, Random.Range(0,2f), 0);
-                        fx.GetComponent<TransformUniversal>().translateOscillateSpeed = new Vector3(Random.Range(.5f,1f), Random.Range(.5f,1f), 0);
-                        fx.GetComponent<TransformUniversal>().doRotateOscillate = true;
-                        fx.GetComponent<TransformUniversal>().rotateOscillateLowerBounds = new Vector3(0, 0, 0);
-                        fx.GetComponent<TransformUniversal>().rotateOscillateUpperBounds = new Vector3(0, 0, Random.Range(-180,180));
-                        fx.GetComponent<TransformUniversal>().rotateOscillateSpeed = new Vector3(Random.Range(.5f,1f), 0, Random.Range(-1,1f));
+                    else{
+                        madeWall = false;
                     }
 
                     boundary.layer = LayerMask.NameToLayer("Walls");
@@ -156,22 +151,8 @@ namespace Quilt.Flappy
                     platforms[i] = platform.gameObject;
                 }
 
-                GameObject lowerBoundary = StaticAssetGenerator.GenerateBoundary("LowerBoundary",new Vector3(0 , -5, 0),new Vector3(1000, .5f, 1));
-                //  new GameObject("LowerBoundary");
-                // lowerBoundary.transform.position = new Vector3(0 , -5, 0);
-                // lowerBoundary.transform.localScale = new Vector3(1000, .5f, 1);
-                // lowerBoundary.transform.SetParent(Globals.GetGameRoot());
-                // lowerBoundary.AddComponent<BoxCollider2D>();
-                // After creating the GameObject
-                // boundary.layer = LayerMask.NameToLayer("Boundary");
+                GameObject lowerBoundary = StaticAssetGenerator.GenerateBoundary("LowerBoundary",new Vector3(0 , -6, 0),new Vector3(1000, .5f, 1));
                 lowerBoundary.layer = LayerMask.NameToLayer("Walls");
-
-
-                // lowerBoundary.GetComponent<BoxCollider2D>().isTrigger = true;
-                // CollisionBehavior lowerCollision = lowerBoundary.AddComponent<CollisionBehavior>();
-                // CollisionBehaviorSettings lowerSettings = new CollisionBehaviorSettings();
-                // lowerSettings.endGame = true;
-                // lowerBoundary.GetComponent<CollisionBehavior>().settings = lowerSettings;
 
                 Destroy(generatedPlatform);
             }
@@ -181,7 +162,7 @@ namespace Quilt.Flappy
         {
             if (cam != null && player != null){
                 cam.transform.position = new Vector3(
-                    Mathf.Lerp(cam.transform.position.x, player.transform.position.x + .85f, Time.deltaTime * 10),
+                    Mathf.Lerp(cam.transform.position.x, player.transform.position.x + 1, Time.deltaTime * 10),
                     0, -10);
             }
 
