@@ -16,5 +16,6 @@ namespace Quilt.Flappy
         public Vector2 minMaxPlatformSeparation;
         public int maxPlatforms;
         public GameObject camera;
+        public GameObject[] platforms;
     }
 }

@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 4304cd7b2ea37ff4484d1b9457d57e41
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainSceneWithRenderer.unity
     guid: 38f684c1b25b19b49b83148823bf20cf
+  - enabled: 1
+    path: Assets/Scenes/Flappy/MainScene_Flappy_Scripts.unity
+    guid: fa1fb066ec7d0b147bff10e03b709888
   m_configObjects: {}

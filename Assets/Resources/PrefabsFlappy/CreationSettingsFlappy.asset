@@ -31,5 +31,10 @@ MonoBehaviour:
   minMaxPlatformSize: {x: 1.5, y: 1.5}
   projectileDirection: {x: 0, y: 0}
   minMaxPlatformSeparation: {x: 5, y: 5}
-  maxPlatforms: 20
+  maxPlatforms: 100
   camera: {fileID: 4739273362292483391, guid: 54557eefd68476a40b78e40ffbe49d4b, type: 3}
+  platforms:
+  - {fileID: 5280418231706224082, guid: 6e8a75f6d87dbdd42b7f2378d8a0a510, type: 3}
+  - {fileID: 6065902238310184444, guid: 0361f39420019e14fa4040cde4da7e23, type: 3}
+  - {fileID: 6065902238310184444, guid: 0361f39420019e14fa4040cde4da7e23, type: 3}
+  - {fileID: 6065902238310184444, guid: be4e9b3e71d10064191202879d16c18c, type: 3}

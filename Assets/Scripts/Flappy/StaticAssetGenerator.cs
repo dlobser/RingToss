@@ -160,6 +160,16 @@ namespace Quilt
             BoxCollider2D boxCollider = bottomBox.AddComponent<BoxCollider2D>();
             boxCollider.size = new Vector2(1, 0.2f);
 
+            //set sprites to black (comment out for testing)
+            foreach (Transform child in root.transform)
+            {
+                SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = new Color(0, 0, 0, 0); // Black and fully transparent
+                }
+            }
+
             return root;
         }
 
@@ -245,5 +255,97 @@ namespace Quilt
             }
             return obj;
         }
+
+        public static GameObject GenerateCircle(string name, Vector3 position, Vector3 scale){
+            GameObject obj = new GameObject(name);
+            obj.transform.position = position;
+            obj.transform.localScale = scale;
+            obj.transform.SetParent(Globals.GetGameRoot());
+            obj.AddComponent<CircleCollider2D>();
+            SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
+            string texturePath = "Textures/Circle";
+            Texture2D texture = Resources.Load<Texture2D>(texturePath);
+            if (texture != null)
+            {
+                Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.width);
+                sr.sprite = newSprite;
+            }
+            return obj;
+        }
+
+        public static GameObject GenerateSpriteWithAlpha(string type, string alpha){
+            GameObject spriteA = new GameObject("Sprite");
+            SpriteRenderer srA = spriteA.AddComponent<SpriteRenderer>();
+            srA.sprite = ImageLoader.GetSpriteWithIndex(type);
+            srA.sprite.texture.wrapMode = TextureWrapMode.Clamp;    
+            srA.material = new Material(Shader.Find("Custom/SpriteAlphaTex"));
+            Sprite spriteAlpha = ImageLoader.CreateSpriteFromResource("Textures/ImagesFlappy/"+alpha);
+            spriteAlpha.texture.wrapMode = TextureWrapMode.Clamp;
+            srA.material.SetTexture("_AlphaTex", spriteAlpha.texture);
+            spriteA.name = type;
+            return spriteA;
+        }
+
+        public static GameObject GenerateRing(Transform parent = null)
+        {
+            GameObject p = new GameObject("Ring");
+            GameObject g = StaticAssetGenerator.GenerateSpriteWithAlpha("ring", "RingAlpha");
+            g.transform.SetParent(p.transform, false);
+            g.transform.localPosition = new Vector3(0, -0.5f, 0);
+            g.transform.localScale = Vector3.one;
+            g.transform.localEulerAngles = Vector3.zero;
+            
+            GameObject g2 = Object.Instantiate(g, p.transform);
+            g2.GetComponent<SpriteRenderer>().material.SetTextureOffset("_MainTex", new Vector2(0, 0.47f));
+            g2.transform.localPosition = new Vector3(0, 0.5f, 0);
+            g2.GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+            g.GetComponent<SpriteRenderer>().material.SetTextureOffset("_MainTex", new Vector2(0, -0.53f));
+            g.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            p.transform.SetParent(parent);
+            p.transform.ResetTransform();
+
+            return p;
+        }
+
+        public static GameObject GenerateQuadWithTexture(string type, Vector2 tiling, int imageIndex = -1)
+        {
+            GameObject background = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            background.name = type;
+            background.transform.SetParent(Globals.GetGameRoot());
+            background.transform.ResetTransform();
+
+            // Add MeshFilter and MeshRenderer components
+            MeshRenderer meshRenderer = background.GetComponent<MeshRenderer>();
+
+            // Set the texture
+            Texture2D texture = ImageLoader.GetImageWithIndex(type, imageIndex);
+            if (texture != null)
+            {
+                Material material = new Material(Shader.Find("Unlit/Texture")); // Use a standard shader or a custom shader if you have one
+                material.mainTexture = texture;
+                material.mainTextureScale = tiling; // Set tiling
+                meshRenderer.material = material;
+            }
+            else{
+                Debug.LogError("Texture not found at path: " + type + " " + imageIndex);
+            }
+
+            return background;
+        }
+
+        // public static GameObject GenerateBackgroundWithTexture(string type){
+        //     GameObject background = new GameObject("Background");
+        //     background.transform.SetParent(Globals.GetGameRoot());
+        //     background.transform.ResetTransform();
+        //     SpriteRenderer sr = background.AddComponent<SpriteRenderer>();
+        //     Texture2D texture = ImageLoader.GetImageWithIndex(type);
+        //     if (texture != null)
+        //     {
+        //         Sprite newSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.width);
+        //         sr.sprite = newSprite;
+        //     }
+        //     return background;
+        // }
     }
 }

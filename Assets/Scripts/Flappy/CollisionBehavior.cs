@@ -29,7 +29,9 @@ namespace Quilt
 
             if (settings.playSound && settings.collisionSound != null)
             {
-                float velocity = collisionObject.GetComponent<Rigidbody2D>().velocity.magnitude/10;
+                float velocity = 0;
+                if(collisionObject.GetComponent<Rigidbody2D>() != null)
+                    velocity = collisionObject.GetComponent<Rigidbody2D>().velocity.magnitude/10;
 
                 Globals.GetAudioManager().PlayOneShotAtLocation(
                     settings.collisionSound,

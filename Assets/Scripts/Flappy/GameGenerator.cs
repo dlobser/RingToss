@@ -5,7 +5,7 @@ namespace Quilt
     public class GameGenerator : MonoBehaviour
     {
         public GameObject managersGameObject;
-        public GameObject _managersGameObject;
+        public GameObject _managersGameObject {get;set;}
         public CreationSettings creationSettings;
 
         public GameObject root { get; private set; }
