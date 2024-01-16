@@ -90,6 +90,7 @@ namespace Quilt.Flappy
                     effect.transform.position = location;
                     effect.clip = clip;
                     effect.Play();
+                    Debug.Log("Playing sound at location: " + effect);
                 }
             }
         }

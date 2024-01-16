@@ -3,25 +3,11 @@ using UnityEngine.Events;
 
 namespace Quilt
 {
-    public class CollisionBehavior_EndGame : MonoBehaviour
+    public class CollisionBehavior_EndGame : CollisionBehavior
     {
-        public Vector3 colliderPosition {get;set;}
-
-        public virtual void OnCollisionEnter2D(Collision2D collision)
+        public override void HandleCollision(GameObject collisionObject = null)
         {
-            colliderPosition = collision.transform.position;
-            HandleCollision(collision.gameObject);
-        }
-
-        public virtual void OnTriggerEnter2D(Collider2D collision)
-        {
-            colliderPosition = collision.transform.position;
-            HandleCollision(collision.gameObject);
-        }
-
-        public virtual void HandleCollision(GameObject collisionObject = null)
-        {
-            
+            Globals.GetEventManager().OnEndGame();
         }
     }
 }

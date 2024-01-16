@@ -106,7 +106,7 @@ namespace Quilt.Flappy
 
                     if(!madeWall && Random.value>.3f){
                         GameObject fx = Instantiate(flappySettings.platforms[Random.Range(0,flappySettings.platforms.Length)],
-                        Globals.GetRoot());
+                        Globals.GetGameRoot());
                         fx.transform.position = platform.transform.position + new Vector3(Random.Range(-1,1), Random.Range(2,2.5f), 0);
                         fx.transform.localScale = Vector3.one*Random.Range(1f,2f);
                         fx.AddComponent<TransformUniversal>().doTranslateOscillate = true;
@@ -122,7 +122,14 @@ namespace Quilt.Flappy
                     if(turnIntoWall){
                         GameObject wall = StaticAssetGenerator.GenerateBoundary("Wall",
                         new Vector3(0 , -5, 0),
-                        new Vector3(1, 10, 1));
+                        new Vector3(1, 10, 1), false);
+
+                        wall.AddComponent<CollisionBehavior_PlaySound>();
+                        wall.GetComponent<BoxCollider2D>().isTrigger = false;
+                        wall.GetComponent<CollisionBehavior_PlaySound>().Init("Sounds/8BitOneShot/MO_GT_kick_stomp_crate");
+                        // wall.GetComponent<CollisionBehavior_PlaySound>().collisionSoundPath = "Sounds/8BitOneShot/MO_GT_kick_stomp_crate";
+                        // wall.GetComponent<CollisionBehavior_PlaySound>().Init();
+
                         float tiles = Random.Range(.2f,.5f);
                         GameObject tex = StaticAssetGenerator.GenerateQuadWithTexture("bg",
                         new Vector2(tiles,tiles*10),
@@ -152,7 +159,7 @@ namespace Quilt.Flappy
                     platforms[i] = platform.gameObject;
                 }
 
-                GameObject lowerBoundary = StaticAssetGenerator.GenerateBoundary("LowerBoundary",new Vector3(0 , -6, 0),new Vector3(1000, .5f, 1));
+                GameObject lowerBoundary = StaticAssetGenerator.GenerateBoundary("LowerBoundary", new Vector3(0 , -6, 0),new Vector3(1000, .5f, 1));
                 lowerBoundary.layer = LayerMask.NameToLayer("Walls");
 
                 Destroy(generatedPlatform);

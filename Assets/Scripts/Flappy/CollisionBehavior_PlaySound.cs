@@ -1,39 +1,44 @@
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Quilt
 {
-    public class CollisionBehavior_PlaySound : MonoBehaviour
+    public class CollisionBehavior_PlaySound : CollisionBehavior
     {
-        public Vector3 colliderPosition {get;set;}
-        public AudioClip collisionSound;
-        public Vector2 audioVolumeRange = new Vector2(0.5f,1f);
+        public string collisionSoundPath; // Path to the AudioClip in the Resources folder
+        private AudioClip collisionSound;
+        public Vector2 audioVolumeRange = new Vector2(0.5f, 1f);
         public float audioVelocityMultiplier = 0.5f;
 
-        public virtual void OnCollisionEnter2D(Collision2D collision)
+        public void Init(string path = "")
         {
-            colliderPosition = collision.transform.position;
-            HandleCollision(collision.gameObject);
+            if(path.Length>0)
+                collisionSoundPath = path;
+            
+            collisionSound = Resources.Load<AudioClip>(collisionSoundPath);
+            if (collisionSound == null)
+            {
+                Debug.LogWarning("Audio clip not found at path: " + collisionSoundPath);
+            }
         }
 
-        public virtual void OnTriggerEnter2D(Collider2D collision)
+        public override void HandleCollision(GameObject collisionObject = null)
         {
-            colliderPosition = collision.transform.position;
-            HandleCollision(collision.gameObject);
-        }
 
-        public virtual void HandleCollision(GameObject collisionObject = null)
-        {
+            if (collisionSound == null)
+            {
+                return; // No sound to play
+            }
+
             float velocity = 0;
-            if(collisionObject.GetComponent<Rigidbody2D>() != null)
-                velocity = collisionObject.GetComponent<Rigidbody2D>().velocity.magnitude/10;
+            if (collisionObject.GetComponent<Rigidbody2D>() != null)
+                velocity = collisionObject.GetComponent<Rigidbody2D>().velocity.magnitude / 10;
 
             Globals.GetAudioManager().PlayOneShotAtLocation(
                 collisionSound,
                 colliderPosition,
                 Random.Range(audioVolumeRange.x, audioVolumeRange.y) + 
-                Mathf.LerpUnclamped(0f,velocity,audioVelocityMultiplier));
+                Mathf.LerpUnclamped(0f, velocity, audioVelocityMultiplier));
         }
     }
 }
-

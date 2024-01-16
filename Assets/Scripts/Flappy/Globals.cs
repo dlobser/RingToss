@@ -33,6 +33,8 @@ namespace Quilt{
         public static bool debugB;
         public static bool debugC;
 
+        
+
         public static void DebugA(string message){
             if(debugA){
                 Debug.Log(message);
@@ -107,6 +109,44 @@ namespace Quilt{
 
         public static class GlobalSettings
         {
+            public static void ResetGlobalSettings()
+            {
+                // Reset Image Indices
+                ImageIndeces.Style = 0;
+                ImageIndeces.BG = 0;
+                ImageIndeces.Platform = 0;
+                ImageIndeces.Title = 0;
+                ImageIndeces.Projectile = 0;
+                ImageIndeces.Font = 0;
+                ImageIndeces.Emitter = 0;
+
+                // Reset Physics
+                Physics.projectileSpeed = 1.0f;
+                Physics.projectileGravity = 1.0f;
+                Physics.platformBounce = 1.0f;
+
+                // Reset Level Globals
+                LevelGlobals.projectileSize = 1.0f; // Assuming default size as 1.0f
+                LevelGlobals.root = null; // References should be reassigned at runtime
+                LevelGlobals.gameRoot = null;
+                LevelGlobals.rootParent = null;
+                LevelGlobals.menuRoot = null;
+                LevelGlobals.managersRoot = null;
+
+                // Reset Managers
+                Managers.gameManager = null;
+                Managers.menuManager = null;
+                Managers.levelGenerator = null;
+                Managers.scoreManager = null;
+                Managers.interactionManager = null;
+                Managers.fxManager = null;
+                Managers.audioManager = null;
+                Managers.eventManager = null;
+                Managers.uiManager = null;
+
+                // Reset other GlobalSettings variables
+                randomSeed = 0; // Reset to zero or some other default seed
+            }
 
             public static class ImageIndeces
             {

@@ -15,7 +15,7 @@ namespace Quilt
         public virtual void InitializeGame()
         {
             SetUpRootObjects();
-            // AssignManagersFromGameObject();
+            AssignManagersFromGameObject();
         }
 
         public virtual void StartGame() { /* ... implementation ... */ }
@@ -46,8 +46,6 @@ namespace Quilt
             menuRoot = new GameObject("Menu Root");
             menuRoot.transform.SetParent(root.transform);
             Globals.GlobalSettings.LevelGlobals.menuRoot = menuRoot.transform;
-
-            AssignManagersFromGameObject();
         }
 
         void Update()

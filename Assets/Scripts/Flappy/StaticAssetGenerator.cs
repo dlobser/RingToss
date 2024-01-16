@@ -225,17 +225,15 @@ namespace Quilt
             return root;
         }
 
-        public static GameObject GenerateBoundary(string name, Vector3 position, Vector3 scale){
+        public static GameObject GenerateBoundary(string name, Vector3 position, Vector3 scale, bool destroy = true){
             GameObject boundary = new GameObject(name);
             boundary.transform.position = position;
             boundary.transform.localScale = scale;
             boundary.transform.SetParent(Globals.GetGameRoot());
             boundary.AddComponent<BoxCollider2D>();
             boundary.GetComponent<BoxCollider2D>().isTrigger = true;
-            boundary.AddComponent<CollisionBehaviorMultiPurpose>();
-            CollisionBehaviorSettings settings = new CollisionBehaviorSettings();
-            settings.endGame = true;
-            boundary.GetComponent<CollisionBehaviorMultiPurpose>().settings = settings;
+            if(destroy)
+                boundary.AddComponent<CollisionBehavior_EndGame>();
             return boundary;
         } 
         
@@ -312,6 +310,7 @@ namespace Quilt
         public static GameObject GenerateQuadWithTexture(string type, Vector2 tiling, int imageIndex = -1)
         {
             GameObject background = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            background.GetComponent<MeshCollider>().enabled = false;
             background.name = type;
             background.transform.SetParent(Globals.GetGameRoot());
             background.transform.ResetTransform();

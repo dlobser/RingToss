@@ -130,7 +130,6 @@ namespace Quilt
         public static Texture2D GetImageWithIndex(string imageType, int index = -1)
         {
             Texture2D[] allTextures = Resources.LoadAll<Texture2D>(Directory);
-            Debug.Log("There are: " + allTextures.Length + " textures in the directory: " + Directory);
 
             foreach (var tex in allTextures)
             {
