@@ -7,6 +7,7 @@ namespace Quilt
     public class CollisionBehaviorSettings : ScriptableObject
     {
         public Globals.CustomTag customTag = Globals.CustomTag.Item;
+        public bool onlyCollideWithPlayer = false;
         public bool addToScore = false;
         public int scoreValue = 10;
         public bool destroyOnHit;

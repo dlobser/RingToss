@@ -4,37 +4,34 @@ namespace Quilt
 {
     public class GameGeneratorManager : MonoBehaviour
     {
-        // Singleton instance
-        // public static GameGeneratorManager Instance { get; private set; }
 
         private GameGenerator currentGameGenerator;
 
         public GameGenerator[] gameGenerators;
 
-        public Transform rootParent;
-        string rootParentName = "Root Parent";
+        private Transform rootParent;
 
-        // void Awake()
-        // {
-        //     // Singleton pattern to ensure only one instance exists
-        //     if (Instance == null)
-        //     {
-        //         Instance = this;
-        //         // DontDestroyOnLoad(gameObject);
-        //     }
-        //     else
-        //     {
-        //         Destroy(gameObject);
-        //     }
-        // }
+        public Transform RootParent
+        {
+            get
+            {
+                return rootParent;
+            }
+        }
+
+        string rootParentName = "Root Parent";
 
         public void Start()
         {
+            if(rootParent == null)
+            {
+                rootParent = new GameObject(rootParentName).transform;
+                rootParent.transform.parent = this.transform;
+            }
             Globals.GlobalSettings.LevelGlobals.rootParent = rootParent;
             BuildGame();
         }
 
-        // Method to start a game with a specific generator
         public void BuildGame()
         {
             StartCoroutine(StartGameCoroutine());
@@ -48,44 +45,31 @@ namespace Quilt
                 yield break;
             }
 
-            DestroyGame();
-
-            // Debug.Log("current game generator: " + currentGameGenerator);
-
-            // if (currentGameGenerator != null)
-            // {
-            //     Destroy(currentGameGenerator);
-            // }
-
-            // // yield return null;
-
-            // if (rootParent.transform.childCount > 0)
-            // {
-            //     foreach (Transform child in rootParent.transform)
-            //     {
-            //         Destroy(child.gameObject);
-            //     }
-            // }
-
-            // yield return null;
-            Debug.Log("GGG: " + currentGameGenerator);
-
+            yield return DestroyGameCoroutine();
             currentGameGenerator = Instantiate(gameGenerators[0], Globals.GetRootParent());
-            yield return null;
             currentGameGenerator.InitializeGame();
-            // yield return null;
             currentGameGenerator.StartGame();
         }
 
-        // Method to stop the current game
+        void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space)){
+                BuildGame();
+            }
+        }
+
         public void DestroyGame()
         {
+            StartCoroutine(DestroyGameCoroutine());
+        }
+
+        IEnumerator DestroyGameCoroutine(){
             if (currentGameGenerator != null)
             {
                 currentGameGenerator.StopGame();
                 Destroy(currentGameGenerator.gameObject);
-                currentGameGenerator = null;
             }
+            yield return null;
         }
     }
 }

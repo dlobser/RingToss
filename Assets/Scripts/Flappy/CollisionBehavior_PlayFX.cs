@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Quilt
 {
-    public class CollisionBehavior : MonoBehaviour
+    public class CollisionBehavior_PlayFX : MonoBehaviour
     {
         public Vector3 colliderPosition {get;set;}
 

@@ -7,8 +7,6 @@ namespace Quilt.Flappy
 {
     public class ScoreManager : Quilt.ScoreManager
     {
-
-        
         public override void OnUpdate()
         {
             base.OnUpdate();
@@ -17,8 +15,7 @@ namespace Quilt.Flappy
         public override void AddScore(int scoreToAdd)
         {
             totalScore += scoreToAdd;
-            Debug.Log("Score: " + totalScore);
-            // Additional logic if needed when score changes
+
         }
 
     }

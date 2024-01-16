@@ -29,6 +29,7 @@ namespace Quilt.Flappy
                 flappySettings.projectileConfig.size = platformSize * .5f;
                 player = StaticAssetGenerator.GenerateAsset(flappySettings.projectileConfig);//Instantiate(StaticAssetGenerator.GenerateAsset(flappySettings.projectileConfig), Globals.GetGameRoot()).gameObject;
                 player.transform.parent = Globals.GetGameRoot().transform;
+                player.AddComponent<Player>();
                 GameObject ballSprite = StaticAssetGenerator.GenerateSpriteWithAlpha("ball", "BallAlpha");
                 player.GetComponent<SpriteRenderer>().sprite = ballSprite.GetComponent<SpriteRenderer>().sprite;
                 player.GetComponent<SpriteRenderer>().material = ballSprite.GetComponent<SpriteRenderer>().material;
@@ -141,7 +142,7 @@ namespace Quilt.Flappy
                     CollisionBehavior[] platformCollisionBehavior = 
                         platform.GetComponentsInChildren<CollisionBehavior>();
 
-                    foreach (CollisionBehavior cbs in platformCollisionBehavior)
+                    foreach (CollisionBehaviorMultiPurpose cbs in platformCollisionBehavior)
                     {
                         cbs.settings = Instantiate(cbs.settings);
                         cbs.settings.destroyObjectsOnhit = true;

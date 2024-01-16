@@ -104,7 +104,7 @@ namespace Quilt
 
             CircleCollider2D c = child.AddComponent<CircleCollider2D>();
             c.isTrigger = true;
-            CollisionBehavior collisionBehavior = child.AddComponent<CollisionBehavior>();
+            CollisionBehaviorMultiPurpose collisionBehavior = child.AddComponent<CollisionBehaviorMultiPurpose>();
             collisionBehavior.settings = config.collisionSettings;
 
             return root;
@@ -132,7 +132,7 @@ namespace Quilt
             scoringPoint.GetComponent<BoxCollider2D>().size = new Vector2(1, 0.05f);
             scoringPoint.GetComponent<BoxCollider2D>().isTrigger = true;
             scoringPoint.transform.localScale = Vector3.one;
-            CollisionBehavior collision = scoringPoint.AddComponent<CollisionBehavior>();
+            CollisionBehaviorMultiPurpose collision = scoringPoint.AddComponent<CollisionBehaviorMultiPurpose>();
             collision.settings = config.pointCollisionSettings;
 
             // Left blocker object
@@ -152,7 +152,7 @@ namespace Quilt
             bottomBox.transform.parent = root.transform;
             bottomBox.transform.localPosition = new Vector3(0, -0.25f, 0);
             bottomBox.transform.localScale = Vector3.one;
-            CollisionBehavior bottomCollision = bottomBox.AddComponent<CollisionBehavior>();
+            CollisionBehaviorMultiPurpose bottomCollision = bottomBox.AddComponent<CollisionBehaviorMultiPurpose>();
             bottomCollision.settings = config.blockerCollisionSettings;
             bottomBox.transform.parent = scoringPoint.transform;
 
@@ -232,10 +232,10 @@ namespace Quilt
             boundary.transform.SetParent(Globals.GetGameRoot());
             boundary.AddComponent<BoxCollider2D>();
             boundary.GetComponent<BoxCollider2D>().isTrigger = true;
-            boundary.AddComponent<CollisionBehavior>();
+            boundary.AddComponent<CollisionBehaviorMultiPurpose>();
             CollisionBehaviorSettings settings = new CollisionBehaviorSettings();
             settings.endGame = true;
-            boundary.GetComponent<CollisionBehavior>().settings = settings;
+            boundary.GetComponent<CollisionBehaviorMultiPurpose>().settings = settings;
             return boundary;
         } 
         
@@ -255,6 +255,7 @@ namespace Quilt
             }
             return obj;
         }
+        
 
         public static GameObject GenerateCircle(string name, Vector3 position, Vector3 scale){
             GameObject obj = new GameObject(name);

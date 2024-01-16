@@ -31,7 +31,8 @@ namespace Quilt{
         {
             // Subscribe to the event
             // GameManager.Instance.IncrementScore  += OnIncrementScore;
-            Globals.GlobalSettings.Managers.gameManager.GameStart += OnLevelStart;
+            // Globals.GlobalSettings.Managers.gameManager.GameStart += OnLevelStart;
+            Globals.GetEventManager().StartGame += OnLevelStart;
         }
 
         public virtual void OnLevelStart()

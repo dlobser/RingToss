@@ -9,47 +9,44 @@ namespace Quilt
     {
         public enum GameState { StartMenu, Start, Playing, Paused, GameOver }
         public GameState gameState = GameState.Start;
-
         private ScoreManager scoreManager;
-        public event Action GameStart;
-        public event Action GameOver;
         public bool win = false;
 
         public void Start()
         {
-            scoreManager = Globals.GlobalSettings.Managers.scoreManager;
+            scoreManager = Globals.GetScoreManager();
             scoreManager.RegisterActions();
 
-            if (EventManager.Instance != null)
+            if (Globals.GetEventManager() != null)
             {
-                EventManager.Instance.StartGame += OnGameStart;
-                EventManager.Instance.EndGame += OnGameEnd;
+                Globals.GetEventManager().StartGame += OnGameStart;
+                Globals.GetEventManager().EndGame += OnGameEnd;
             }
         }
 
         private void OnDestroy()
         {
-            if (EventManager.Instance != null)
+            if (Globals.GetEventManager() != null)
             {
-                EventManager.Instance.StartGame -= OnGameStart;
-                EventManager.Instance.EndGame -= OnGameEnd;
+                Globals.GetEventManager().StartGame -= OnGameStart;
+                Globals.GetEventManager().EndGame -= OnGameEnd;
             }
         }
 
         private void OnGameStart()
         {
-            StartGame();
+            // StartGame();
+            gameState = GameState.Playing;
         }
 
         private void OnGameEnd()
         {
-            EndGame();
+            FindObjectOfType<GameGeneratorManager>().BuildGame();
         }
 
         public void StartGame()
         {
             gameState = GameState.Playing;
-            GameStart?.Invoke();
         }
 
         public void Update()
@@ -61,22 +58,13 @@ namespace Quilt
 
         private void CheckWinCondition()
         {
-            // Example win condition: All items collected
             if (scoreManager.totalScore >= 10)
             {
                 win = true;
                 gameState = GameState.GameOver;
-                EndGame();
+                Globals.GetEventManager().OnEndGame();
             }
 
-            // Additional win/lose conditions can be checked here
-        }
-
-        private void EndGame()
-        {
-            GameOver?.Invoke();
-            FindObjectOfType<GameGeneratorManager>().BuildGame();
-            // Additional logic for when the game is won
         }
 
     }

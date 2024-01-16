@@ -5,7 +5,7 @@ namespace Quilt
     public class GameGenerator : MonoBehaviour
     {
         public GameObject managersGameObject;
-        public GameObject _managersGameObject {get;set;}
+        // public GameObject _managersGameObject {get;set;}
         public CreationSettings creationSettings;
 
         public GameObject root { get; private set; }
@@ -15,7 +15,7 @@ namespace Quilt
         public virtual void InitializeGame()
         {
             SetUpRootObjects();
-            AssignManagersFromGameObject();
+            // AssignManagersFromGameObject();
         }
 
         public virtual void StartGame() { /* ... implementation ... */ }
@@ -46,6 +46,8 @@ namespace Quilt
             menuRoot = new GameObject("Menu Root");
             menuRoot.transform.SetParent(root.transform);
             Globals.GlobalSettings.LevelGlobals.menuRoot = menuRoot.transform;
+
+            AssignManagersFromGameObject();
         }
 
         void Update()
@@ -62,21 +64,21 @@ namespace Quilt
                 return;
             }
 
-            if (_managersGameObject != null)
-                Destroy(_managersGameObject);
+            // if (_managersGameObject != null)
+            //     Destroy(_managersGameObject);
 
-            _managersGameObject = Instantiate(managersGameObject, managersRoot.transform);
+            // _managersGameObject = Instantiate(managersGameObject, managersRoot.transform);
 
-            Globals.GlobalSettings.Managers.eventManager = _managersGameObject.GetComponent<EventManager>();
-            Globals.GlobalSettings.Managers.gameManager = _managersGameObject.GetComponent<GameManager>();
-            Globals.GlobalSettings.Managers.menuManager = _managersGameObject.GetComponent<MenuManager>();
+            Globals.GlobalSettings.Managers.eventManager = managersGameObject.GetComponent<EventManager>();
+            Globals.GlobalSettings.Managers.gameManager = managersGameObject.GetComponent<GameManager>();
+            Globals.GlobalSettings.Managers.menuManager = managersGameObject.GetComponent<MenuManager>();
             Globals.GlobalSettings.LevelGlobals.gameRoot = Globals.GetMenuManager().gameRoot.transform;
             Globals.GetMenuManager().menuRoot.transform.SetParent(Globals.GlobalSettings.LevelGlobals.menuRoot);
-            Globals.GlobalSettings.Managers.scoreManager = _managersGameObject.GetComponent<ScoreManager>();
-            Globals.GlobalSettings.Managers.interactionManager = _managersGameObject.GetComponent<InteractionManager>();
-            Globals.GlobalSettings.Managers.fxManager = _managersGameObject.GetComponent<FXManager>();
-            Globals.GlobalSettings.Managers.audioManager = _managersGameObject.GetComponent<AudioManager>();
-            Globals.GlobalSettings.Managers.uiManager = _managersGameObject.GetComponent<UIManager>();
+            Globals.GlobalSettings.Managers.scoreManager = managersGameObject.GetComponent<ScoreManager>();
+            Globals.GlobalSettings.Managers.interactionManager = managersGameObject.GetComponent<InteractionManager>();
+            Globals.GlobalSettings.Managers.fxManager = managersGameObject.GetComponent<FXManager>();
+            Globals.GlobalSettings.Managers.audioManager = managersGameObject.GetComponent<AudioManager>();
+            Globals.GlobalSettings.Managers.uiManager = managersGameObject.GetComponent<UIManager>();
 
             // Add other managers as needed
         }
