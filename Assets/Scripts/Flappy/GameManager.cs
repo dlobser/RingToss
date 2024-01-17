@@ -5,16 +5,36 @@ using System;
 
 namespace Quilt
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : Manager
     {
+        public static GameManager Instance { get; private set; }
+
         public enum GameState { StartMenu, Start, Playing, Paused, GameOver }
         public GameState gameState = GameState.Start;
-        private ScoreManager scoreManager;
         public bool win = false;
+
+        public EventManager eventManager;
+        public MenuManager menuManager;
+        public ScoreManager scoreManager;
+        public InteractionManager interactionManager;
+        public FXManager fxManager;
+        public AudioManager audioManager;
+        public UIManager uiManager;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Debug.Log("GameManager already exists.");
+            }
+        }
 
         public void Start()
         {
-            scoreManager = Globals.GetScoreManager();
             scoreManager.RegisterActions();
 
             if (Globals.GetEventManager() != null)
