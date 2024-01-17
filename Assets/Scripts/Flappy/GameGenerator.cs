@@ -22,10 +22,10 @@ namespace Quilt
 
         public virtual void StopGame()
         {
-            if (root != null)
-            {
-                Destroy(root);
-            }
+            // if (root != null)
+            // {
+            //     Destroy(root);
+            // }
         }
 
         protected void SetUpRootObjects()

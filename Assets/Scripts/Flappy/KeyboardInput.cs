@@ -14,8 +14,8 @@ public class KeyboardInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.D))
-            FindObjectOfType<GameGeneratorManager>().DestroyGame();
+        // if (Input.GetKeyUp(KeyCode.D))
+            // FindObjectOfType<GameGeneratorManager>().DestroyGame();
         if (Input.GetKeyUp(KeyCode.S))
             FindObjectOfType<GameGeneratorManager>().BuildGame();
 

@@ -5,7 +5,7 @@ namespace Quilt
 {
     public class EventManager : MonoBehaviour
     {
-        public static EventManager Instance { get; private set; }
+        // public static EventManager Instance { get; private set; }
 
         public event Action ItemCollected;
         public event Action<CollisionEventArgs> Collision;
@@ -13,18 +13,18 @@ namespace Quilt
         public event Action StartGame;
         public event Action EndGame;
 
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-                // DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
+        // private void Awake()
+        // {
+        //     if (Instance == null)
+        //     {
+        //         Instance = this;
+        //         // DontDestroyOnLoad(gameObject);
+        //     }
+        //     else
+        //     {
+        //         Destroy(gameObject);
+        //     }
+        // }
 
         public void OnItemCollected()
         {

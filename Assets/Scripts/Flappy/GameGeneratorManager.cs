@@ -23,30 +23,24 @@ namespace Quilt
 
         public void Start()
         {
-            if(rootParent == null)
-            {
-                rootParent = new GameObject(rootParentName).transform;
-                rootParent.transform.parent = this.transform;
-            }
-            Globals.GlobalSettings.LevelGlobals.rootParent = rootParent;
             BuildGame();
         }
 
         public void BuildGame()
         {
-            StartCoroutine(StartGameCoroutine());
-        }
-
-        IEnumerator StartGameCoroutine()
-        {
             if (gameGenerators == null || gameGenerators.Length == 0)
             {
                 Debug.LogError("GameGenerator array is not set up correctly.");
-                yield break;
             }
 
-            yield return DestroyGameCoroutine();
-            currentGameGenerator = Instantiate(gameGenerators[0], Globals.GetRootParent());
+            if(rootParent!=null)
+                Destroy(rootParent.gameObject);
+
+            rootParent = new GameObject(rootParentName).transform;
+            rootParent.transform.parent = this.transform;
+
+            Globals.GlobalSettings.LevelGlobals.rootParent = rootParent;
+            currentGameGenerator = Instantiate(gameGenerators[0], rootParent);
             currentGameGenerator.InitializeGame();
             currentGameGenerator.StartGame();
         }
@@ -58,18 +52,18 @@ namespace Quilt
             }
         }
 
-        public void DestroyGame()
-        {
-            StartCoroutine(DestroyGameCoroutine());
-        }
+        // public void DestroyGame()
+        // {
+        //     StartCoroutine(DestroyGameCoroutine());
+        // }
 
-        IEnumerator DestroyGameCoroutine(){
-            if (currentGameGenerator != null)
-            {
-                currentGameGenerator.StopGame();
-                Destroy(currentGameGenerator.gameObject);
-            }
-            yield return null;
-        }
+        // IEnumerator DestroyGameCoroutine(){
+        //     if (currentGameGenerator != null)
+        //     {
+        //         currentGameGenerator.StopGame();
+        //         Destroy(currentGameGenerator.gameObject);
+        //     }
+        //     yield return null;
+        // }
     }
 }

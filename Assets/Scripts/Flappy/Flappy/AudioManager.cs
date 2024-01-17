@@ -54,14 +54,14 @@ namespace Quilt.Flappy
 
         private void OnEnable()
         {
-            EventManager.Instance.ItemCollected += PlayItemCollectedSound;
-            EventManager.Instance.Collision += PlayCollisionEffect;
+            GetComponent<EventManager>().ItemCollected += PlayItemCollectedSound;
+            GetComponent<EventManager>().Collision += PlayCollisionEffect;
         }
 
         private void OnDisable()
         {
-            EventManager.Instance.ItemCollected -= PlayItemCollectedSound;
-            EventManager.Instance.Collision -= PlayCollisionEffect;
+            GetComponent<EventManager>().ItemCollected -= PlayItemCollectedSound;
+            GetComponent<EventManager>().Collision -= PlayCollisionEffect;
         }
 
         private void PlayItemCollectedSound()
