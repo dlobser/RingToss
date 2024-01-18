@@ -4,7 +4,7 @@ using TMPro; // Uncomment this if you are using TextMeshPro
 
 namespace Quilt
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : Manager
     {
         public TextMeshProUGUI scoreText; // Change this to 'public TextMeshProUGUI scoreText;' if using TextMeshPro
         private ScoreManager scoreManager;

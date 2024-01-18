@@ -9,12 +9,12 @@ namespace Quilt
 
         public override void HandleCollision(GameObject collisionObject = null)
         {
-            if(!settings.onlyCollideWithPlayer || collisionObject.GetComponent<Player>() != null)
+            if(!settings.onlyCollideWithPlayer || collisionObject.GetComponent<Player>() != null && Time.timeSinceLevelLoad>0)
             {
            
                 if (settings.endGame)
                 {
-                    Globals.GetEventManager().OnEndGame();
+                    Globals.GetEventManager().EndGame();
                 }
 
                 if (settings.playSound && settings.collisionSound != null)

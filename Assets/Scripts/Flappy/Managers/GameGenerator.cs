@@ -18,15 +18,17 @@ namespace Quilt
             AssignManagersFromGameObject();
         }
 
-        public virtual void StartGame() { /* ... implementation ... */ }
-
-        public virtual void StopGame()
-        {
-            // if (root != null)
-            // {
-            //     Destroy(root);
-            // }
+        public virtual void StartGame() { 
+            GameManager.Instance.StartGame();
         }
+
+        // public virtual void StopGame()
+        // {
+        //     // if (root != null)
+        //     // {
+        //     //     Destroy(root);
+        //     // }
+        // }
 
         protected void SetUpRootObjects()
         {

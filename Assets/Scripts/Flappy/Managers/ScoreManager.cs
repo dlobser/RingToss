@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quilt{
-    public class ScoreManager : MonoBehaviour
+    public class ScoreManager : Manager
     {
         public int totalScore = 0;
         public float elapsedTime = 0f;
@@ -32,7 +32,7 @@ namespace Quilt{
             // Subscribe to the event
             // GameManager.Instance.IncrementScore  += OnIncrementScore;
             // Globals.GlobalSettings.Managers.gameManager.GameStart += OnLevelStart;
-            Globals.GetEventManager().StartGame += OnLevelStart;
+            Globals.GetEventManager().OnStartGame += OnLevelStart;
         }
 
         public virtual void OnLevelStart()

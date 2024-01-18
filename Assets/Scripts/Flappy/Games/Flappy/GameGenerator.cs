@@ -182,9 +182,9 @@ namespace Quilt.Flappy
             base.StartGame();
         }
 
-        public override void StopGame()
-        {
-            base.StopGame();
-        }
+        // public override void StopGame()
+        // {
+        //     base.StopGame();
+        // }
     }
 }

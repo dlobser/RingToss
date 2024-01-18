@@ -6,7 +6,7 @@ using System;
 namespace Quilt
 {
 
-    public class MenuManager : MonoBehaviour
+    public class MenuManager : Manager
     {
         [System.Serializable]
         public struct GameMenu

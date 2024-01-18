@@ -44,26 +44,5 @@ namespace Quilt
             currentGameGenerator.InitializeGame();
             currentGameGenerator.StartGame();
         }
-
-        void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.Space)){
-                BuildGame();
-            }
-        }
-
-        // public void DestroyGame()
-        // {
-        //     StartCoroutine(DestroyGameCoroutine());
-        // }
-
-        // IEnumerator DestroyGameCoroutine(){
-        //     if (currentGameGenerator != null)
-        //     {
-        //         currentGameGenerator.StopGame();
-        //         Destroy(currentGameGenerator.gameObject);
-        //     }
-        //     yield return null;
-        // }
     }
 }

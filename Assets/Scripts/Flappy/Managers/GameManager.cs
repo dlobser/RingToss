@@ -23,50 +23,60 @@ namespace Quilt
 
         private void Awake()
         {
-            if (Instance == null)
-            {
+            //DL: this might be causing the issue with the game not restarting properly.
+            
+            // if (Instance == null)
+            // {
                 Instance = this;
-            }
-            else
-            {
-                Debug.Log("GameManager already exists.");
-            }
+            // }
+            // else
+            // {
+            //     Debug.Log("GameManager already exists.");
+            // }
         }
 
         public void Start()
         {
             scoreManager.RegisterActions();
 
-            if (Globals.GetEventManager() != null)
+            if (eventManager != null)
             {
-                Globals.GetEventManager().StartGame += OnGameStart;
-                Globals.GetEventManager().EndGame += OnGameEnd;
+                eventManager.OnStartGame += OnGameStart;
+                eventManager.OnEndGame += OnGameEnd;
             }
         }
 
         private void OnDestroy()
         {
-            if (Globals.GetEventManager() != null)
+            if (eventManager != null)
             {
-                Globals.GetEventManager().StartGame -= OnGameStart;
-                Globals.GetEventManager().EndGame -= OnGameEnd;
+                eventManager.OnStartGame -= OnGameStart;
+                eventManager.OnEndGame -= OnGameEnd;
             }
         }
 
         private void OnGameStart()
         {
-            // StartGame();
             gameState = GameState.Playing;
+            StartCoroutine(LevelStartDelay());
+        }
+
+        IEnumerator LevelStartDelay(){
+            yield return null;
+            eventManager.LevelStart();
         }
 
         private void OnGameEnd()
         {
+            Debug.Log("Game Over");
+            //DL: Change this to a coroutine that waits for the level to end before building a new one.
             FindObjectOfType<GameGeneratorManager>().BuildGame();
         }
 
         public void StartGame()
         {
             gameState = GameState.Playing;
+            OnGameStart();
         }
 
         public void Update()
@@ -82,7 +92,7 @@ namespace Quilt
             {
                 win = true;
                 gameState = GameState.GameOver;
-                Globals.GetEventManager().OnEndGame();
+                Globals.GetEventManager().EndGame();
             }
 
         }

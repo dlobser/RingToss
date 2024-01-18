@@ -268,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484beaa6205cf91408d00fee70ca2e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   gameState: 1
   win: 0
   eventManager: {fileID: 6668715783670421831}
@@ -366,11 +365,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1320b41cdad96cd48ac04b70556542d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   itemCollectedClip: {fileID: 0}
   wallHitClip: {fileID: 0}
   musicAudioA: {fileID: 0}
   musicAudioB: {fileID: 0}
+  levelStartSoundLocation: Sounds/8BitOneShot/FNF_EBA_88_song_starter_level_theme_forest_creature_C
 --- !u!114 &926649885437436107
 MonoBehaviour:
   m_ObjectHideFlags: 0

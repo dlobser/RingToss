@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quilt{
-    public class InteractionManager : MonoBehaviour
+    public class InteractionManager : Manager
     {
         
 

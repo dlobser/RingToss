@@ -13,13 +13,15 @@ namespace Quilt.Flappy
         public AudioSource musicAudioA;
         public AudioSource musicAudioB;
 
+        public string levelStartSoundLocation;
+        AudioClip levelStartSound;
+
         List<AudioSource> fxAudioSources = new List<AudioSource>();
         GameObject audioPool;
         GameObject activeAudio;
 
         void Start()
         {
-
             GameObject audioManager = new GameObject("AudioManager");
             audioManager.transform.parent = Globals.GetManagersRoot();
             audioPool = new GameObject("AudioPool");
@@ -36,6 +38,8 @@ namespace Quilt.Flappy
                 audio.GetComponent<AudioSource>().playOnAwake = false;
                 fxAudioSources.Add(audio.GetComponent<AudioSource>());
             }
+
+            levelStartSound = Resources.Load<AudioClip>(levelStartSoundLocation);
         }
 
         void Update()
@@ -54,28 +58,41 @@ namespace Quilt.Flappy
 
         private void OnEnable()
         {
-            Init();
-            GameManager.Instance.eventManager.ItemCollected += PlayItemCollectedSound;
-            GameManager.Instance.eventManager.Collision += PlayCollisionEffect;
+            GameManager.Instance.eventManager.OnLevelStart += PlayLevelStartSound;
+            GameManager.Instance.eventManager.OnLevelEnd += PlayLevelEndSound;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.eventManager.ItemCollected -= PlayItemCollectedSound;
-            GameManager.Instance.eventManager.Collision -= PlayCollisionEffect;
+            GameManager.Instance.eventManager.OnLevelStart -= PlayLevelStartSound;
+            GameManager.Instance.eventManager.OnLevelEnd -= PlayLevelEndSound;
         }
 
-        private void PlayItemCollectedSound()
+        private void PlayLevelStartSound()
         {
-            // Play item collected sound
-            AudioSource.PlayClipAtPoint(itemCollectedClip, transform.position);
+            levelStartSound = Resources.Load<AudioClip>(levelStartSoundLocation);
+            Debug.Log("Playing level start sound: " + levelStartSound);
+            PlayOneShot(levelStartSound);
         }
 
-        private void PlayCollisionEffect(CollisionEventArgs e)
+        private void PlayLevelEndSound()
         {
-            // Play wall hit sound
 
-            AudioSource.PlayClipAtPoint(wallHitClip, transform.position);
+        }
+
+        public void PlayOneShot(AudioClip clip){
+            if (audioPool != null && clip!=null)
+            {
+                if (audioPool.transform.childCount > 0)
+                {
+                    
+                    AudioSource effect = audioPool.transform.GetChild(0).GetComponent<AudioSource>();
+                    effect.transform.parent = activeAudio.transform;
+                    effect.clip = clip;
+                    effect.Play();
+                    Debug.Log("Playing sound: " + clip + "" + effect.transform.parent);
+                }
+            }
         }
 
         public override void PlayOneShotAtLocation(AudioClip clip, Vector3 location, float volume = 1f, float pitch = 1f)
@@ -85,11 +102,11 @@ namespace Quilt.Flappy
                 if (audioPool.transform.childCount > 0)
                 {
                     AudioSource effect = audioPool.transform.GetChild(0).GetComponent<AudioSource>();
-                    // effect.transform.parent = activeAudio.transform;
+                    effect.transform.parent = activeAudio.transform;
                     effect.volume = volume;
                     effect.pitch = pitch;
                     effect.transform.position = location;
-                    // effect.clip = clip;
+                    effect.clip = clip;
                     effect.Play();
                     Debug.Log("Playing sound at location: " + effect);
                 }

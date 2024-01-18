@@ -7,7 +7,8 @@ namespace Quilt
     {
         public override void HandleCollision(GameObject collisionObject = null)
         {
-            Globals.GetEventManager().OnEndGame();
+            Debug.Log("End Game Collision");
+            GameManager.Instance.eventManager.EndGame();
         }
     }
 }
