@@ -19,6 +19,9 @@ namespace Quilt.Flappy
             base.InitializeGame();
             if (creationSettings is CreationSettings flappySettings)
             {
+
+                bool isRelaxing = Random.value>.5f;
+
                 Globals.GlobalSettings.randomSeed = Random.Range(0, 15);
                 ImageLoader.Directory = "Textures/ImagesFlappy";
                 
@@ -28,6 +31,8 @@ namespace Quilt.Flappy
                 //make player
                 flappySettings.projectileConfig.size = platformSize * .5f;
                 player = StaticAssetGenerator.GenerateAsset(flappySettings.projectileConfig);//Instantiate(StaticAssetGenerator.GenerateAsset(flappySettings.projectileConfig), Globals.GetGameRoot()).gameObject;
+                if(isRelaxing)
+                    player.GetComponent<Rigidbody2D>().gravityScale = 0;
                 player.transform.parent = Globals.GetGameRoot().transform;
                 player.AddComponent<Player>();
                 GameObject ballSprite = StaticAssetGenerator.GenerateSpriteWithAlpha("ball", "BallAlpha");
@@ -48,11 +53,23 @@ namespace Quilt.Flappy
 
                 if (GameManager.Instance.interactionManager is InteractionManager interactionManager)
                 {
-                    GameObject interaction = new GameObject("Interaction");
-                    interaction.transform.parent = GameManager.Instance.interactionManager.transform;
-                    InteractionBehavior_BouncePlayer interactBounce = interaction.AddComponent<InteractionBehavior_BouncePlayer>();
-                    interactBounce.player = player;
-                    interactionManager.RegisterAction(interactBounce);
+                    if(isRelaxing){
+                        GameObject interaction = new GameObject("Interaction");
+                        interaction.transform.parent = GameManager.Instance.interactionManager.transform;
+                        InteractionBehavior_ForcePlayer interactBounce = interaction.AddComponent<InteractionBehavior_ForcePlayer>();
+                        interactBounce.player = player;
+                        interactionManager.RegisterAction(interactBounce);
+                    }
+                    else{
+                        GameObject interaction = new GameObject("Interaction");
+                        interaction.transform.parent = GameManager.Instance.interactionManager.transform;
+                        InteractionBehavior_BouncePlayer interactBounce = interaction.AddComponent<InteractionBehavior_BouncePlayer>();
+                        interactBounce.player = player;
+                        interactionManager.RegisterAction(interactBounce);
+                    }
+                    
+
+                    
                 }
                 else
                 {
@@ -100,11 +117,27 @@ namespace Quilt.Flappy
                             tForm.rotateOscillateSpeed = new Vector3(0, 0, Random.Range(.5f,1f));
                         }
                     }
+
+                    if(isRelaxing){
+                        platform.transform.Rotate(new Vector3(0,0,90));
+                    }
                     
-                    GameObject boundary = StaticAssetGenerator.GenerateBoundary(
-                        "Boundary",
-                        platform.transform.position + new Vector3(platformSize *2 , 0, 0),
-                        new Vector3(.1f, 100, 1));
+                    if(!isRelaxing){
+                        GameObject boundary = StaticAssetGenerator.GenerateBoundary(
+                            "Boundary",
+                            platform.transform.position + new Vector3(platformSize *2 , 0, 0),
+                            new Vector3(.1f, 100, 1));
+                            // boundary.layer = LayerMask.NameToLayer("Walls"); 
+                            CollisionBehavior[] platformCollisionBehavior = 
+                            platform.GetComponentsInChildren<CollisionBehavior>();
+
+                        foreach (CollisionBehaviorMultiPurpose cbs in platformCollisionBehavior)
+                        {
+                            cbs.settings = Instantiate(cbs.settings);
+                            cbs.settings.destroyObjectsOnhit = true;
+                            cbs.settings.objectsToDestroyOnHit = new GameObject[] { boundary };
+                        }
+                    }
 
                     bool turnIntoWall = Random.value > .7f;
 
@@ -123,7 +156,7 @@ namespace Quilt.Flappy
                         fx.GetComponent<TransformUniversal>().rotateOscillateSpeed = new Vector3(Random.Range(.5f,1f), 0, Random.Range(-1,1f));
                     }
 
-                    if(turnIntoWall){
+                    if(turnIntoWall && !isRelaxing){
                         GameObject wall = StaticAssetGenerator.GenerateBoundary("Wall",
                         new Vector3(0 , -5, 0),
                         new Vector3(1, 10, 1), false);
@@ -146,16 +179,9 @@ namespace Quilt.Flappy
                         madeWall = false;
                     }
 
-                    boundary.layer = LayerMask.NameToLayer("Walls");
-
-                    CollisionBehavior[] platformCollisionBehavior = 
-                        platform.GetComponentsInChildren<CollisionBehavior>();
-
-                    foreach (CollisionBehaviorMultiPurpose cbs in platformCollisionBehavior)
-                    {
-                        cbs.settings = Instantiate(cbs.settings);
-                        cbs.settings.destroyObjectsOnhit = true;
-                        cbs.settings.objectsToDestroyOnHit = new GameObject[] { boundary };
+                    
+                    if(!isRelaxing){
+                        
                     }
 
                     platforms[i] = platform.gameObject;
