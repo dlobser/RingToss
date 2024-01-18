@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Collision_Point
   m_EditorClassIdentifier: 
   customTag: 3
+  onlyCollideWithPlayer: 1
   addToScore: 1
   scoreValue: 1
   destroyOnHit: 1

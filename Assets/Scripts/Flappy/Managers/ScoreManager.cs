@@ -6,6 +6,7 @@ namespace Quilt{
     public class ScoreManager : Manager
     {
         public int totalScore = 0;
+        public int maxScore = 1000;
         public float elapsedTime = 0f;
 
         void Update()

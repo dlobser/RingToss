@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Collision_Destroyer
   m_EditorClassIdentifier: 
   customTag: 3
+  onlyCollideWithPlayer: 1
   addToScore: 1
   scoreValue: 10
   destroyOnHit: 0
   destroyColliderOnHit: 0
+  destroyObjectsOnhit: 0
+  objectsToDestroyOnHit: []
   endGame: 1
   playSound: 1
   collisionSound: {fileID: 8300000, guid: 80aab408883b7ff49bdff5059cd7502f, type: 3}
   audioPitchRange: {x: 0.7, y: 1}
   audioVolumeRange: {x: 0.7, y: 1}
+  audioVelocityMultiplier: 1
   playEffect: 0
   effectPrefab: {fileID: 6675763753893421309, guid: 870b182496cae3544a7d763635a1c78f, type: 3}
   effectIntensityRange: {x: 0.7, y: 1}

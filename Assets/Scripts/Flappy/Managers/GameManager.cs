@@ -24,7 +24,7 @@ namespace Quilt
         private void Awake()
         {
             //DL: this might be causing the issue with the game not restarting properly.
-            
+
             // if (Instance == null)
             // {
                 Instance = this;
@@ -41,8 +41,8 @@ namespace Quilt
 
             if (eventManager != null)
             {
-                eventManager.OnStartGame += OnGameStart;
-                eventManager.OnEndGame += OnGameEnd;
+                eventManager.OnStartGame += OnStartGame;
+                eventManager.OnEndGame += OnEndGame;
             }
         }
 
@@ -50,12 +50,12 @@ namespace Quilt
         {
             if (eventManager != null)
             {
-                eventManager.OnStartGame -= OnGameStart;
-                eventManager.OnEndGame -= OnGameEnd;
+                eventManager.OnStartGame -= OnStartGame;
+                eventManager.OnEndGame -= OnEndGame;
             }
         }
 
-        private void OnGameStart()
+        private void OnStartGame()
         {
             gameState = GameState.Playing;
             StartCoroutine(LevelStartDelay());
@@ -66,7 +66,7 @@ namespace Quilt
             eventManager.LevelStart();
         }
 
-        private void OnGameEnd()
+        private void OnEndGame()
         {
             Debug.Log("Game Over");
             //DL: Change this to a coroutine that waits for the level to end before building a new one.
@@ -76,19 +76,18 @@ namespace Quilt
         public void StartGame()
         {
             gameState = GameState.Playing;
-            OnGameStart();
+            OnStartGame();
         }
 
         public void Update()
         {
             if (gameState != GameState.Playing) return;
-
             CheckWinCondition();
         }
 
         private void CheckWinCondition()
         {
-            if (scoreManager.totalScore >= 10)
+            if (scoreManager.totalScore >= 1000)
             {
                 win = true;
                 gameState = GameState.GameOver;

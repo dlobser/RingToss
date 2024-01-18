@@ -71,7 +71,6 @@ namespace Quilt.Flappy
         private void PlayLevelStartSound()
         {
             levelStartSound = Resources.Load<AudioClip>(levelStartSoundLocation);
-            Debug.Log("Playing level start sound: " + levelStartSound);
             PlayOneShot(levelStartSound);
         }
 
@@ -85,12 +84,11 @@ namespace Quilt.Flappy
             {
                 if (audioPool.transform.childCount > 0)
                 {
-                    
                     AudioSource effect = audioPool.transform.GetChild(0).GetComponent<AudioSource>();
+                    effect.spatialBlend = 0f;
                     effect.transform.parent = activeAudio.transform;
                     effect.clip = clip;
                     effect.Play();
-                    Debug.Log("Playing sound: " + clip + "" + effect.transform.parent);
                 }
             }
         }
@@ -102,13 +100,13 @@ namespace Quilt.Flappy
                 if (audioPool.transform.childCount > 0)
                 {
                     AudioSource effect = audioPool.transform.GetChild(0).GetComponent<AudioSource>();
+                    effect.spatialBlend = 1f;
                     effect.transform.parent = activeAudio.transform;
                     effect.volume = volume;
                     effect.pitch = pitch;
                     effect.transform.position = location;
                     effect.clip = clip;
                     effect.Play();
-                    Debug.Log("Playing sound at location: " + effect);
                 }
             }
         }

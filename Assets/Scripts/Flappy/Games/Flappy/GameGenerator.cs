@@ -1,6 +1,7 @@
 using UnityEngine;
 using Quilt;
 using Unity.VisualScripting;
+using MM.Msg;
 
 namespace Quilt.Flappy
 {
@@ -24,7 +25,6 @@ namespace Quilt.Flappy
                 int platformCount = flappySettings.maxPlatforms;
                 float platformSize = Random.Range(flappySettings.minMaxPlatformSize.x, flappySettings.minMaxPlatformSize.y);
                 separation = Random.Range(flappySettings.minMaxPlatformSeparation.x, flappySettings.minMaxPlatformSeparation.y);
-                Debug.Log(++creationCount + " platforms created.");
                 //make player
                 flappySettings.projectileConfig.size = platformSize * .5f;
                 player = StaticAssetGenerator.GenerateAsset(flappySettings.projectileConfig);//Instantiate(StaticAssetGenerator.GenerateAsset(flappySettings.projectileConfig), Globals.GetGameRoot()).gameObject;
@@ -46,10 +46,13 @@ namespace Quilt.Flappy
                 BGFade.GetComponent<BoxCollider2D>().enabled = false;
                 StaticAssetGenerator.GenerateSquare("PlayerSeat",new Vector3(0,-2,0),new Vector3(3,.5f,1));
 
-                if (Globals.GetInteractionManager() is InteractionManager interactionManager)
+                if (GameManager.Instance.interactionManager is InteractionManager interactionManager)
                 {
-                    interactionManager.player = player;
-                    Debug.Log("Player assigned to InteractionManager: " + interactionManager.player.name);
+                    GameObject interaction = new GameObject("Interaction");
+                    interaction.transform.parent = GameManager.Instance.interactionManager.transform;
+                    InteractionBehavior_BouncePlayer interactBounce = interaction.AddComponent<InteractionBehavior_BouncePlayer>();
+                    interactBounce.player = player;
+                    interactionManager.RegisterAction(interactBounce);
                 }
                 else
                 {
@@ -68,6 +71,7 @@ namespace Quilt.Flappy
                 {
                     flappySettings.platformConfig.size = platformSize;
                     Platform platform = Instantiate(generatedPlatform.GetComponent<Platform>(), Globals.GetGameRoot());
+                    platform.name = "Platform_" + i;
                     platform.transform.position = new Vector3(i * separation, Random.Range(flappySettings.minMaxPlatformHeight.x, flappySettings.minMaxPlatformHeight.y), 0);
                     platform.transform.localScale = new Vector3(platformSize, platformSize, 1);
                     platform.transform.SetParent(Globals.GetGameRoot().transform);
@@ -127,8 +131,6 @@ namespace Quilt.Flappy
                         wall.AddComponent<CollisionBehavior_PlaySound>();
                         wall.GetComponent<BoxCollider2D>().isTrigger = false;
                         wall.GetComponent<CollisionBehavior_PlaySound>().Init("Sounds/8BitOneShot/MO_GT_kick_stomp_crate");
-                        // wall.GetComponent<CollisionBehavior_PlaySound>().collisionSoundPath = "Sounds/8BitOneShot/MO_GT_kick_stomp_crate";
-                        // wall.GetComponent<CollisionBehavior_PlaySound>().Init();
 
                         float tiles = Random.Range(.2f,.5f);
                         GameObject tex = StaticAssetGenerator.GenerateQuadWithTexture("bg",
