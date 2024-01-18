@@ -225,8 +225,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7288220919591961064}
-  - component: {fileID: 7266459936728350061}
   - component: {fileID: 7854204136265135028}
+  - component: {fileID: 7266459936728350061}
   - component: {fileID: 4549521713994470646}
   - component: {fileID: 7237458310823049179}
   - component: {fileID: 4792744634886697430}
@@ -256,6 +256,28 @@ Transform:
   m_Father: {fileID: 2502526815515899607}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7854204136265135028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402215248007917028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484beaa6205cf91408d00fee70ca2e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  gameState: 1
+  win: 0
+  eventManager: {fileID: 6668715783670421831}
+  menuManager: {fileID: 7266459936728350061}
+  scoreManager: {fileID: 4549521713994470646}
+  interactionManager: {fileID: 7237458310823049179}
+  fxManager: {fileID: 4792744634886697430}
+  audioManager: {fileID: 1438512011325051562}
+  uiManager: {fileID: 926649885437436107}
 --- !u!114 &7266459936728350061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,28 +301,6 @@ MonoBehaviour:
     menuObject: {fileID: 6610788076384865696}
   menuRoot: {fileID: 8976777923669630139}
   gameRoot: {fileID: 2653376213648273745}
---- !u!114 &7854204136265135028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8402215248007917028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484beaa6205cf91408d00fee70ca2e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  gameState: 1
-  win: 0
-  eventManager: {fileID: 6668715783670421831}
-  menuManager: {fileID: 7266459936728350061}
-  scoreManager: {fileID: 4549521713994470646}
-  interactionManager: {fileID: 7237458310823049179}
-  fxManager: {fileID: 4792744634886697430}
-  audioManager: {fileID: 1438512011325051562}
-  uiManager: {fileID: 926649885437436107}
 --- !u!114 &4549521713994470646
 MonoBehaviour:
   m_ObjectHideFlags: 0

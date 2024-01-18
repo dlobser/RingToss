@@ -85,11 +85,11 @@ namespace Quilt.Flappy
                 if (audioPool.transform.childCount > 0)
                 {
                     AudioSource effect = audioPool.transform.GetChild(0).GetComponent<AudioSource>();
-                    effect.transform.parent = activeAudio.transform;
+                    // effect.transform.parent = activeAudio.transform;
                     effect.volume = volume;
                     effect.pitch = pitch;
                     effect.transform.position = location;
-                    effect.clip = clip;
+                    // effect.clip = clip;
                     effect.Play();
                     Debug.Log("Playing sound at location: " + effect);
                 }
