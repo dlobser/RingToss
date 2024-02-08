@@ -31,15 +31,19 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
 
     public string[] renderLayerMask;
     public string[] projectionMaterialLayerMask;
+    public string[] matteLayerMask;
+
     LayerMask cullingMaskBackup;
     public Camera projectionCam;
     bool setupRenderer = true;
+
     public bool useInputImageForUnityFunc = true;
     public bool switchToInitialMaterial = true;
     public bool switchToProjectionMaterial = false;
 
     public string saveDepthImageLocation;
     public string saveRenderImageLocation;
+    public string saveMatteImageLocation;
 
     // public Cubemap cubemap;
     public bool debug = false;
@@ -83,7 +87,7 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
         SetupRenderers();
         if (switchToInitialMaterial)
             SwitchToInitialMaterial();
-        if (switchToProjectionMaterial && projectionMaterial!=null)
+        if (switchToProjectionMaterial && projectionMaterial != null)
             SwitchToProjection();
 
         SaveCullingMask();
@@ -94,8 +98,9 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
 
         Texture2D tex;
         Texture2D texD;
+        Texture2D texM;
 
-         // Find all TextMesh objects in the scene
+        // Find all TextMesh objects in the scene
         TextMesh[] textMeshes = FindObjectsOfType<TextMesh>();
         foreach (TextMesh textMesh in textMeshes)
         {
@@ -123,8 +128,9 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
         }
 
         SetLayerMask();
+        Debug.Log(projectionCam.cullingMask);
 
-        if(depthMaterial!=null)
+        if (depthMaterial != null)
             SwitchToDepth();
 
         texD = render360 ? Render360((int)resolution.x, (int)resolution.y) : SDRenderUtils.Capture(projectionCam, (int)resolution.x, (int)resolution.y);
@@ -137,7 +143,18 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
         {
             depth = SDRenderUtils.TextureToString(startingDepthImage);
         }
-        if(switchToInitialMaterial||switchToProjectionMaterial)
+
+        SetMatteMask();
+        Debug.Log(projectionCam.cullingMask);
+
+        texM = render360 ? Render360((int)resolution.x, (int)resolution.y) : SDRenderUtils.Capture(projectionCam, (int)resolution.x, (int)resolution.y);
+        string matte = Convert.ToBase64String(texM.EncodeToPNG());
+        if (saveMatteImageLocation.Length > 0)
+        {
+            SaveImage(matte, saveMatteImageLocation);
+        }
+
+        if (switchToInitialMaterial || switchToProjectionMaterial)
             SwitchToInitialMaterial();
         if (extraValues is ExtraValuesForTxt2Image)
         {
@@ -345,6 +362,12 @@ public class SDRenderChainLinkRenderDepth : SDRenderChainLink
     {
         if (renderLayerMask.Length > 0)
             projectionCam.cullingMask = MergeLayerMask(renderLayerMask);
+    }
+
+    public void SetMatteMask()
+    {
+        if (matteLayerMask.Length > 0)
+            projectionCam.cullingMask = MergeLayerMask(matteLayerMask);
     }
 
     public LayerMask MergeLayerMask(string[] layerNames)

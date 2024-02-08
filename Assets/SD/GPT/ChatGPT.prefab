@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3810881881577491649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3810881881577491663}
+  - component: {fileID: 3810881881577491648}
+  - component: {fileID: 3810881881577491662}
+  m_Layer: 0
+  m_Name: ChatGPT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3810881881577491663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810881881577491649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.061073564, y: -0.036853757, z: -0.027855491}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3810881881577491648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810881881577491649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6354b68f6aed44384f16cd93e8fa7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YOUR_API_KEY: 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
+--- !u!114 &3810881881577491662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810881881577491649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240997a582cbea44080c8859302ead90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatGPTRequest: {fileID: 3810881881577491648}
+  requestText: 'please take this question and convert it to an image prompt - the
+    prompts should be constituted like this:
+
+    
+
+    art medium (oil painting,
+    photograph, miniature sculpture, anime, etc), description of an object, a background
+    environment, by an artist
+
+    
+
+    the artists you choose from should be
+    more contemporary and lesser known
+
+    
+
+    here are some good examples separated
+    by |
+
+    
+
+    a watercolor painting, of a steaming cup of coffee beside an
+    open journal, in a sunlit breakfast nook, by Elisabeth Sonrel | an oil painting,
+    of a group of friends laughing together around a campfire, in a forest clearing
+    under the stars, by Sophie Gengembre Anderson | a pastel drawing, of a peaceful
+    cat sleeping on a pile of books, in a cozy library corner, by Henriette Ronner-Knip
+    | an acrylic painting, of a small, vibrant garden full of blooming flowers and
+    buzzing bees, in a city backyard, by Jessie Arms Botke | a charcoal sketch, of
+    an old, comfortable armchair with a soft blanket thrown over it, in a quiet,
+    book-filled study, by Charles Sprague Pearce | a digital illustration, of a bright
+    full moon illuminating a tranquil lake, with silhouettes of pine trees in the
+    foreground, by Ivan Bilibin
+
+    
+
+    choose from a wide variety of different
+    kinds of artists and styles and objects and environments, don''t be vague in
+    your description, everything should be specific and related to objects and their
+    descriptive attributes
+
+    
+
+    do not include any quotes or formatting or
+    new lines, just a string of text
+
+    
+
+    Do not include any introductory
+    text or explanation, just provide the response
+
+    
+
+    Consider the concept
+    of a random seed - I want you to create this prompt using a seed of 1'
+  text: {fileID: 0}
+  sendRequest: 0
