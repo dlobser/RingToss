@@ -33,5 +33,5 @@ Material:
     - _Pow: 2
     m_Colors:
     - _CamPos: {r: 0, g: 0, b: 0, a: 0}
-    - _Data: {r: -12.2, g: -0.17, b: 0, a: 0.1}
+    - _Data: {r: -41.2, g: -1, b: 0, a: 0.1}
   m_BuildTextureStacks: []

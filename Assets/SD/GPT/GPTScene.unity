@@ -9220,12 +9220,18 @@ MonoBehaviour:
     Consider
     the concept of a random seed - I want you to create this prompt using a seed
     of 1'
+  followUpRequest: Do it again, but make all the details very different, be specific
+    and very descriptive
+  questions: 
+  questionIterations: 5
   text: {fileID: 0}
   sendRequest: 0
   extraValuesImg2Img: {fileID: 0}
   extraValuesTxt2Img: {fileID: 1713422914}
   prePrompt: 
   postPrompt: 
+  saveLocation: {fileID: 0}
+  imageName: 
   startOnAwake: 1
 --- !u!4 &1635518665
 Transform:
@@ -11903,27 +11909,12 @@ MonoBehaviour:
   link:
   - {fileID: 1176574876}
   chatGPTRequest: {fileID: 1353072891}
-  requestText: 'please take this question and convert it to an image prompt - the
-    prompts should be constituted like this:
-
-
-
-    art medium (oil painting, photograph,
-    miniature sculpture, anime, etc), description of an object, a background environment,
-    by an artist
-
-
-
-    the artists you choose from should be more contemporary and
-    lesser known
-
-
-
-    here are some good examples separated by |
-
-
-
-    a watercolor
+  requestText: "please take this very special question and convert it to an image
+    prompt: \n\nWhat is one thing right now, in this moment, that you can feel happy
+    about?\n\nthe prompts should be constituted like this:\n\n\nart medium (oil painting,
+    photograph, miniature sculpture, anime, etc), description of an object, a background
+    environment, by an artist\n\n\nthe artists you choose from should be more contemporary
+    and lesser known\n\n\nhere are some good examples separated by |\n\n\na watercolor
     painting, of a steaming cup of coffee beside an open journal, in a sunlit breakfast
     nook, by Elisabeth Sonrel | an oil painting, of a group of friends laughing together
     around a campfire, in a forest clearing under the stars, by Sophie Gengembre
@@ -11933,36 +11924,38 @@ MonoBehaviour:
     by Jessie Arms Botke | a charcoal sketch, of an old, comfortable armchair with
     a soft blanket thrown over it, in a quiet, book-filled study, by Charles Sprague
     Pearce | a digital illustration, of a bright full moon illuminating a tranquil
-    lake, with silhouettes of pine trees in the foreground, by Ivan Bilibin
-
-
-
-    choose
-    from a wide variety of different kinds of artists and styles and objects and
-    environments, don''t be vague in your description, everything should be specific
-    and related to objects and their descriptive attributes
-
-
-
-    do not include
-    any quotes or formatting or new lines, just a string of text
-
-
-
-    Do not include
-    any introductory text or explanation, just provide the response
-
-
-
-    Consider
-    the concept of a random seed - I want you to create this prompt using a seed
-    of {seed}'
+    lake, with silhouettes of pine trees in the foreground, by Ivan Bilibin\n\nYour
+    response should just be a single response, do not give multiple responses separated
+    by |  - these are just examples.\n\nchoose from a wide variety of different kinds
+    of artists and styles and objects and environments, don't be vague in your description,
+    everything should be specific and related to objects and their descriptive attributes\n\n\ndo
+    not include any quotes or formatting or new lines, just a string of text and
+    commas\n\n\nDo not include any introductory text or explanation, just provide
+    the response"
+  followUpRequest: Do it again, but make all the details very different, be specific
+    and very descriptive
+  questions: "What is one thing right now, in this moment, that you can feel happy
+    about? | Name one positive or admirable quality about yourself. | Name one person
+    you really respect or appreciate. What about them do you admire most? | What\u2019s
+    small act of kindness can you do today? | Describe one happy, joyous, or beautiful
+    moment you\u2019ve had recently. | Write a thank you letter to someone who made
+    a positive impact on you recently. | What\u2019s one thing that made you smile
+    recently? | Name one person who either loves or respects you, or has your best
+    interests at heart? | What are three things I\u2019ve done \u201Cright\u201D
+    today? | What\u2019s one thing that you\u2019ve been avoiding doing recently?
+    | Name one thing you\u2019re looking forward to today. | If your current emotions
+    were weather, what would they be? | Five senses (Bri style) | What\u2019s one
+    small step you can take today towards your one of your goals? | What\u2019s one
+    obstacle you have overcome or you\u2019re actively working on?"
+  questionIterations: 5
   text: {fileID: 0}
   sendRequest: 0
   extraValuesImg2Img: {fileID: 1149868113}
   extraValuesTxt2Img: {fileID: 1713422914}
   prePrompt: a beautiful image on a white background
   postPrompt: 
+  saveLocation: {fileID: 1176574876}
+  imageName: test_gpt_
   startOnAwake: 1
 --- !u!4 &2010731101
 Transform:
@@ -12972,9 +12965,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3810881881577491648, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
+      propertyPath: YOUR_API_KEY
+      value: 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
+      objectReference: {fileID: 0}
     - target: {fileID: 3810881881577491649, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
       propertyPath: m_Name
       value: ChatGPT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810881881577491662, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3810881881577491662, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
       propertyPath: requestText
@@ -12982,60 +12983,59 @@ PrefabInstance:
         is one thing right now, in this moment, that you can feel happy about?--
         the prompts should be constituted like this:
 
-        
 
-        art medium
-        (oil painting, photograph, miniature sculpture, anime, etc), description
-        of an object, a background environment, by an artist
 
-        
+        art medium (oil painting,
+        photograph, miniature sculpture, anime, etc), description of an object, a
+        background environment, by an artist
 
-        the
-        artists you choose from should be more contemporary and lesser known
 
-        
 
-        here
-        are some good examples separated by |
+        the artists you choose from
+        should be more contemporary and lesser known
 
-        
 
-        a watercolor painting,
-        of a steaming cup of coffee beside an open journal, in a sunlit breakfast
-        nook, by Elisabeth Sonrel | an oil painting, of a group of friends laughing
-        together around a campfire, in a forest clearing under the stars, by Sophie
-        Gengembre Anderson | a pastel drawing, of a peaceful cat sleeping on a pile
-        of books, in a cozy library corner, by Henriette Ronner-Knip | an acrylic
-        painting, of a small, vibrant garden full of blooming flowers and buzzing
-        bees, in a city backyard, by Jessie Arms Botke | a charcoal sketch, of an
-        old, comfortable armchair with a soft blanket thrown over it, in a quiet,
-        book-filled study, by Charles Sprague Pearce | a digital illustration, of
-        a bright full moon illuminating a tranquil lake, with silhouettes of pine
-        trees in the foreground, by Ivan Bilibin
 
-        
+        here are some good
+        examples separated by |
 
-        choose from
-        a wide variety of different kinds of artists and styles and objects and environments,
-        don''t be vague in your description, everything should be specific and related
-        to objects and their descriptive attributes
 
-        
 
-        do not include
-        any quotes or formatting or new lines, just a string of text
+        a watercolor painting, of a steaming cup
+        of coffee beside an open journal, in a sunlit breakfast nook, by Elisabeth
+        Sonrel | an oil painting, of a group of friends laughing together around
+        a campfire, in a forest clearing under the stars, by Sophie Gengembre Anderson
+        | a pastel drawing, of a peaceful cat sleeping on a pile of books, in a cozy
+        library corner, by Henriette Ronner-Knip | an acrylic painting, of a small,
+        vibrant garden full of blooming flowers and buzzing bees, in a city backyard,
+        by Jessie Arms Botke | a charcoal sketch, of an old, comfortable armchair
+        with a soft blanket thrown over it, in a quiet, book-filled study, by Charles
+        Sprague Pearce | a digital illustration, of a bright full moon illuminating
+        a tranquil lake, with silhouettes of pine trees in the foreground, by Ivan
+        Bilibin
 
-        
 
-        Do
-        not include any introductory text or explanation, just provide the response
 
-        
+        choose from a wide variety of different kinds of artists
+        and styles and objects and environments, don''t be vague in your description,
+        everything should be specific and related to objects and their descriptive
+        attributes
 
-        Consider
-        the concept of a random seed - every time you generate with the same seed
-        it should get the same response - I want you to create this prompt using
-        a seed of {seed}'
+
+
+        do not include any quotes or formatting or new lines,
+        just a string of text
+
+
+
+        Do not include any introductory text or
+        explanation, just provide the response
+
+
+
+        Consider the concept of
+        a random seed - every time you generate with the same seed it should get
+        the same response - I want you to create this prompt using a seed of {seed}'
       objectReference: {fileID: 0}
     - target: {fileID: 3810881881577491663, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
       propertyPath: m_RootOrder
