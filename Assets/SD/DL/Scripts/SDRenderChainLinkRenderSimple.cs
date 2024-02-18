@@ -12,9 +12,9 @@ public class SDRenderChainLinkRenderSimple : SDRenderChainLink
     public override void RunUnityFunction(string image)
     {
         if (extraValues is ExtraValuesForTxt2Image)
-            GetImageFromSD((ExtraValuesForTxt2Image)extraValues, new string[]{""});
+            GetImageFromSD((ExtraValuesForTxt2Image)extraValues, new string[] { "" });
         else if (extraValues is ExtraValuesForImg2Img)
-            GetImageFromSD((ExtraValuesForImg2Img)extraValues, new string[]{""});
+            GetImageFromSD((ExtraValuesForImg2Img)extraValues, new string[] { image, "" });
 
     }
 
@@ -24,6 +24,7 @@ public class SDRenderChainLinkRenderSimple : SDRenderChainLink
         {
             request = FindObjectOfType<Request>();
         }
+        Debug.Log(arguments[0]);
         if (extraValues is ExtraValuesForTxt2Image)
             request.SendTxt2Img((ExtraValuesForTxt2Image)extraValues, arguments[0], OnImageReturnedFromSD);
         else if (extraValues is ExtraValuesForImg2Img)

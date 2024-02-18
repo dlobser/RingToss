@@ -72,8 +72,8 @@ public class Request : MonoBehaviour
 
         arg.input_image = depth;
         arg.module = "none";
-        // arg.model = "control_sd15_depth [fef5e48e]";
-        arg.model = "control_v11f1p_sd15_depth [cfd03158]";
+        arg.model = "control_sd15_depth [fef5e48e]";
+        // arg.model = "control_v11f1p_sd15_depth [cfd03158]";
         // arg.model = "diff_control_sd15_depth_fp16 [978ef0a1]";
         arg.weight = ExtraValuesForTxt2Image.controlnet_weight;
         arg.guidance_end = ExtraValuesForTxt2Image.controlnet_guidance_end;

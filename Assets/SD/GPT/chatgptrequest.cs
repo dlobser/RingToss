@@ -16,12 +16,15 @@ public class chatgptrequest : MonoBehaviour
 {
     public string YOUR_API_KEY = "don't push your api key to github";
     private readonly string url = "https://api.openai.com/v1/chat/completions"; // API URL
-    private string apiKey;
+    public string apiKey;
     private List<Message> conversationHistory = new List<Message>();
+    Cipher cipher;
 
     void Start()
     {
-        apiKey = YOUR_API_KEY; // Initialize the API key
+        
+        cipher = new Cipher();
+        apiKey = cipher.Decode(YOUR_API_KEY);
     }
 
     public void SendRequest(string prompt, Action<string> callback)

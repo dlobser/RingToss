@@ -33,9 +33,9 @@ Material:
     - _Clip: 0.01
     - _DepthOffset: 2000
     - _DepthOffsetSpeed: 3.5
-    - _DepthOrColor: 0
-    - _Pow: 0.52
+    - _DepthOrColor: 1
+    - _Pow: 842.78
     m_Colors:
     - _CamPos: {r: 0, g: 0, b: 0.5, a: 0.5}
-    - _Data: {r: -36.6, g: -0.02, b: -0.75, a: 0}
+    - _Data: {r: -10.42, g: -0.1, b: -0.75, a: 0}
   m_BuildTextureStacks: []

@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &40752902
 Transform:
   m_ObjectHideFlags: 0
@@ -1955,6 +1955,104 @@ MonoBehaviour:
   saveRenderImageLocation: C:/_Main/projects/Client/quilt/Renders/ImageMaker/image.png
   saveMatteImageLocation: C:/_Main/projects/Client/quilt/Renders/ImageMaker/mask.png
   debug: 0
+--- !u!1 &386022126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386022127}
+  - component: {fileID: 386022130}
+  - component: {fileID: 386022129}
+  - component: {fileID: 386022128}
+  m_Layer: 6
+  m_Name: Quad (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &386022127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386022126}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 0.002, z: -0.031}
+  m_LocalScale: {x: 0.47151098, y: 0.47151098, z: 0.47151098}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2058636701}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &386022128
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386022126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &386022129
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386022126}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 948568e2dc41b884aa16dc8dc6ccbd49, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &386022130
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386022126}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &393535927
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,6 +4897,104 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &847341657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847341658}
+  - component: {fileID: 847341661}
+  - component: {fileID: 847341660}
+  - component: {fileID: 847341659}
+  m_Layer: 12
+  m_Name: Quad (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &847341658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847341657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 0.002, z: -0.031}
+  m_LocalScale: {x: 0.49111354, y: 0.49111354, z: 0.49111354}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2058636701}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &847341659
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847341657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &847341660
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847341657}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9b54c23049d7f9e48802c8dd8ebb6457, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &847341661
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847341657}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &867691373
 GameObject:
   m_ObjectHideFlags: 0
@@ -9049,6 +9245,90 @@ Transform:
   m_Father: {fileID: 323605788}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1601576018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601576019}
+  - component: {fileID: 1601576020}
+  m_Layer: 6
+  m_Name: nubbles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1601576019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601576018}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.11336192, y: 0.11336192, z: 0.11336192}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2058636701}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1601576020
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601576018}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ca585e946403fa34aa411dcc2bbf642c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1633747308
 GameObject:
   m_ObjectHideFlags: 0
@@ -9970,8 +10250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enable_hr: 0
-  useControlNet: 1
-  denoising_strength: 0
+  useControlNet: 0
+  denoising_strength: 0.75
   firstphase_width: 512
   firstphase_height: 512
   styles: []
@@ -9984,8 +10264,8 @@ MonoBehaviour:
   n_iter: 1
   steps: 20
   cfg_scale: 7
-  width: 512
-  height: 512
+  width: 1024
+  height: 1024
   restore_faces: 0
   tiling: 0
   negative_prompt: intricate, detailed, ornate, elaborate, face, person, body
@@ -10071,7 +10351,7 @@ MonoBehaviour:
   blurAmount: 0
   postBlurThreshold: 0
   antiAliasingKernel: 3
-  useMatte: 1
+  useMatte: 0
   matteLocation: C:/_Main/projects/Client/quilt/Renders/ImageMaker/mask.png
   debug: 0
 --- !u!1 &1721380133
@@ -10490,7 +10770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1776512989
 Transform:
   m_ObjectHideFlags: 0
@@ -11909,29 +12189,55 @@ MonoBehaviour:
   link:
   - {fileID: 1176574876}
   chatGPTRequest: {fileID: 1353072891}
-  requestText: "please take this very special question and convert it to an image
-    prompt: \n\nWhat is one thing right now, in this moment, that you can feel happy
-    about?\n\nthe prompts should be constituted like this:\n\n\nart medium (oil painting,
+  requestText: 'please take that very special question and convert it to an image
+    prompt, the prompts should be constituted like this:
+
+
+    art medium (oil painting,
     photograph, miniature sculpture, anime, etc), description of an object, a background
-    environment, by an artist\n\n\nthe artists you choose from should be more contemporary
-    and lesser known\n\n\nhere are some good examples separated by |\n\n\na watercolor
-    painting, of a steaming cup of coffee beside an open journal, in a sunlit breakfast
-    nook, by Elisabeth Sonrel | an oil painting, of a group of friends laughing together
-    around a campfire, in a forest clearing under the stars, by Sophie Gengembre
-    Anderson | a pastel drawing, of a peaceful cat sleeping on a pile of books, in
-    a cozy library corner, by Henriette Ronner-Knip | an acrylic painting, of a small,
+    environment, by an artist
+
+
+    the artists you choose from should be more contemporary
+    and lesser known
+
+
+    here are some good examples separated by |
+
+
+    a beautiful
+    and intricate watercolor painting, of a steaming cup of coffee beside an open
+    journal, in a sunlit breakfast nook, by Elisabeth Sonrel | an oil painting, of
+    a group of friends laughing together around an orange, roaring campfire, in a
+    forest clearing under the stars, by Sophie Gengembre Anderson | a pastel with
+    layers of color, drawing, of a peaceful cat sleeping on a pile of books, in a
+    cozy library corner, by Henriette Ronner-Knip | an acrylic painting, of a small,
     vibrant garden full of blooming flowers and buzzing bees, in a city backyard,
-    by Jessie Arms Botke | a charcoal sketch, of an old, comfortable armchair with
-    a soft blanket thrown over it, in a quiet, book-filled study, by Charles Sprague
-    Pearce | a digital illustration, of a bright full moon illuminating a tranquil
-    lake, with silhouettes of pine trees in the foreground, by Ivan Bilibin\n\nYour
-    response should just be a single response, do not give multiple responses separated
-    by |  - these are just examples.\n\nchoose from a wide variety of different kinds
-    of artists and styles and objects and environments, don't be vague in your description,
-    everything should be specific and related to objects and their descriptive attributes\n\n\ndo
-    not include any quotes or formatting or new lines, just a string of text and
-    commas\n\n\nDo not include any introductory text or explanation, just provide
-    the response"
+    by Jessie Arms Botke | a beautifully detailed charcoal sketch, of an old, comfortable
+    armchair with a soft blanket thrown over it, in a quiet, book-filled study, by
+    Charles Sprague Pearce | an 8K, HD, digital illustration, of a bright full moon
+    illuminating a tranquil lake, with silhouettes of pine trees in the foreground,
+    by Ivan Bilibin
+
+
+    Give me ten responses, separated by | - separate each individual
+    response with a | character as in the example above
+
+
+    choose from a wide
+    variety of different kinds of artists and styles and objects and environments,
+    don''t be vague in your description, everything should be specific and related
+    to objects and their descriptive attributes. Your descriptions can be elaborate
+    and detailed, but keep them specific.
+
+
+    do not include any quotes or formatting
+    or new lines, just a string of text and commas
+
+
+
+    Do not include any introductory
+    text or explanation, just provide the response'
   followUpRequest: Do it again, but make all the details very different, be specific
     and very descriptive
   questions: "What is one thing right now, in this moment, that you can feel happy
@@ -11946,7 +12252,7 @@ MonoBehaviour:
     | Name one thing you\u2019re looking forward to today. | If your current emotions
     were weather, what would they be? | Five senses (Bri style) | What\u2019s one
     small step you can take today towards your one of your goals? | What\u2019s one
-    obstacle you have overcome or you\u2019re actively working on?"
+    obstacle you have overcome or you\u2019re actively working on?\r"
   questionIterations: 5
   text: {fileID: 0}
   sendRequest: 0
@@ -11955,7 +12261,7 @@ MonoBehaviour:
   prePrompt: a beautiful image on a white background
   postPrompt: 
   saveLocation: {fileID: 1176574876}
-  imageName: test_gpt_
+  imageName: img_
   startOnAwake: 1
 --- !u!4 &2010731101
 Transform:
@@ -12268,6 +12574,9 @@ Transform:
   - {fileID: 231378823}
   - {fileID: 40752902}
   - {fileID: 1776512989}
+  - {fileID: 386022127}
+  - {fileID: 847341658}
+  - {fileID: 1601576019}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12967,7 +13276,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3810881881577491648, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
       propertyPath: YOUR_API_KEY
-      value: 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
+      value: ym-mOGxM0E7a93ONg1ByjpghL3Odm41VyXJJttNBJcddXbnMzni
       objectReference: {fileID: 0}
     - target: {fileID: 3810881881577491649, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
       propertyPath: m_Name
@@ -13081,5 +13390,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3810881881577491662, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1254e137edb1c849870b0bea5ac8040, type: 3}
